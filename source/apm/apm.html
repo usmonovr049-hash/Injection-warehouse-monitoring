@@ -1,0 +1,87 @@
+<div id="v-apm" hidden>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>APM: reja va fakt nazorati</h1>
+      <p class="sub">Kunlik va smenalar bo'yicha fakt, IMM yuklamasi va umumiy bajarilish. Faqat APM uchun.</p>
+    </div>
+    <div class="stamp">Manba: "Zaxira Yetish Tahlili (IMM Grafik)", 25.09.2026</div>
+  </header>
+
+  <section class="alert" id="apm-alert" role="status"></section>
+
+  <section id="apm-day-sec">
+    <div class="hd"><h2>Bir kunlik ma'lumot</h2><p id="apm-daylabel"></p></div>
+    <div class="dsel">
+      <button id="apm-prev" class="btn2" type="button" aria-label="Oldingi kun">‹</button>
+      <label>Sana <select id="apm-day"></select></label>
+      <button id="apm-next" class="btn2" type="button" aria-label="Keyingi kun">›</button>
+    </div>
+    <div class="kpis" id="apm-kpis"></div>
+  </section>
+
+
+
+
+  <section>
+    <div class="hd"><h2>IMM yuklamasi: reja va fakt</h2><p>25.09.2026 uchun (IMM_Yuklama varag'i)</p></div>
+    <div class="tw" style="max-height:none"><table id="apm-imm"></table></div>
+    <p class="note" id="apm-imm-note"></p>
+  </section>
+
+  <section>
+    <div class="hd"><h2>IMM bo'yicha ishlab chiqarish</h2><p>25.09.2026 uchun (IMM_Fact varag'i)</p></div>
+    <div class="tw" style="max-height:none"><table id="apm-prod"></table></div>
+  </section>
+
+  <section>
+    <div class="hd"><h2>IMM ish vaqti</h2><p>Mavjud soat va fakt soat, 25.09.2026</p></div>
+    <div class="leg"><span><i style="background:var(--muted);opacity:.45"></i>Mavjud soat (22 soat/kun)</span><span><i style="background:var(--blue)"></i>Fakt soat</span></div>
+    <div class="cw s"><canvas id="apm-time" role="img" aria-label="IMM mavjud va fakt ish vaqti"></canvas></div>
+  </section>
+
+  <section>
+    <div class="hd">
+      <div><h2>Ish vaqti xaritasi</h2><p>Soatlar bo'yicha holat, 25.09.2026: 08:00 dan 07:00 gacha</p></div>
+      <button id="apm-big" class="btn2" type="button">Kattalashtirish ↗</button>
+    </div>
+    <div class="leg" id="apm-hleg"></div>
+    <div class="hmw"><div class="hm" id="apm-hm"></div></div>
+    <p class="note">Soatlik holat "IMM_Grafik" varag'idan olinadi. 25.09.2026 uchun bu varaq bo'sh, shuning uchun barcha kataklar "ma'lumot yo'q".</p>
+  </section>
+
+
+  <details class="mon" id="apm-mon">
+    <summary>Oy bo'yicha ko'rinish: 1-24 sentabr</summary>
+    <div class="monb">
+  <section class="in">
+    <div class="hd"><h2>Kunlik reja va fakt</h2><p>1-24 sentabr, butun sex, dona</p></div>
+    <div class="leg"><span><i style="background:var(--blue)"></i>Fakt</span><span><i style="background:var(--muted);opacity:.5"></i>Reja: kiritilmagan</span></div>
+    <div class="cw"><canvas id="apm-daily" role="img" aria-label="Kunlik fakt"></canvas></div>
+    <div class="tw" style="max-height:320px"><table id="apm-dtbl"></table></div>
+  </section>
+  <section class="in">
+    <div class="hd"><h2>Smenalar bo'yicha reja va fakt</h2><p>1-smena va 2-smena, dona</p></div>
+    <div class="leg"><span><i style="background:var(--blue)"></i>1-smena fakt</span><span><i style="background:var(--orange)"></i>2-smena fakt</span></div>
+    <div class="cw"><canvas id="apm-shift" role="img" aria-label="Smenalar bo'yicha fakt"></canvas></div>
+    <div class="find" id="apm-sfind"></div>
+  </section>
+  <section class="in">
+    <div class="hd"><h2>Umumiy reja va fakt</h2><p>1-24 sentabr, yig'ma dona</p></div>
+    <div class="leg"><span><i style="background:var(--ink)"></i>Yig'ma fakt</span><span><i style="background:var(--muted);opacity:.5"></i>Reja: kiritilmagan</span></div>
+    <div class="cw s"><canvas id="apm-cum" role="img" aria-label="Yig'ma fakt"></canvas></div>
+  </section>
+    </div>
+  </details>
+
+  <section id="apm-notes">
+    <h2>Izohlar (Notes)</h2>
+    <ul class="nl" id="apm-nl"></ul>
+    <label class="nb">Sizning izohlaringiz
+      <textarea id="apm-ta" rows="5" placeholder="Bu yerga izoh yozing. Izoh faqat shu brauzerda saqlanadi."></textarea>
+    </label>
+    <div class="nact"><button id="apm-save" class="btn">Saqlash</button><span id="apm-saved" class="cnt"></span></div>
+  </section>
+</div>
+<div class="ov" id="apm-ov" hidden role="dialog" aria-label="Ish vaqti xaritasi"><div class="ovb"><div class="hd"><h2>Ish vaqti xaritasi</h2><button id="apm-x" class="btn2" type="button">Yopish</button></div><div class="leg" id="apm-hleg2"></div><div class="hmw"><div class="hm big" id="apm-hm2"></div></div></div></div>
+</div>
