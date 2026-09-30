@@ -96,3 +96,34 @@
 #v-apm .fbtn-clear{font:inherit;font-weight:500;font-size:13.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 22px;cursor:pointer}
 #v-apm .filters.collapsed .grid,#v-apm .filters.collapsed .btnrow{display:none}
 #v-apm .filters .dsel{gap:6px}
+
+/* ---- Yangi ko'rinish (Tahlil paneli bilan bir xil): chap filtr paneli, oq kartalar, rangli KPI ---- */
+#v-apm{--pg:#f2f4f8;--nvy:#1d2b4f;--shadow:0 1px 3px rgba(22,34,60,.07),0 1px 2px rgba(22,34,60,.04);--kc1:#d9534f;--kc2:#8c8a1c;--kc3:#17a0a8;--kc4:#9b87d6;background:var(--pg);border-radius:12px;margin-top:12px}
+#v-apm .wrap{max-width:1680px;padding:14px 14px 40px;gap:16px}
+#v-apm header{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:12px 18px;align-items:center;margin:0}
+#v-apm h1{color:var(--nvy);font-size:22px;font-weight:700}
+#v-apm .sub{color:var(--muted);font-size:12.5px}
+#v-apm .stamp{background:#e6f5f5;color:#0e6b70;border-radius:8px;font-size:12px}
+#v-apm section,#v-apm details.mon{border:0!important;border-radius:12px;box-shadow:var(--shadow)}
+#v-apm section.in{box-shadow:none}
+#v-apm section.alert{border-radius:12px}
+#v-apm .hd h2{color:var(--nvy);font-size:15px}
+#v-apm .layout{display:grid;grid-template-columns:232px minmax(0,1fr);gap:16px;align-items:start}
+#v-apm .side{position:sticky;top:10px}
+#v-apm .main{display:flex;flex-direction:column;gap:16px;min-width:0}
+#v-apm .side .filters{background:#fff;border:0;box-shadow:var(--shadow);border-radius:12px;padding:14px 12px 16px;gap:12px}
+#v-apm .side .filters .grid{grid-template-columns:1fr}
+#v-apm .side .ffield{color:#7c6fd6;text-transform:none;letter-spacing:0}
+#v-apm .side .ffield select{padding:10px 12px;border-radius:8px}
+#v-apm .side .dsel{flex-wrap:nowrap}
+#v-apm .side .dsel select{flex:1;min-width:0}
+#v-apm .side .btnrow{flex-direction:column}
+#v-apm .side .btnrow button{width:100%;padding:12px;border-radius:8px}
+#v-apm .fbtn-apply{background:linear-gradient(120deg,#4aa3df,#1a9aa0)}
+#v-apm .kpi{--c:var(--kc1);position:relative;border:0!important;border-left:4px solid var(--c)!important;border-radius:12px;box-shadow:var(--shadow);padding:16px 14px 14px 62px;text-align:center;align-items:center;justify-content:center;min-height:98px}
+#v-apm .kpi::before{content:"";position:absolute;left:14px;top:50%;width:38px;height:38px;margin-top:-19px;border-radius:99px;background:var(--c);opacity:.15}
+#v-apm .kpi:nth-child(2){--c:var(--kc2)}#v-apm .kpi:nth-child(3){--c:var(--kc3)}#v-apm .kpi:nth-child(4){--c:var(--kc4)}
+#v-apm .kpi span{color:var(--c);font-weight:600;font-size:11px}
+#v-apm .kpi b{font-family:var(--sans);font-weight:700;color:var(--nvy)}
+#v-apm #apm-day-sec{border-top:0}
+@media (max-width:860px){#v-apm .layout{grid-template-columns:1fr}#v-apm .side{position:static}}

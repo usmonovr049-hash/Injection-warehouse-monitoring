@@ -59,6 +59,14 @@ def main():
     data = json.load(open(json_path, encoding='utf-8'))
     src = open(html_path, encoding='utf-8').read()
     meta = month_meta(data['PLAN_DATE'])
+    # Oy id "01" varag'idagi sanadan olinadi (ishonchliroq); planDate yorlig'i esa Plan_Berish'dan.
+    md = data.get('MONTH_DATE') or ''
+    if md:
+        m2 = month_meta(md)
+        if m2['id'] != meta['id']:
+            print('OGOHLANTIRISH: Plan_Berish sanasi (%s) va "01" varag\'i sanasi (%s) turli oyda. Oy sifatida "01" varag\'i olinadi.' % (meta['id'], m2['id']))
+        for k in ('id', 'label', 'monShort', 'monNum'):
+            meta[k] = m2[k]
 
     # sanity checks before touching anything
     assert data['N_DAYS'] >= 1
@@ -100,7 +108,21 @@ def main():
             data['RAW'],
         )
 
+    # Eski (muzlatilgan) oy ma'lumotini yangi ma'lumot bilan almashtirishga hech qachon yo'l qo'ymaslik
+    if meta['id'] in ids_in_order[:-1]:
+        raise AssertionError('XAVFLI: %s oyi allaqachon muzlatilgan. Yangi ma\'lumot eski oyga tegishli ko\'rinadi — hech narsa o\'zgartirilmadi.' % meta['id'])
+    if meta['id'] < last_id:
+        raise AssertionError('XAVFLI: yangi ma\'lumot oyi (%s) oxirgi oydan (%s) oldin — hech narsa o\'zgartirilmadi.' % (meta['id'], last_id))
+
     if last_id == meta['id']:
+        # Himoya: fayl yangi oyga o'tkazilgan-u, lekin sana hali eski oyni ko'rsatayotgan bo'lsa,
+        # kunlar soni keskin kamayadi. Bunday holatda eski oyni ustidan yozmaymiz.
+        last_block = months_block[months_block.rindex("{id:'" + last_id + "'"):]
+        mlen = re.search(r'DAYS:Array\.from\(\{length:(\d+)\}', last_block)
+        old_days = int(mlen.group(1)) if mlen else 0
+        if data['N_DAYS'] < old_days:
+            raise AssertionError('XAVFLI: %s uchun kunlar soni %d dan %d ga kamaydi. Ehtimol jadval yangi oyga o\'tkazilgan, '
+                                 'lekin "01" varag\'idagi sana yangilanmagan. Hech narsa o\'zgartirilmadi.' % (last_id, old_days, data['N_DAYS']))
         # same month as the last entry: replace that entry in place, keep frozen:false
         # locate the last "{id:'<last_id>' ... }" object within months_block
         entry_start = months_block.rindex("{id:'" + last_id + "'")

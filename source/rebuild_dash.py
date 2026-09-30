@@ -92,6 +92,9 @@ def part_series(code, days):
 pb = wb['Plan_Berish']
 NEED_TOTAL = pb.cell(2,6).value
 PLAN_DATE = pb.cell(2,2).value
+# Oy aniqlash uchun ishonchli manba: "01" varag'i G2 katagi (oyning 1-kuni sanasi).
+# Plan_Berish B2 sanasi IMPORTRANGE sababli vaqtincha eski oyni ko'rsatishi mumkin.
+MONTH_DATE = wb['01'].cell(2,7).value if '01' in wb.sheetnames else None
 rows = []
 r = 6
 while pb.cell(r,1).value is not None:
@@ -135,7 +138,7 @@ for i,rw in enumerate(rows,1):
 MON_RAW = '\n'.join(mon_lines)
 
 import json
-out = dict(N_DAYS=N_DAYS, NEED_TOTAL=NEED_TOTAL, PLAN_DATE=str(PLAN_DATE), TOT_PROD=TOT_PROD, SHIP=SHIP, END=END,
+out = dict(N_DAYS=N_DAYS, NEED_TOTAL=NEED_TOTAL, PLAN_DATE=str(PLAN_DATE), MONTH_DATE=(str(MONTH_DATE) if MONTH_DATE is not None else ''), TOT_PROD=TOT_PROD, SHIP=SHIP, END=END,
            RAW=RAW, MON_RAW=MON_RAW, n_rows=len(rows), crit=sum(1 for r in rows if r['prio']=='U'), high=sum(1 for r in rows if r['prio']=='H'))
 with open('/tmp/dash_rebuild.json','w') as f:
     json.dump(out, f, ensure_ascii=False)

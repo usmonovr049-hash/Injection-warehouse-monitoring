@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 
-.tabs{display:flex;gap:6px;padding-block:12px 0}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-block:12px 0;padding-right:70px}
 .tabs button{font:inherit;font-weight:500;font-size:14px;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:6px;padding:8px 16px;cursor:pointer}
 .tabs button[aria-selected="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
 .tabs button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
@@ -153,20 +153,10 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .pd .tr b{font-family:var(--mono);font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
 @media (max-width:600px){.pd .tr{grid-template-columns:1fr 90px}.pd .tr .t{grid-column:1/3;order:3}}
 .pd{--nv:#132a52;--nv2:#1c3c73;--tl:#17a398;--k1:#3b5bdb;--k2:#17a398;--k3:#b8791f;--k4:#7c5cd6;--k5:#c0433f;--blue:var(--k1);--orange:var(--k2)}
-.pd header{background:linear-gradient(120deg,var(--nv),var(--nv2));border-radius:10px;padding:18px 22px;margin-bottom:2px}
-.pd header h1{color:#fff}
-.pd header .sub{color:#b7c3dc}
-.pd header .stamp{background:var(--tl);color:#062622;border:none;font-weight:600;font-family:var(--sans);font-size:12.5px}
 .pd .fc{border-top:3px solid var(--k1)}
 .pd .fc:nth-child(1),.pd .fc:nth-child(2){border-top-color:var(--k5)}
 .pd .fc:nth-child(3){border-top-color:var(--k1)}
 .pd .fc:nth-child(4){border-top-color:var(--k2)}
-.pd #exec{border-top:3px solid var(--nv)}
-.pd section:nth-of-type(2){border-top:3px solid var(--k1)}
-.pd section:nth-of-type(3){border-top:3px solid var(--k5)}
-.pd section:nth-of-type(4){border-top:3px solid var(--k2)}
-.pd section:nth-of-type(5){border-top:3px solid var(--k3)}
-.pd section:nth-of-type(6){border-top:3px solid var(--k4)}
 .pd .live{font-family:var(--mono);font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
 .pd .live::before{content:"";width:8px;height:8px;border-radius:99px;background:var(--line)}
 .pd .live.ok::before{background:var(--tl)}
@@ -188,6 +178,83 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .pd .fbtn-apply{font:inherit;font-weight:600;font-size:13.5px;color:#fff;background:linear-gradient(120deg,var(--blue),var(--tl));border:0;border-radius:6px;padding:10px 22px;cursor:pointer}
 .pd .fbtn-clear{font:inherit;font-weight:500;font-size:13.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 22px;cursor:pointer}
 .pd .filters.collapsed .grid,.pd .filters.collapsed .btnrow{display:none}
+/* ---- Yangi ko'rinish: chap filtr paneli, rangli KPI kartalar, reyting ro'yxatlari ---- */
+.pd{--pg:#f2f4f8;--surface:#ffffff;--line:#e4e8ee;--wash:#f4f6f9;--nvy:#1d2b4f;--shadow:0 1px 3px rgba(22,34,60,.07),0 1px 2px rgba(22,34,60,.04);
+  --c-prod:#1a9aa0;--c-ship:#e07b39;--c-end:#3b5bdb;--s-crit:#c9403c;--s-serious:#e0792b;--s-warn:#d9a31a;
+  --kc1:#d9534f;--kc2:#8c8a1c;--kc3:#17a0a8;--kc4:#9b87d6;--kc5:#139068;--kc6:#3b5bdb;
+  background:var(--pg);border-radius:12px;margin-top:12px}
+.pd .wrap{max-width:1680px;padding:14px 14px 40px;gap:16px}
+.pd header{background:var(--surface);border-radius:12px;padding:12px 18px;box-shadow:var(--shadow);align-items:center;margin:0}
+.pd header h1{color:var(--nvy);font-size:22px;font-weight:700}
+.pd header .sub{color:var(--muted);font-size:12.5px}
+.pd header .stamp{background:#e6f5f5;color:#0e6b70;border:0;font-weight:600;font-family:var(--sans);font-size:12px;border-radius:8px;padding:6px 10px}
+.pd .tb-l{display:flex;align-items:center;gap:14px}
+.pd .burger{width:18px;height:14px;position:relative;flex:none}
+.pd .burger::before,.pd .burger::after,.pd .burger i{content:"";position:absolute;left:0;right:0;height:2px;border-radius:2px;background:#7c8bb0}
+.pd .burger::before{top:0}.pd .burger i{top:6px;display:block}.pd .burger::after{top:12px}
+.pd .tb-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pd .tbtn,.pd #lg-sync{font:inherit;font-weight:600;font-size:13px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer}
+.pd .tbtn:hover,.pd #lg-sync:hover{background:var(--wash)}
+.pd .live{font-family:var(--sans);font-size:12.5px;font-weight:500}
+.pd .live.ok::before{background:#1f9d55}
+.pd section,.pd section.card{background:var(--surface);border:0;border-radius:12px;box-shadow:var(--shadow);padding:16px 18px}
+.pd .hd{align-items:flex-start}
+.pd .hd h2{font-size:15px;color:var(--nvy)}
+.pd .hd p{font-size:12px;margin-top:2px}
+.pd .lead{font-size:14px;color:var(--muted);margin:0;max-width:none}
+.pd .layout{display:grid;grid-template-columns:232px minmax(0,1fr);gap:16px;align-items:start}
+.pd .side{position:sticky;top:10px}
+.pd .main{display:flex;flex-direction:column;gap:16px;min-width:0}
+.pd .side .filters{background:var(--surface);border:0;box-shadow:var(--shadow);border-radius:12px;padding:14px 12px 16px;gap:12px}
+.pd .side .filters .hd2 h2{font-size:14.5px;color:var(--nvy)}
+.pd .side .filters .grid{grid-template-columns:1fr;gap:12px}
+.pd .side .ffield{color:#7c6fd6;font-size:11.5px;text-transform:none;letter-spacing:0}
+.pd .side .ffield input,.pd .side .ffield select{padding:10px 12px;border-radius:8px;font-size:13.5px}
+.pd .side .btnrow{flex-direction:column;gap:10px}
+.pd .side .btnrow button{width:100%;padding:12px 14px;border-radius:8px}
+.pd .fbtn-apply{background:linear-gradient(120deg,#4aa3df,#1a9aa0)}
+.pd .fnote{margin:0;font-size:11.5px;color:var(--muted);line-height:1.4}
+.pd .kpis.kc{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.pd .kc .kpi{--c:var(--kc1);position:relative;background:var(--surface);border:0;border-left:4px solid var(--c);border-radius:12px;box-shadow:var(--shadow);padding:16px 14px 14px 62px;min-height:98px;text-align:center;align-items:center;justify-content:center;gap:1px}
+.pd .kc .kpi::before{content:"";position:absolute;left:14px;top:50%;width:38px;height:38px;margin-top:-19px;border-radius:99px;background:var(--c);opacity:.15}
+.pd .kc .kpi span{color:var(--c);font-weight:600;font-size:11px;letter-spacing:.04em}
+.pd .kc .kpi b{font-family:var(--sans);font-weight:700;font-size:27px;color:var(--nvy);line-height:1.15}
+.pd .kc .kpi small{font-size:11.5px}
+.pd .kc .kpi:nth-child(6n+2){--c:var(--kc2)}.pd .kc .kpi:nth-child(6n+3){--c:var(--kc3)}.pd .kc .kpi:nth-child(6n+4){--c:var(--kc4)}.pd .kc .kpi:nth-child(6n+5){--c:var(--kc5)}.pd .kc .kpi:nth-child(6n){--c:var(--kc6)}
+.pd .row2{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px}
+.pd .row2.b{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
+.pd .seg{display:inline-flex;background:#eef1f5;border-radius:10px;padding:4px;gap:2px;flex-wrap:wrap}
+.pd .seg button{font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);background:none;border:0;border-radius:8px;padding:7px 12px;cursor:pointer}
+.pd .seg button[aria-pressed="true"]{background:var(--c-prod);color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.pd .seg button:focus-visible{outline:2px solid var(--c-end);outline-offset:1px}
+.pd .cw{height:320px}
+.pd .rank{display:flex;flex-direction:column;gap:12px}
+.pd .rk{display:grid;grid-template-columns:30px minmax(150px,1.7fr) minmax(60px,1fr) 84px;gap:12px;align-items:center}
+.pd .rk .bd{width:30px;height:30px;border-radius:99px;background:#fbe9e8;color:#c9403c;font:600 11px var(--mono);display:grid;place-items:center}
+.pd .rk .nm{min-width:0}
+.pd .rk .nm b{display:block;font-size:13.5px;font-weight:600;color:var(--nvy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pd .rk .nm small{display:block;font-size:11.5px;color:#6f67b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pd .rk .t{height:12px;background:#eef1f5;border-radius:99px;overflow:hidden}
+.pd .rk .t i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#ea8a86,#c0433f)}
+.pd .rk .v{text-align:right;line-height:1.2}
+.pd .rk .v b{font:700 14px var(--sans);color:var(--nvy);font-variant-numeric:tabular-nums}
+.pd .rk .v small{display:block;font:11px var(--mono);color:var(--muted)}
+.pd .rank.blue .bd{background:#e6f5f5;color:#0e6b70}
+.pd .rank.blue .t i{background:linear-gradient(90deg,#7fcfd2,#1a9aa0)}
+.pd .donut{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.pd .dw{position:relative;width:230px;height:230px;flex:none;margin-inline:auto}
+.pd .dc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.pd .dc b{font:700 30px var(--sans);color:var(--nvy);line-height:1}
+.pd .dc span{font-size:12px;color:var(--muted)}
+.pd .dleg{flex:1 1 200px;display:flex;flex-direction:column;gap:8px}
+.pd .dleg div{display:grid;grid-template-columns:12px 1fr auto 44px;gap:10px;align-items:center;font-size:13px}
+.pd .dleg i{width:12px;height:12px;border-radius:3px}
+.pd .dleg b{font-family:var(--mono);font-weight:600}
+.pd .dleg small{font-family:var(--mono);color:var(--muted);text-align:right}
+.pd .hd select#ps{max-width:420px;border-radius:8px;padding:8px 10px}
+.pd .tw{border-radius:8px}
+@media (max-width:1180px){.pd .row2,.pd .row2.b{grid-template-columns:1fr}}
+@media (max-width:860px){.pd .layout{grid-template-columns:1fr}.pd .side{position:static}.pd .rk{grid-template-columns:30px 1fr 84px}.pd .rk .t{grid-column:2/4}}
 </style>
 <nav class="tabs" id="tabs" role="tablist" aria-label="Ko'rinish">
   <button role="tab" id="tab-mon" aria-selected="true" data-v="mon">Ombor monitori</button>
@@ -199,7 +266,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
   <div class="top">
     <div>
       <h1>Ombor monitori: detallar qoldig'i</h1>
-      <div class="meta"><span>Qoldiq sanasi: <b id="m-qdate">29.09.2026</b> (kun oxiri, jonli yangilanadi)</span><span>Quyish sexi</span></div>
+      <div class="meta"><span>Qoldiq sanasi: <b id="m-qdate">—</b> (jonli, "31" varag'idan)</span><span>Quyish sexi</span></div>
     </div>
     <div class="clock" id="m-clock" aria-label="Hozirgi vaqt"></div>
   </div>
@@ -220,90 +287,96 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
     <div class="list" id="m-list"></div>
   </div>
 
-  <div class="foot"><span id="m-pg"></span><div class="dots" id="m-dots"></div><span>Manba: Sentabr ASTATKA, "31" varag'i. Holat: 0 = tugagan, "Kam" = reja bo'yicha yetishmaydi.</span></div>
+  <div class="foot"><span id="m-pg"></span><div class="dots" id="m-dots"></div><span>Manba: ASTATKA jadvali (joriy oy), "31" varag'i. Holat: 0 = tugagan, "Kam" = reja bo'yicha yetishmaydi.</span></div>
 </div>
 </div>
 <div id="v-dash" class="pd" hidden>
 <div class="wrap">
-  <header>
-    <div>
-      <h1>Quyish sexi: qoldiq va ishlab chiqarish paneli</h1>
-      <p class="sub">Sexdagi tayyor detallar qoldig'i va tanlangan oyda shoshilinch detallarning kunlik ishlab chiqarilishi.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-      <div style="display:flex;gap:8px;align-items:center"><div class="stamp">Qoldiq: "31" varag'idan</div><button class="btn2" id="dx-sync" style="font:inherit;font-weight:500;font-size:12.5px;color:var(--ink);background:var(--wash);border:1px solid var(--line);border-radius:4px;padding:5px 10px;cursor:pointer">Yangilash</button></div>
-      <div class="live" id="dx-live">Ulanmoqda...</div>
-    </div>
+  <header class="topbar">
+    <div class="tb-l"><span class="burger" aria-hidden="true"><i></i></span><div><h1>Tahlil paneli</h1><p class="sub">Qoldiq, yetishmovchilik va kunlik ishlab chiqarish &mdash; oylar bo'yicha</p></div></div>
+    <div class="tb-r"><div class="live" id="dx-live">Ulanmoqda...</div><button class="tbtn" id="dx-sync" type="button">&#8635; Yangilash</button></div>
   </header>
 
-  <div class="ctl" id="dx-months" style="gap:6px" hidden></div>
-
-  <div class="kpis" id="kpis" hidden></div>
-
-  <section id="exec">
-    <h2>Asosiy xulosalar</h2>
-    <p class="lead" id="lead"></p>
-    <div class="find" id="finds"></div>
-  </section>
-
-  <section>
-    <div class="hd"><h2>Sexda kunlik harakat: ishlab chiqarish, jo'natish va umumiy qoldiq</h2><p id="p-daily-sub">1-28 sentabr, butun sex, dona</p></div>
-    <div class="leg"><span><i style="background:var(--blue)"></i>Ishlab chiqarildi</span><span><i style="background:var(--orange)"></i>Jo'natildi</span><span><i style="background:var(--ink)"></i>Kun oxiriga umumiy qoldiq</span></div>
-    <div class="cw"><canvas id="cx" role="img" aria-label="Butun sex bo'yicha kunlik ishlab chiqarish, jo'natish va qoldiq"></canvas></div>
-  </section>
-
-  <section>
-    <div class="hd"><h2>Eng katta yetishmovchilik: birinchi 10 ta detal</h2><p id="p-top-sub">Reja bo'yicha ishlab chiqarish kerak bo'lgan dona (29.09 rejasi)</p></div>
-    <div class="hb" id="top"></div>
-  </section>
-
-  <section>
-    <div class="hd"><h2>Qoldiq qanchaga yetadi</h2><p>Detallar qoldig'i necha kunga yetishi bo'yicha va modellar kesimida.</p></div>
-    <div class="grid2">
-      <div><h2 style="font-size:13px;margin-bottom:8px">Detallar: qoldiq necha kunga yetadi</h2><div class="cw s"><canvas id="cd" role="img" aria-label="Detallar qoldig'i necha kunga yetishi"></canvas></div><p class="note" id="dnote"></p></div>
-      <div><h2 style="font-size:13px;margin-bottom:8px">Model bo'yicha qoldiq (dona)</h2><div class="hb" id="bm"></div></div>
-    </div>
-  </section>
-  <section>
-    <div class="hd"><h2>Kritik detallarning kunlik ishlab chiqarilishi</h2><p id="p-crit-sub">Ustunlar: kunlik ishlab chiqarilgan dona. Chiziq: kun oxiriga qoldiq. Ma'lumot: 1-28 sentabr.</p></div>
-    <div class="ctl"><select id="ps" aria-label="Detalni tanlang"></select></div>
-    <div class="leg"><span><i style="background:var(--blue)"></i>Ishlab chiqarildi (ikki smena)</span><span><i style="background:var(--orange)"></i>Kun oxiriga qoldiq</span></div>
-    <div class="cw"><canvas id="ch" role="img" aria-label="Kunlik ishlab chiqarish va kun oxiriga qoldiq"></canvas></div>
-    <h2 style="margin-top:6px">Ishlab chiqarish kalendari: shoshilinch detallar</h2>
-    <p class="note">Har bir katak bitta kun. Rang detalning eng yaxshi kuniga nisbatan; donani ko'rish uchun kursorni olib keling. Bo'sh katak: ishlab chiqarilmagan.</p>
-    <div class="tw" style="max-height:none"><table class="heat" id="heat"></table></div>
-  </section>
-  <section>
-    <div class="hd"><h2>Batafsil ro'yxat: barcha detallar bo'yicha haqiqiy qoldiq</h2><p id="tcount" class="cnt"></p></div>
-    <div class="filters" id="dx-filters">
-      <div class="hd2" id="dx-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="dx-filters-caret">Yashirish</button></div>
-      <div class="grid">
-        <label class="ffield">Qidiruv<input id="q" type="search" placeholder="Nomi, raqami, modeli" aria-label="Detal qidirish"></label>
-        <label class="ffield">Model<select id="fm" aria-label="Model bo'yicha filtr"></select></label>
-        <label class="ffield">Ustuvorlik<select id="fp" aria-label="Ustuvorlik bo'yicha filtr">
-          <option value="">Barcha ustuvorliklar</option><option value="U">Shoshilinch</option><option value="H">Yuqori</option><option value="N">Kerak emas</option>
-        </select></label>
-        <label class="ffield">Qoldiq<select id="fz" aria-label="Qoldiq bo'yicha filtr">
-          <option value="">Har qanday qoldiq</option><option value="0">Tugagan (0)</option><option value="pos">Qoldiq bor</option>
-        </select></label>
+  <div class="layout">
+    <aside class="side">
+      <div class="filters" id="dx-filters">
+        <div class="hd2" id="dx-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="dx-filters-caret">Yashirish</button></div>
+        <div class="grid">
+          <label class="ffield">Davr<select id="dx-f-period" aria-label="Davr"></select></label>
+          <label class="ffield">Boshlanish sana<input type="date" id="dx-f-from"></label>
+          <label class="ffield">Tugash sana<input type="date" id="dx-f-to"></label>
+          <label class="ffield">Model<select id="fm" aria-label="Model bo'yicha filtr"></select></label>
+          <label class="ffield">Ustuvorlik<select id="fp" aria-label="Ustuvorlik bo'yicha filtr">
+            <option value="">Barchasi</option><option value="U">Shoshilinch</option><option value="H">Yuqori</option><option value="N">Kerak emas</option>
+          </select></label>
+          <label class="ffield">Qoldiq<select id="fz" aria-label="Qoldiq bo'yicha filtr">
+            <option value="">Barchasi</option><option value="0">Tugagan (0)</option><option value="pos">Qoldiq bor</option>
+          </select></label>
+          <label class="ffield">Qidiruv<input id="q" type="search" placeholder="Nomi, raqami, modeli" aria-label="Detal qidirish"></label>
+        </div>
+        <div class="btnrow"><button type="button" class="fbtn-apply" id="dx-f-apply">Qo'llash</button><button type="button" class="fbtn-clear" id="dx-f-clear">Tozalash</button></div>
+        <p class="fnote" id="dx-f-note"></p>
       </div>
-      <div class="btnrow"><button type="button" class="fbtn-apply" id="dx-f-apply">Qo'llash</button><button type="button" class="fbtn-clear" id="dx-f-clear">Tozalash</button></div>
-    </div>
-    <div class="tw"><table id="tbl"><thead><tr>
-      <th class="n"><button data-k="n">#</button></th>
-      <th><button data-k="model">Model</button></th>
-      <th class="n"><button data-k="tpa">IMM, t</button></th>
-      <th><button data-k="code">Detal raqami</button></th>
-      <th><button data-k="name">Detal nomi</button></th>
-      <th class="n"><button data-k="stock">Qoldiq, dona</button></th>
-      <th class="n"><button data-k="need">Ishlab chiqarish kerak</button></th>
-      <th><button data-k="dv">Necha kunga yetadi</button></th>
-      <th><button data-k="prio">Ustuvorlik</button></th>
-    </tr></thead><tbody></tbody></table></div>
-  </section>
-  <p class="note">Manba: ASTATKA jadvali. Qoldiq "31" varag'idan &mdash; jonli, har daqiqada yangilanadi (faqat joriy oy uchun). Ustuvorlik, talab va "necha kunga yetadi" Plan_Berish varag'idan &mdash; har kuni yangilanadi. Kunlik ishlab chiqarish/jo'natish grafigi har kuni to'ldiriladigan kunlik varaqlardan olingan va faqat to'liq yopilgan kunlarni ko'rsatadi; jadvalda hali yopilmagan kun bo'lsa, u avtomatik qo'shilmaydi. Yakunlangan oylar (masalan, Sentabr) muzlatilgan holda saqlanadi va yangi oy boshlanganda yo'qolmaydi &mdash; yuqoridagi oy tugmalari orqali tanlanadi. "30+ kun" jadvaldagi belgi: reja davrida yetishmovchilik yo'q.</p>
-</div>
+    </aside>
 
+    <div class="main">
+      <div class="kpis kc" id="kpis"></div>
+      <p class="lead" id="lead"></p>
+
+      <div class="row2">
+        <section class="card">
+          <div class="hd"><div><h2>Kunlik harakat dinamikasi</h2><p id="p-daily-sub"></p></div>
+            <div class="seg" id="dx-seg" role="group" aria-label="Ko'rsatkich">
+              <button type="button" data-s="all" aria-pressed="true">Umumiy</button><button type="button" data-s="prod" aria-pressed="false">Ishlab chiqarish</button><button type="button" data-s="ship" aria-pressed="false">Jo'natish</button><button type="button" data-s="end" aria-pressed="false">Qoldiq</button>
+            </div></div>
+          <div class="leg" id="dx-tleg"></div>
+          <div class="cw"><canvas id="cx" role="img" aria-label="Kunlik ishlab chiqarish, jo'natish va qoldiq"></canvas></div>
+        </section>
+        <section class="card">
+          <div class="hd"><div><h2>Eng katta yetishmovchilik</h2><p id="p-top-sub"></p></div></div>
+          <div class="rank" id="top"></div>
+        </section>
+      </div>
+
+      <div class="row2 b">
+        <section class="card">
+          <div class="hd"><div><h2>Qoldiq qanchaga yetadi</h2><p>Detallar soni, tanlangan filtr bo'yicha</p></div></div>
+          <div class="donut"><div class="dw"><canvas id="cd" role="img" aria-label="Detallar qoldig'i necha kunga yetishi"></canvas><div class="dc"><b id="dc-n"></b><span>detal</span></div></div><div class="dleg" id="dleg"></div></div>
+          <p class="note" id="dnote"></p>
+        </section>
+        <section class="card">
+          <div class="hd"><div><h2>Model bo'yicha qoldiq</h2><p>Qoldiq donasi, eng kattasidan</p></div></div>
+          <div class="rank blue" id="bm"></div>
+        </section>
+      </div>
+
+      <section class="card">
+        <div class="hd"><div><h2>Kritik detallarning kunlik ishlab chiqarilishi</h2><p id="p-crit-sub"></p></div><select id="ps" aria-label="Detalni tanlang"></select></div>
+        <div class="leg"><span><i style="background:var(--c-prod)"></i>Ishlab chiqarildi (ikki smena)</span><span><i style="background:var(--c-ship)"></i>Kun oxiriga qoldiq</span></div>
+        <div class="cw"><canvas id="ch" role="img" aria-label="Kunlik ishlab chiqarish va kun oxiriga qoldiq"></canvas></div>
+        <h2 style="margin-top:6px">Ishlab chiqarish kalendari: shoshilinch detallar</h2>
+        <p class="note">Har bir katak bitta kun. Rang detalning eng yaxshi kuniga nisbatan; donani ko'rish uchun kursorni olib keling. Bo'sh katak: ishlab chiqarilmagan.</p>
+        <div class="tw" style="max-height:none"><table class="heat" id="heat"></table></div>
+      </section>
+
+      <section class="card">
+        <div class="hd"><div><h2>Batafsil ro'yxat: barcha detallar bo'yicha qoldiq</h2><p id="tcount" class="cnt"></p></div></div>
+        <div class="tw"><table id="tbl"><thead><tr>
+          <th class="n"><button data-k="n">#</button></th>
+          <th><button data-k="model">Model</button></th>
+          <th class="n"><button data-k="tpa">IMM, t</button></th>
+          <th><button data-k="code">Detal raqami</button></th>
+          <th><button data-k="name">Detal nomi</button></th>
+          <th class="n"><button data-k="stock">Qoldiq, dona</button></th>
+          <th class="n"><button data-k="need">Ishlab chiqarish kerak</button></th>
+          <th><button data-k="dv">Necha kunga yetadi</button></th>
+          <th><button data-k="prio">Ustuvorlik</button></th>
+        </tr></thead><tbody></tbody></table></div>
+      </section>
+      <p class="note">Manba: ASTATKA jadvali. Joriy oy qoldig'i "31" varag'idan jonli (har daqiqada) yangilanadi; yakunlangan oylar oy oxiridagi holatida muzlatilgan va "Davr" filtridan tanlanadi. Ustuvorlik va "necha kunga yetadi" Plan_Berish varag'idan, kunlik ishlab chiqarish/jo'natish esa kunlik "01&ndash;31" varaqlaridan (faqat yopilgan kunlar). Kunlik harakat grafigi butun sex jami bo'yicha; model/ustuvorlik filtrlari qoldiq, yetishmovchilik, kritik detallar va jadvalga qo'llanadi.</p>
+    </div>
+  </div>
+</div>
 </div>
 <div id="v-log" class="pd" hidden>
 <div class="wrap">
@@ -318,12 +391,15 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
     </div>
   </header>
 
+  <div class="layout">
+  <aside class="side">
   <div class="filters" id="lg-filters">
     <div class="hd2" id="lg-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="lg-filters-caret">Yashirish</button></div>
     <div class="grid">
       <label class="ffield">Davr<select id="lg-f-period">
         <option value="all">Barcha vaqt</option>
         <option value="month" selected>Joriy oy</option>
+        <option value="prev">O'tgan oy</option>
         <option value="7d">Oxirgi 7 kun</option>
         <option value="custom">Maxsus oraliq</option>
       </select></label>
@@ -345,8 +421,10 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
     </div>
     <div class="btnrow"><button type="button" class="fbtn-apply" id="lg-f-apply">Qo'llash</button><button type="button" class="fbtn-clear" id="lg-f-clear">Tozalash</button></div>
   </div>
+  </aside>
+  <div class="main">
 
-  <div class="kpis" id="lg-kpis"></div>
+  <div class="kpis kc" id="lg-kpis"></div>
 
   <section>
     <div class="hd"><h2>Chiqim: yo'nalish bo'yicha (kimga/qayerga jo'natilgan)</h2><p id="lg-dest-sub" class="cnt"></p></div>
@@ -357,7 +435,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 
   <section>
     <div class="hd"><h2>Kunlar bo'yicha: kirim va chiqim</h2><p class="cnt">Sana bo'yicha jamlangan miqdorlar (AppSheet yozuvlari asosida)</p></div>
-    <div class="tw"><table id="lg-day-tbl"><thead><tr>
+    <div class="leg"><span><i style="background:var(--c-prod)"></i>Kirim (ishlab chiqarish)</span><span><i style="background:var(--c-ship)"></i>Chiqim (jo'natish)</span></div>
+    <div class="cw" style="height:240px"><canvas id="lg-day-chart" role="img" aria-label="Kunlar bo'yicha kirim va chiqim"></canvas></div>
+    <div class="tw" style="max-height:260px"><table id="lg-day-tbl"><thead><tr>
       <th>Sana</th><th class="n">Kirim, dona</th><th class="n">Chiqim, dona</th><th class="n">Yozuvlar</th>
     </tr></thead><tbody></tbody></table></div>
   </section>
@@ -376,6 +456,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
   </section>
 
   <p class="note">Manba: ASTATKA jadvali, "AppSheet_Kirim" va "Qolip_Almashtirish" varaqlari &mdash; sexdagi xodimlar AppSheet orqali kiritgan har bir kirim (ishlab chiqarish) va chiqim (jo'natish) operatsiyasi, jonli, har daqiqada yangilanadi. Bu jurnal alohida operatsion hisobot bo'lib, kunlik "01-31" varaqlaridagi rasmiy jamlangan raqamlarni almashtirmaydi.</p>
+  </div>
+  </div>
 </div>
 </div>
 <div class="tip" id="tip"></div>
@@ -684,12 +766,13 @@ const MONTHS=[
 116|BCAR|650|UZK04065|Container Lower|0|0|0||N`}
 ];
 const LIVE_IDX=MONTHS.length-1; // shu indeksdagi oy "31" varag'idan jonli qoldiq oladi
-let curIdx=LIVE_IDX;
 
 const fmt=n=>Math.round(n).toLocaleString('en-US').replace(/,/g,' ');
 const PL={U:'Shoshilinch',H:'Yuqori',N:'Kerak emas'}, PR={U:0,H:1,N:2};
 const css=n=>getComputedStyle(document.getElementById('v-dash')).getPropertyValue(n).trim();
 const $=id=>document.getElementById(id);
+const pad=n=>(n<10?'0':'')+n;
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 
 MONTHS.forEach(function(M){
   let prev=null;
@@ -699,111 +782,171 @@ MONTHS.forEach(function(M){
     const r={n:+a[0],model:a[1],tpa:+a[2],code:a[3].replace(/\s+/g,' '),name:a[4],stock:+a[5],dem:+a[6],need:+a[7],dv:a[8],prio:a[9],P,E};
     if(r.P)prev=r; return r;
   });
-  M.crit=M.rows.filter(r=>r.prio==='U');
-  M.high=M.rows.filter(r=>r.prio==='H');
+  M.byKey=new Map(); M.rows.forEach(r=>{ if(!M.byKey.has(r.code+'|'+r.name))M.byKey.set(r.code+'|'+r.name,r) });
 });
 window.__rowsDash=MONTHS[LIVE_IDX].rows; // faqat jonli oy "31" varag'idan qoldiq oladi
 
-function cur(){return MONTHS[curIdx];}
-let totalStock,zero,zeroUrgent,maxStock;
+// Barcha oylar kunlari bitta vaqt o'qida
+const TL=[];
+MONTHS.forEach((M,mi)=>M.DAYS.forEach((d,di)=>TL.push({date:M.id+'-'+pad(d),mi,di,d,prod:M.TOT_PROD[di]||0,ship:M.SHIP[di]||0,end:M.END[di]||0,lab:d+' '+M.monShort})));
 
-function drawMonthTabs(){
-  const box=$('dx-months');
-  if(MONTHS.length<2){box.hidden=true;return}
-  box.hidden=false;
-  box.innerHTML=MONTHS.map((M,i)=>'<button type="button" data-i="'+i+'" aria-pressed="'+(i===curIdx)+'" style="font:inherit;font-weight:500;font-size:12.5px;color:'+(i===curIdx?'#fff':'var(--ink)')+';background:'+(i===curIdx?'var(--ink)':'var(--wash)')+';border:1px solid var(--line);border-radius:99px;padding:5px 14px;cursor:pointer">'+M.label+(M.frozen?' (yakunlangan)':' (joriy)')+'</button>').join('');
-  box.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>selectMonth(+b.dataset.i)));
+const F={period:'m'+LIVE_IDX,from:'',to:'',model:'',prio:'',zero:'',q:''};
+let snapIdx=LIVE_IDX, seg='all', R=[], FR=[];
+function cur(){return MONTHS[snapIdx]}
+
+function monthRange(i){const M=MONTHS[i];return [M.id+'-01',M.id+'-'+pad(M.DAYS.length)]}
+function presetDates(p){
+  if(p&&p[0]==='m')return monthRange(+p.slice(1));
+  if(!TL.length)return null;
+  if(p==='last7'){const L=TL.slice(-7);return [L[0].date,L[L.length-1].date]}
+  if(p==='all')return [TL[0].date,TL[TL.length-1].date];
+  return null;
 }
-
-function updateSubtitles(){
-  const M=cur(), rng='1-'+M.DAYS.length+' '+M.monShort;
-  const s1=$('p-daily-sub'); if(s1)s1.textContent=rng+', butun sex, dona';
-  const s2=$('p-top-sub'); if(s2)s2.textContent='Reja bo\'yicha ishlab chiqarish kerak bo\'lgan dona ('+M.planDate+' rejasi)';
-  const s3=$('p-crit-sub'); if(s3)s3.textContent='Ustunlar: kunlik ishlab chiqarilgan dona. Chiziq: kun oxiriga qoldiq. Ma\'lumot: '+rng+'.';
+function fillPeriod(){
+  let h='';
+  for(let i=MONTHS.length-1;i>=0;i--){const M=MONTHS[i]; h+='<option value="m'+i+'">'+M.label+' '+M.id.slice(0,4)+(i===LIVE_IDX?' (joriy)':' (yakunlangan)')+'</option>'}
+  h+='<option value="last7">Oxirgi 7 kun</option><option value="all">Barcha davr ('+MONTHS.length+' oy)</option><option value="custom">Maxsus oraliq</option>';
+  $('dx-f-period').innerHTML=h;
+  if(TL.length){['dx-f-from','dx-f-to'].forEach(id=>{$(id).min=TL[0].date;$(id).max=TL[TL.length-1].date})}
 }
-
-function recomputeKpis(){
-  const M=cur();
-  totalStock=M.rows.reduce((s,r)=>s+r.stock,0); zero=M.rows.filter(r=>r.stock===0).length;
-  zeroUrgent=M.crit.filter(r=>r.stock===0).length;
-  $('kpis').innerHTML=[
-   ['Jami qoldiq, dona',fmt(totalStock),M.rows.length+' ta detal qatori',''],
-   ['Shoshilinch detallar',M.crit.length,'jami '+fmt(M.crit.reduce((s,r)=>s+r.need,0))+' dona yetishmaydi','crit'],
-   ['Tugagan',zero,zeroUrgent+' tasi shoshilinch',''],
-   ['Ishlab chiqarish kerak',fmt(M.NEED_TOTAL),'dona, '+M.planDate+' rejasi',''],
-   ['1-'+M.DAYS.length+' '+M.monShort+' ishlab chiqarildi',fmt(M.TOT_PROD.reduce((a,b)=>a+b,0)),'dona, butun sex','']
-  ].map(k=>'<div class="kpi '+k[3]+'"><span>'+k[0]+'</span><b>'+k[1]+'</b><small>'+k[2]+'</small></div>').join('');
+function applyPreset(){
+  const p=$('dx-f-period').value, d=presetDates(p);
+  if(d){$('dx-f-from').value=d[0];$('dx-f-to').value=d[1]}
 }
-
-// Table
-let sk='prio',sd=1;
-const dvNum=r=>r.stock===0?-1:(r.dv==='30+'||r.dv===''?99:+r.dv);
-function dvLabel(r){ if(r.stock===0)return '<span class="cv0">Tugagan</span>'; if(r.dv==='')return '<span class="cnt">talab yo\'q</span>'; if(r.dv==='30+')return '30+ kun'; if(+r.dv===0)return '<span class="cv0">1 kundan kam</span>'; return r.dv+' kun';}
-function drawTable(){
-  const M=cur();
-  maxStock=Math.max(1,...M.rows.map(r=>r.stock));
-  const q=$('q').value.trim().toLowerCase(), fm=$('fm').value, fp=$('fp').value, fz=$('fz').value;
-  let L=M.rows.filter(r=>(!q||(r.name+' '+r.code+' '+r.model).toLowerCase().includes(q))&&(!fm||r.model===fm)&&(!fp||r.prio===fp)&&(!fz||(fz==='0'?r.stock===0:r.stock>0)));
-  const key={prio:r=>PR[r.prio]*1e7+r.stock,dv:dvNum,n:r=>r.n,model:r=>r.model,tpa:r=>r.tpa,code:r=>r.code,name:r=>r.name,stock:r=>r.stock,need:r=>r.need}[sk];
-  L.sort((a,b)=>{const x=key(a),y=key(b);return (x<y?-1:x>y?1:0)*sd});
-  $('tcount').textContent=L.length+' / '+M.rows.length+' qator, '+fmt(L.reduce((s,r)=>s+r.stock,0))+' dona';
-  $('tbl').tBodies[0].innerHTML=L.map(r=>'<tr><td class="n">'+r.n+'</td><td>'+r.model+'</td><td class="n">'+r.tpa+'</td><td class="code">'+r.code+'</td><td class="nm">'+r.name+'</td><td class="n"><div class="bar"><span>'+fmt(r.stock)+'</span><i style="width:'+Math.round(r.stock/maxStock*90)+'px"></i></div></td><td class="n">'+(r.need?fmt(r.need):'')+'</td><td>'+dvLabel(r)+'</td><td><span class="pill p-'+r.prio+'">'+PL[r.prio]+'</span></td></tr>').join('');
-}
-['q','fm','fp','fz'].forEach(id=>$(id).addEventListener('input',drawTable));
-document.querySelectorAll('th button').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k; if(sk===k)sd=-sd; else{sk=k;sd=1} drawTable();}));
-document.addEventListener('click',e=>{
-  if(!e.target)return;
-  if(e.target.id==='dx-f-apply')drawTable();
-  else if(e.target.id==='dx-f-clear'){ $('q').value=''; $('fm').value=''; $('fp').value=''; $('fz').value=''; drawTable(); }
-  else if(e.target.id==='dx-filters-toggle'||e.target.id==='dx-filters-caret'){
-    const p=$('dx-filters'); if(!p)return;
-    p.classList.toggle('collapsed');
-    $('dx-filters-caret').textContent=p.classList.contains('collapsed')?'Ko\'rsatish':'Yashirish';
-  }
-});
-
 function fillModelFilter(){
-  const M=cur(), models=[...new Set(M.rows.map(r=>r.model))].sort();
-  $('fm').innerHTML='<option value="">Barcha modellar</option>'+models.map(m=>'<option>'+m+'</option>').join('');
+  const v=$('fm').value, models=[...new Set(cur().rows.map(r=>r.model))].sort();
+  $('fm').innerHTML='<option value="">Barchasi</option>'+models.map(m=>'<option>'+esc(m)+'</option>').join('');
+  if(models.includes(v))$('fm').value=v;
+}
+function readUI(){
+  F.period=$('dx-f-period').value; F.from=$('dx-f-from').value; F.to=$('dx-f-to').value;
+  if(F.from&&F.to&&F.from>F.to){const t=F.from;F.from=F.to;F.to=t;$('dx-f-from').value=F.from;$('dx-f-to').value=F.to}
+  F.model=$('fm').value; F.prio=$('fp').value; F.zero=$('fz').value; F.q=$('q').value.trim().toLowerCase();
+}
+function rowsF(){
+  return cur().rows.filter(r=>(!F.q||(r.name+' '+r.code+' '+r.model).toLowerCase().includes(F.q))&&(!F.model||r.model===F.model)&&(!F.prio||r.prio===F.prio)&&(!F.zero||(F.zero==='0'?r.stock===0:r.stock>0)));
+}
+function rangeLabel(){
+  if(!R.length)return 'kun tanlanmagan';
+  const a=R[0],b=R[R.length-1];
+  return a.mi===b.mi?(a.d===b.d?a.lab:a.d+'–'+b.d+' '+MONTHS[a.mi].monShort):a.lab+' – '+b.lab;
+}
+function partDay(r,t,key){
+  const M=MONTHS[t.mi], x=(t.mi===snapIdx)?r:M.byKey.get(r.code+'|'+r.name);
+  return x&&x[key]?(x[key][t.di]||0):0;
+}
+const hasFilter=()=>!!(F.model||F.prio||F.zero||F.q);
+
+// ---- KPI kartalari ----
+function drawKpis(){
+  const M=cur(), stock=FR.reduce((s,r)=>s+r.stock,0), crit=FR.filter(r=>r.prio==='U'), short=crit.reduce((s,r)=>s+r.need,0);
+  const zero=FR.filter(r=>r.stock===0), zu=zero.filter(r=>r.prio==='U').length;
+  const prod=R.reduce((s,t)=>s+t.prod,0), ship=R.reduce((s,t)=>s+t.ship,0), work=R.filter(t=>t.prod>0).length;
+  const live=snapIdx===LIVE_IDX;
+  $('kpis').innerHTML=[
+    ['Jami qoldiq',fmt(stock),'dona · '+FR.length+' detal'+(live?'':' · '+M.label+' oxiri')],
+    ['Shoshilinch yetishmovchilik',fmt(short),'dona · '+crit.length+' detal'],
+    ['Tugagan detallar',zero.length,zu+' tasi shoshilinch'],
+    ['Ishlab chiqarildi',fmt(prod),'dona · '+rangeLabel()],
+    ['Jo\'natildi',fmt(ship),'dona · o\'rtacha '+fmt(ship/(work||1))+'/kun']
+  ].map(k=>'<div class="kpi"><span>'+k[0]+'</span><b>'+k[1]+'</b><small>'+k[2]+'</small></div>').join('');
+  const idle=FR.filter(r=>r.prio==='N').reduce((s,r)=>s+r.stock,0);
+  $('lead').textContent=(R.length?rangeLabel()+': sex jami '+fmt(prod)+' dona ishlab chiqardi ('+work+' ish kuni, o\'rtacha '+fmt(prod/(work||1))+' dona/kun) va '+fmt(ship)+' dona jo\'natdi. ':'')+
+    'Qoldiqning '+(stock?Math.round(idle/stock*100):0)+'% i reja talab qilmaydigan detallarda; '+crit.length+' ta shoshilinch detal bo\'yicha '+fmt(short)+' dona yetishmaydi. Reja bo\'yicha jami kerak: '+fmt(M.NEED_TOTAL)+' dona ('+M.planDate+').';
+  $('dx-f-note').textContent='Qoldiq holati: '+M.label+(live?' (jonli)':' (oy oxiri)')+' · '+R.length+' kun';
 }
 
-// Part selector + main chart
+// ---- Trend (segmentli) ----
+let cx;
+function drawTrend(){
+  const sub=rangeLabel()+', butun sex, dona'+(hasFilter()?' · detal filtrlari bu grafikka ta\'sir qilmaydi':'');
+  $('p-daily-sub').textContent=sub;
+  if(typeof Chart==='undefined')return;
+  const ink=css('--muted'), grid=css('--line');
+  const S={prod:['Ishlab chiqarildi',css('--c-prod')],ship:['Jo\'natildi',css('--c-ship')],end:['Kun oxiriga umumiy qoldiq',css('--c-end')]};
+  const keys=seg==='all'?['prod','ship']:[seg];
+  const pr=R.length>40?0:3;
+  const ds=keys.map(k=>({label:S[k][0],data:R.map(t=>t[k]),borderColor:S[k][1],backgroundColor:S[k][1]+(keys.length>1?'14':'24'),fill:true,borderWidth:2,tension:.35,cubicInterpolationMode:'monotone',pointRadius:pr,pointHoverRadius:5,pointBackgroundColor:S[k][1]}));
+  $('dx-tleg').innerHTML=ds.map(d=>'<span><i style="background:'+d.borderColor+'"></i>'+d.label+'</span>').join('');
+  if(cx)cx.destroy();
+  cx=new Chart($('cx'),{type:'line',data:{labels:R.map(t=>t.lab),datasets:ds},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt(c.parsed.y)+' dona'}}},
+    scales:{x:{grid:{display:false},ticks:{color:ink,maxRotation:0,autoSkip:true,font:{size:12}},border:{color:grid}},
+            y:{beginAtZero:true,grid:{color:grid},border:{display:false},ticks:{color:ink,callback:v=>fmt(v),font:{size:12}}}}}});
+}
+
+// ---- Reyting ro'yxatlari ----
+function rankRows(L,val,sub,vsub){
+  if(!L.length)return '<p class="note">Tanlangan filtr bo\'yicha ma\'lumot yo\'q.</p>';
+  const mx=Math.max(...L.map(val),1);
+  return L.map((r,i)=>'<div class="rk"><span class="bd">'+pad(i+1)+'</span><div class="nm"><b title="'+esc(r.name||r.model)+'">'+esc(r.name||r.model)+'</b><small>'+sub(r)+'</small></div><div class="t"><i style="width:'+Math.max(2,val(r)/mx*100)+'%"></i></div><div class="v"><b>'+fmt(val(r))+'</b><small>'+vsub(r)+'</small></div></div>').join('');
+}
+function dedupTop(n){
+  const m=new Map(); FR.filter(r=>r.need>0).forEach(r=>{const k=r.name+'|'+r.model; const o=m.get(k); if(!o||r.need>o.need)m.set(k,r)});
+  return [...m.values()].sort((a,b)=>b.need-a.need).slice(0,n);
+}
+function drawTop(){
+  $('p-top-sub').textContent='Ishlab chiqarish kerak, dona ('+cur().planDate+' rejasi)';
+  $('top').innerHTML=rankRows(dedupTop(8),r=>r.need,r=>esc(r.model)+' · '+r.tpa+'t IMM · '+PL[r.prio],r=>'qoldiq '+fmt(r.stock));
+}
+function drawModels(){
+  const bm={}; FR.forEach(r=>{const o=bm[r.model]||(bm[r.model]={model:r.model,stock:0,cnt:0,zero:0}); o.stock+=r.stock; o.cnt++; if(r.stock===0)o.zero++});
+  const L=Object.values(bm).sort((a,b)=>b.stock-a.stock).slice(0,10);
+  $('bm').innerHTML=rankRows(L,o=>o.stock,o=>o.cnt+' ta detal'+(o.zero?' · '+o.zero+' tasi tugagan':''),()=>'dona');
+}
+
+// ---- Donut: qoldiq necha kunga yetadi ----
+let cd;
+function drawDist(){
+  const B=[['Tugagan',r=>r.stock===0,'--s-crit'],['1 kundan kam',r=>r.stock>0&&r.dv==='0','--s-serious'],['1–2 kun',r=>r.stock>0&&(r.dv==='1'||r.dv==='2'),'--s-warn'],['3–29 kun',r=>r.stock>0&&/^\d+$/.test(r.dv)&&+r.dv>=3,'--c-end'],['30+ kun / talab yo\'q',r=>r.stock>0&&(r.dv==='30+'||r.dv===''),'--c-prod']];
+  const cnt=B.map(b=>FR.filter(b[1]).length), tot=cnt.reduce((a,b)=>a+b,0), cols=B.map(b=>css(b[2]));
+  $('dc-n').textContent=tot;
+  $('dleg').innerHTML=B.map((b,i)=>'<div><i style="background:'+cols[i]+'"></i><span>'+b[0]+'</span><b>'+cnt[i]+'</b><small>'+(tot?Math.round(cnt[i]/tot*100):0)+'%</small></div>').join('');
+  $('dnote').textContent=cnt[0]+' ta detalda qoldiq yo\'q, '+(cnt[1]+cnt[2])+' tasida 3 kundan kam yetadi, '+cnt[4]+' tasida 30+ kunga yetadi yoki talab yo\'q.';
+  if(typeof Chart==='undefined')return;
+  if(cd)cd.destroy();
+  cd=new Chart($('cd'),{type:'doughnut',data:{labels:B.map(b=>b[0]),datasets:[{data:cnt,backgroundColor:cols,borderColor:css('--surface'),borderWidth:2,hoverOffset:4}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+': '+c.parsed+' ta detal'}}}}});
+}
+
+// ---- Kritik detallar grafigi va kalendar ----
 function fillPartSelect(){
-  const M=cur();
+  const v=$('ps').value, crit=FR.filter(r=>r.prio==='U'&&r.P), high=FR.filter(r=>r.prio==='H'&&r.P);
   const opts=[['ALL','Barcha shoshilinch detallar (jami)'],['ALLH','Shoshilinch va yuqori detallar (jami)']]
-   .concat(M.crit.map(r=>[String(r.n),'Shoshilinch  #'+r.n+'  '+r.name+' ('+r.model+')']))
-   .concat(M.high.map(r=>[String(r.n),'Yuqori  #'+r.n+'  '+r.name+' ('+r.model+')']));
-  $('ps').innerHTML=opts.map(o=>'<option value="'+o[0]+'">'+o[1]+'</option>').join('');
+   .concat(crit.map(r=>[String(r.n),'Shoshilinch  #'+r.n+'  '+r.name+' ('+r.model+')']))
+   .concat(high.map(r=>[String(r.n),'Yuqori  #'+r.n+'  '+r.name+' ('+r.model+')']));
+  $('ps').innerHTML=opts.map(o=>'<option value="'+o[0]+'">'+esc(o[1])+'</option>').join('');
+  if(opts.some(o=>o[0]===v))$('ps').value=v;
 }
 function series(v){
-  const M=cur();
-  const src=v==='ALL'?M.crit:v==='ALLH'?M.crit.concat(M.high):[M.rows.find(r=>String(r.n)===v)];
-  return{P:M.DAYS.map((_,i)=>src.reduce((s,r)=>s+(r.P[i]||0),0)),E:M.DAYS.map((_,i)=>src.reduce((s,r)=>s+(r.E[i]||0),0))};
+  const crit=FR.filter(r=>r.prio==='U'), high=FR.filter(r=>r.prio==='H');
+  const src=v==='ALL'?crit:v==='ALLH'?crit.concat(high):FR.filter(r=>String(r.n)===v);
+  return{P:R.map(t=>src.reduce((s,r)=>s+partDay(r,t,'P'),0)),E:R.map(t=>src.reduce((s,r)=>s+partDay(r,t,'E'),0))};
 }
-let ch,cd;
+let ch;
 function drawMain(){
-  const M=cur(), s=series($('ps').value), ink=css('--muted'), grid=css('--line');
+  $('p-crit-sub').textContent='Ustunlar: kunlik ishlab chiqarilgan dona. Chiziq: kun oxiriga qoldiq. Davr: '+rangeLabel()+'.';
+  if(typeof Chart==='undefined')return;
+  const s=series($('ps').value), ink=css('--muted'), grid=css('--line');
   if(ch)ch.destroy();
-  ch=new Chart($('ch'),{data:{labels:M.DAYS.map(d=>d+' '+M.monShort),datasets:[
-    {type:'bar',label:'Ishlab chiqarildi',data:s.P,backgroundColor:css('--blue'),borderRadius:{topLeft:3,topRight:3},maxBarThickness:22,order:2},
-    {type:'line',label:'Kun oxiriga qoldiq',data:s.E,borderColor:css('--orange'),backgroundColor:css('--orange'),borderWidth:2,pointRadius:3,pointHoverRadius:5,tension:0,order:1}
+  ch=new Chart($('ch'),{data:{labels:R.map(t=>t.lab),datasets:[
+    {type:'bar',label:'Ishlab chiqarildi',data:s.P,backgroundColor:css('--c-prod'),borderRadius:{topLeft:4,topRight:4},maxBarThickness:22,order:2},
+    {type:'line',label:'Kun oxiriga qoldiq',data:s.E,borderColor:css('--c-ship'),backgroundColor:css('--c-ship'),borderWidth:2,pointRadius:R.length>40?0:3,pointHoverRadius:5,tension:0,order:1}
   ]},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt(c.parsed.y)+' dona'}}},
     scales:{x:{grid:{display:false},ticks:{color:ink,maxRotation:0,autoSkip:true,font:{size:11}},border:{color:grid}},
             y:{beginAtZero:true,grid:{color:grid},border:{display:false},ticks:{color:ink,callback:v=>fmt(v),font:{size:11}},title:{display:true,text:'dona',color:ink}}}}});
 }
-$('ps').addEventListener('input',drawMain);
-
-// Heat calendar
 function drawHeat(){
-  const M=cur(), hi=css('--heat1'), lo=css('--heat0');
-  let h='<thead><tr><th></th>'+M.DAYS.map(d=>'<th>'+d+'</th>').join('')+'</tr></thead><tbody>';
-  M.crit.forEach(r=>{
-    const mx=Math.max(...r.P,1);
-    h+='<tr><td class="lab" title="'+r.name+'">#'+r.n+' '+r.name+'</td>'+r.P.map((v,i)=>{
-      if(!v)return '<td class="c" data-t="'+r.name+', '+(i+1)+' '+M.monShort+': ishlab chiqarilmagan"></td>';
+  const hi=css('--heat1'), lo=css('--heat0'), crit=FR.filter(r=>r.prio==='U');
+  if(!crit.length||!R.length){$('heat').innerHTML='<tbody><tr><td class="note" style="padding:8px">Tanlangan filtr bo\'yicha shoshilinch detal yo\'q.</td></tr></tbody>';return}
+  let h='<thead><tr><th></th>'+R.map(t=>'<th title="'+t.lab+'">'+t.d+'</th>').join('')+'</tr></thead><tbody>';
+  crit.forEach(r=>{
+    const P=R.map(t=>partDay(r,t,'P')), mx=Math.max(...P,1);
+    h+='<tr><td class="lab" title="'+esc(r.name)+'">#'+r.n+' '+esc(r.name)+'</td>'+P.map((v,i)=>{
+      if(!v)return '<td class="c" data-t="'+esc(r.name)+', '+R[i].lab+': ishlab chiqarilmagan"></td>';
       const t=Math.max(.12,v/mx);
-      return '<td class="c" style="background:color-mix(in srgb,'+hi+' '+Math.round(t*100)+'%,'+lo+')" data-t="'+r.name+', '+(i+1)+' '+M.monShort+': '+fmt(v)+' dona"></td>';
+      return '<td class="c" style="background:color-mix(in srgb,'+hi+' '+Math.round(t*100)+'%,'+lo+')" data-t="'+esc(r.name)+', '+R[i].lab+': '+fmt(v)+' dona"></td>';
     }).join('')+'</tr>';
   });
   $('heat').innerHTML=h+'</tbody>';
@@ -812,75 +955,53 @@ const tip=$('tip');
 $('heat').addEventListener('mousemove',e=>{const t=e.target.dataset&&e.target.dataset.t; if(!t){tip.style.display='none';return} tip.textContent=t; tip.style.display='block'; tip.style.left=Math.min(e.clientX+12,innerWidth-270)+'px'; tip.style.top=(e.clientY+14)+'px';});
 $('heat').addEventListener('mouseleave',()=>tip.style.display='none');
 
-// Distribution
-function drawDist(){
-  const M=cur();
-  const B=[['Tugagan',r=>r.stock===0],['1 kundan kam',r=>r.stock>0&&r.dv==='0'],['1 kun',r=>r.stock>0&&r.dv==='1'],['2 kun',r=>r.stock>0&&r.dv==='2'],['30+ kun',r=>r.stock>0&&(r.dv==='30+'||r.dv==='')]];
-  const cnt=B.map(b=>M.rows.filter(b[1]).length), ink=css('--muted'), grid=css('--line');
-  const cols=[css('--crit'),css('--crit'),css('--warn'),css('--warn'),css('--blue')];
-  if(cd)cd.destroy();
-  cd=new Chart($('cd'),{type:'bar',data:{labels:B.map(b=>b[0]),datasets:[{data:cnt,backgroundColor:cols,borderRadius:{topLeft:3,topRight:3},maxBarThickness:44}]},
-    options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' ta detal'}}},
-    scales:{x:{grid:{display:false},ticks:{color:ink,font:{size:11}},border:{color:grid}},y:{beginAtZero:true,grid:{color:grid},border:{display:false},ticks:{color:ink,precision:0,font:{size:11}},title:{display:true,text:'detal soni',color:ink}}}}});
-  $('dnote').textContent=cnt[0]+' ta detalda qoldiq yo\'q, '+(cnt[1]+cnt[2]+cnt[3])+' tasida 3 kundan kam yetadi, '+cnt[4]+' tasida 30+ kunga yetadi.';
-  const bm={}; M.rows.forEach(r=>bm[r.model]=(bm[r.model]||0)+r.stock);
-  const L=Object.entries(bm).sort((a,b)=>b[1]-a[1]), mx=L[0][1];
-  $('bm').innerHTML=L.map(([m,v])=>'<div class="hr"><span>'+m+'</span><span class="t"><i style="width:'+(v/mx*100)+'%"></i></span><b>'+fmt(v)+'</b></div>').join('');
+// ---- Jadval ----
+let sk='prio',sd=1;
+const dvNum=r=>r.stock===0?-1:(r.dv==='30+'||r.dv===''?99:+r.dv);
+function dvLabel(r){ if(r.stock===0)return '<span class="cv0">Tugagan</span>'; if(r.dv==='')return '<span class="cnt">talab yo\'q</span>'; if(r.dv==='30+')return '30+ kun'; if(+r.dv===0)return '<span class="cv0">1 kundan kam</span>'; return r.dv+' kun';}
+function drawTable(){
+  const M=cur(), L=FR.slice(), maxStock=Math.max(1,...M.rows.map(r=>r.stock));
+  const key={prio:r=>PR[r.prio]*1e7+r.stock,dv:dvNum,n:r=>r.n,model:r=>r.model,tpa:r=>r.tpa,code:r=>r.code,name:r=>r.name,stock:r=>r.stock,need:r=>r.need}[sk];
+  L.sort((a,b)=>{const x=key(a),y=key(b);return (x<y?-1:x>y?1:0)*sd});
+  $('tcount').textContent=L.length+' / '+M.rows.length+' qator, '+fmt(L.reduce((s,r)=>s+r.stock,0))+' dona · '+M.label+(snapIdx===LIVE_IDX?' (jonli)':' (oy oxiri)');
+  $('tbl').tBodies[0].innerHTML=L.map(r=>'<tr><td class="n">'+r.n+'</td><td>'+esc(r.model)+'</td><td class="n">'+r.tpa+'</td><td class="code">'+esc(r.code)+'</td><td class="nm">'+esc(r.name)+'</td><td class="n"><div class="bar"><span>'+fmt(r.stock)+'</span><i style="width:'+Math.round(r.stock/maxStock*90)+'px"></i></div></td><td class="n">'+(r.need?fmt(r.need):'')+'</td><td>'+dvLabel(r)+'</td><td><span class="pill p-'+r.prio+'">'+PL[r.prio]+'</span></td></tr>').join('');
+}
+document.querySelectorAll('#tbl th button').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k; if(sk===k)sd=-sd; else{sk=k;sd=1} drawTable();}));
+
+// ---- Umumiy render: filtr hamma bo'limga bir xil qo'llanadi ----
+function render(){
+  readUI();
+  R=TL.filter(t=>(!F.from||t.date>=F.from)&&(!F.to||t.date<=F.to));
+  const ns=R.length?R[R.length-1].mi:LIVE_IDX;
+  if(ns!==snapIdx){snapIdx=ns;fillModelFilter();F.model=$('fm').value}
+  FR=rowsF();
+  drawKpis(); drawTrend(); drawTop(); drawModels(); drawDist(); fillPartSelect(); drawMain(); drawHeat(); drawTable();
 }
 
-// ---- management summary ----
-function dedupTop(n){
-  const M=cur();
-  const m=new Map(); M.rows.filter(r=>r.need>0).forEach(r=>{const k=r.name+'|'+r.model; const o=m.get(k); if(!o||r.need>o.need)m.set(k,r)});
-  return [...m.values()].sort((a,b)=>b.need-a.need).slice(0,n);
-}
-function drawFinds(){
-  const M=cur();
-  const shortage=M.crit.reduce((s,r)=>s+r.need,0), top=dedupTop(1)[0];
-  const work=M.TOT_PROD.filter(v=>v>0).length, prodSum=M.TOT_PROD.reduce((a,b)=>a+b,0), shipSum=M.SHIP.reduce((a,b)=>a+b,0);
-  const idle=M.rows.filter(r=>r.prio==='N').reduce((s,r)=>s+r.stock,0), share=Math.round(idle/totalStock*100);
-  const mn=Math.min(...M.END), mx=Math.max(...M.END);
-  $('lead').textContent='Sexda jami '+fmt(totalStock)+' dona tayyor detal bor, ammo uning '+share+'% i hozir reja talab qilmaydigan detallarda turibdi. Shu bilan birga '+M.crit.length+' ta shoshilinch detal bo\'yicha '+fmt(shortage)+' dona yetishmayapti va '+zero+' ta detal butunlay tugagan.';
-  $('finds').innerHTML=[
-    ['Tugagan detallar',zero,'r',zeroUrgent+' tasi shoshilinch ro\'yxatda.'],
-    ['Shoshilinch yetishmovchilik, dona',fmt(shortage),'r',M.crit.length+' ta detal. Eng kattasi: '+(top?top.name:'—')+(top?' ('+fmt(top.need)+' dona)':'')+'.'],
-    ['Kunlik o\'rtacha ishlab chiqarish, dona',fmt(prodSum/(work||1)),'','1-'+M.DAYS.length+' '+M.monShort+', '+work+' ish kuni. Jo\'natish o\'rtacha '+fmt(shipSum/(work||1))+' dona/kun.'],
-    ['Umumiy qoldiq, dona',fmt(M.END[M.END.length-1]),'','Oyda eng kam '+fmt(mn)+' ('+(M.END.indexOf(mn)+1)+'.'+M.monNum+'), eng ko\'p '+fmt(mx)+' ('+(M.END.indexOf(mx)+1)+'.'+M.monNum+').']
-  ].map(f=>'<div class="fc"><span>'+f[0]+'</span><div class="big '+f[2]+'">'+f[1]+'</div><p>'+f[3]+'</p></div>').join('');
-}
-let cx;
-function drawTrend(){
-  const M=cur(), ink=css('--muted'), grid=css('--line'); if(cx)cx.destroy();
-  cx=new Chart($('cx'),{data:{labels:M.DAYS.map(d=>d+' '+M.monShort),datasets:[
-    {type:'bar',label:'Ishlab chiqarildi',data:M.TOT_PROD,backgroundColor:css('--blue'),borderRadius:{topLeft:3,topRight:3},maxBarThickness:16,order:2},
-    {type:'bar',label:'Jo\'natildi',data:M.SHIP,backgroundColor:css('--orange'),borderRadius:{topLeft:3,topRight:3},maxBarThickness:16,order:2},
-    {type:'line',label:'Kun oxiriga umumiy qoldiq',data:M.END,borderColor:css('--ink'),backgroundColor:css('--ink'),borderWidth:2.5,pointRadius:3,pointHoverRadius:5,tension:0,order:1}
-  ]},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt(c.parsed.y)+' dona'}}},
-    scales:{x:{grid:{display:false},ticks:{color:ink,maxRotation:0,autoSkip:true,font:{size:12}},border:{color:grid}},
-            y:{beginAtZero:true,grid:{color:grid},border:{display:false},ticks:{color:ink,callback:v=>fmt(v),font:{size:12}},title:{display:true,text:'dona',color:ink}}}}});
-}
-function drawTop(){
-  const L=dedupTop(10); if(!L.length){$('top').innerHTML='<p class="note">Shoshilinch yetishmovchilik topilmadi.</p>';return}
-  const mx=L[0].need;
-  $('top').innerHTML=L.map(r=>'<div class="tr"><div class="nm" title="'+r.name+'">'+r.name+'<small>'+r.model+' · qoldiq: '+fmt(r.stock)+' dona</small></div><div class="t"><i style="width:'+(r.need/mx*100)+'%"></i></div><b>'+fmt(r.need)+'</b></div>').join('');
-}
-function redraw(){drawFinds();drawTrend();drawTop();drawMain();drawHeat();drawDist();}
+$('dx-f-period').addEventListener('change',()=>{applyPreset();render()});
+['dx-f-from','dx-f-to'].forEach(id=>$(id).addEventListener('change',()=>{$('dx-f-period').value='custom'}));
+$('q').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();render()}});
+$('ps').addEventListener('input',drawMain);
+$('dx-seg').addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; seg=b.dataset.s; $('dx-seg').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); drawTrend();});
+document.addEventListener('click',e=>{
+  if(!e.target)return;
+  if(e.target.id==='dx-f-apply')render();
+  else if(e.target.id==='dx-f-clear'){ $('dx-f-period').value='m'+LIVE_IDX; applyPreset(); $('q').value=''; $('fm').value=''; $('fp').value=''; $('fz').value=''; render(); }
+  else if(e.target.id==='dx-filters-toggle'||e.target.id==='dx-filters-caret'){
+    const p=$('dx-filters'); if(!p)return;
+    p.classList.toggle('collapsed');
+    $('dx-filters-caret').textContent=p.classList.contains('collapsed')?'Ko\'rsatish':'Yashirish';
+  }
+});
 
-function selectMonth(i){
-  if(i<0||i>=MONTHS.length||i===curIdx&&$('kpis').innerHTML)return;
-  curIdx=i;
-  drawMonthTabs(); updateSubtitles(); fillModelFilter(); fillPartSelect();
-  recomputeKpis(); drawTable(); redraw();
-}
-drawMonthTabs(); updateSubtitles(); fillModelFilter(); fillPartSelect();
-recomputeKpis(); drawTable(); redraw();
+fillPeriod(); $('dx-f-period').value='m'+LIVE_IDX; applyPreset(); fillModelFilter(); render();
+if(matchMedia('(max-width:860px)').matches){$('dx-filters').classList.add('collapsed');$('dx-filters-caret').textContent='Ko\'rsatish';}
 
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>setTimeout(redraw,50));
-new MutationObserver(()=>setTimeout(redraw,50)).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>setTimeout(render,50));
+new MutationObserver(()=>setTimeout(render,50)).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 
-window.__dashRender=redraw;
-window.__dashRefresh=function(){ if(curIdx===LIVE_IDX){recomputeKpis();drawTable();redraw();} };
+window.__dashRender=render;
+window.__dashRefresh=function(){ if(snapIdx===LIVE_IDX)render(); };
 })();
 </script>
 <script>
@@ -923,6 +1044,7 @@ function paintStatus(){
   var ok = s.status==='ok'?true:s.status==='err'?false:null;
   setLive(document.getElementById('m-live'),ok,msg);
   setLive(document.getElementById('dx-live'),ok,msg);
+  var qd=document.getElementById('m-qdate'); if(qd&&s.status==='ok'&&s.time)qd.textContent=s.time.toLocaleDateString('en-GB').replace(/\//g,'.');
   var adm=document.getElementById('adm-connmsg'); if(adm)adm.textContent=msg;
   var admk=document.getElementById('adm-connk');
   if(admk)admk.innerHTML=[
@@ -1042,6 +1164,14 @@ function drawDays(rows){
     var a=agg[d];
     return '<tr><td>'+d+'</td><td class="n">'+fmt(a.kirim)+'</td><td class="n">'+fmt(a.chiqim)+'</td><td class="n">'+a.n+'</td></tr>';
   }).join('') : '<tr><td colspan="4" class="cnt" style="text-align:center">Hozircha yozuv yo\'q</td></tr>';
+  var cv=document.getElementById('lg-day-chart'); if(!cv||typeof Chart==='undefined')return;
+  var asc=days.slice().reverse(), vs=getComputedStyle(document.getElementById('v-log')), cp=function(n){return vs.getPropertyValue(n).trim()};
+  if(window.__lgDayChart)window.__lgDayChart.destroy();
+  window.__lgDayChart=new Chart(cv,{type:'bar',data:{labels:asc.map(function(d){return d.slice(8,10)+'.'+d.slice(5,7)}),datasets:[
+    {label:'Kirim',data:asc.map(function(d){return agg[d].kirim}),backgroundColor:cp('--c-prod'),borderRadius:{topLeft:4,topRight:4},maxBarThickness:26},
+    {label:'Chiqim',data:asc.map(function(d){return agg[d].chiqim}),backgroundColor:cp('--c-ship'),borderRadius:{topLeft:4,topRight:4},maxBarThickness:26}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.parsed.y)+' dona'}}}},
+      scales:{x:{grid:{display:false},ticks:{color:cp('--muted')},border:{color:cp('--line')}},y:{beginAtZero:true,grid:{color:cp('--line')},border:{display:false},ticks:{color:cp('--muted'),callback:function(v){return fmt(v)}}}}}});
 }
 function fillSelect(id, values, cur){
   var el=document.getElementById(id); if(!el)return;
@@ -1063,6 +1193,7 @@ function applyPeriodPreset(){
   var t=new Date();
   if(p==='all'){ from.value=''; to.value=''; }
   else if(p==='month'){ from.value=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-01'; to.value=todayStr(); }
+  else if(p==='prev'){ var f=new Date(t.getFullYear(),t.getMonth()-1,1), l=new Date(t.getFullYear(),t.getMonth(),0); from.value=f.getFullYear()+'-'+String(f.getMonth()+1).padStart(2,'0')+'-01'; to.value=l.getFullYear()+'-'+String(l.getMonth()+1).padStart(2,'0')+'-'+String(l.getDate()).padStart(2,'0'); }
   else if(p==='7d'){ var d=new Date(t.getTime()-6*86400000); from.value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); to.value=todayStr(); }
   // 'custom': leave from/to as user set them
 }
@@ -1096,7 +1227,7 @@ function render(){
     ['Kirim (ishlab chiqarish)',fmt(kirimSum),kirim.length+' ta yozuv',''],
     ["Chiqim (jo'natish)",fmt(chiqimSum),chiqim.length+' ta yozuv',''],
     ['Qolip almashtirilgan',swapCount,'ta yozuvda',''],
-    ['Oxirgi yozuv',L[0]?fmtTs(L[0].ts):'—','','']
+    ['Oxirgi yozuv',L[0]?(function(t){t=fmtTs(L[0].ts);return t.slice(8,10)+'.'+t.slice(5,7)})():'—',L[0]?fmtTs(L[0].ts).slice(11,16)+' da':'','']
   ].map(function(k){return '<div class="kpi"><span>'+k[0]+'</span><b>'+k[1]+'</b><small>'+k[2]+'</small></div>'}).join('');
   document.getElementById('lg-tbl').tBodies[0].innerHTML = L.length ? L.map(function(r){
     return '<tr><td>'+fmtTs(r.ts)+'</td><td><span class="pill '+(r.turi==='Chiqim'?'p-U':'p-N')+'">'+(r.turi==='Chiqim'?'Chiqim':'Kirim')+'</span></td><td>'+r.model+'</td><td class="code">'+r.code+'</td><td class="nm">'+r.name+'</td><td class="n">'+fmt(r.qty)+'</td><td>'+(r.dest||'—')+'</td><td>'+[r.imm,r.qolip].filter(Boolean).join(' / ')+'</td><td class="nm">'+(extrasLabel(r)||'—')+'</td><td>'+(r.brigadir||'—')+'</td><td class="nm">'+(r.izoh||'')+'</td></tr>';

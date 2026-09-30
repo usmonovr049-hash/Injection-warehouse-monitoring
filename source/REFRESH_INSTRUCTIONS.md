@@ -39,10 +39,22 @@ QO'LLAMANG.**
        `frozen:true` qilib abadiy MUZLATADI (bundan keyin hech qachon o'zgarmaydi — bu
        o'tgan oyning yakuniy arxiv nusxasi) va massiv oxiriga YANGI oy uchun `frozen:false`
        element qo'shadi. Oldingi oylar hech qachon o'chirilmaydi yoki qayta yozilmaydi —
-       shu tufayli sayt UI'sida oy tugmalari orqali istalgan o'tgan oyni ko'rish mumkin.
-   Qaysi oy ekanini skript o'zi Plan_Berish sanasidan (PLAN_DATE) chiqaradi — sizga qo'lda
-   oy nomini yozish shart emas. Skript ishlagach, konsolga nima qilinganini chiqaradi
-   ("Mavjud oy yangilandi" yoki "YANGI OY boshlandi") — buni tekshiring.
+       shu tufayli sayt UI'sida chap paneldagi "Davr" filtri orqali istalgan o'tgan oyni
+       (yoki "Barcha davr" — bir nechta oyni birga) ko'rish mumkin.
+   Qaysi oy ekanini skript "01" varag'ining G2 katagidagi sanadan (MONTH_DATE, oyning 1-kuni)
+   chiqaradi; bo'lmasa Plan_Berish sanasidan (PLAN_DATE). Ikkalasi turli oyni ko'rsatsa,
+   OGOHLANTIRISH chiqadi va "01" varag'i olinadi. Skript ishlagach, konsolga nima qilinganini
+   chiqaradi ("Mavjud oy yangilandi" yoki "YANGI OY boshlandi") — buni tekshiring.
+
+   HIMOYALAR (01.10.2026'dan oldin qo'shildi) — skript quyidagi holatlarda HECH NARSANI
+   O'ZGARTIRMAY "XAVFLI: ..." xatosi bilan to'xtaydi:
+     * yangi ma'lumot muzlatilgan (o'tgan) oyga tegishli ko'rinsa;
+     * yangi ma'lumot oyi oxirgi oydan oldinroq bo'lsa;
+     * bir xil oy uchun kunlar soni kamaysa (masalan 29 → 2) — bu odatda fayl yangi oyga
+       o'tkazilgan-u, "01" varag'idagi sana hali yangilanmaganini bildiradi.
+   Bunday xato chiqsa: NASHR QILMANG. Sababini tekshiring ("01"!G2 sanasi, Plan_Berish B2),
+   bu yerga qisqa eslatma yozing va foydalanuvchiga ayting. Sentabr (yoki boshqa o'tgan oy)
+   ma'lumotini hech qachon yangi oy raqamlari bilan ustidan yozmang.
 
    ESKI USUL (ENDI ISHLATMANG): ilgari `quyish-open.html` ichida IKKITA alohida
    "const RAW=`...`;" bloki bor edi va ularni qo'lda/regex bilan almashtirish kerak edi —
@@ -61,8 +73,12 @@ QO'LLAMANG.**
    [2]=tab-almashtirish (ishlatilmaydi), [3]=jonli qoldiq sync, [4]=Kirim/Chiqim sync.
 
 5. Playwright bilan tekshiring (ombor/admin/apm hisoblari bilan kirib, xatosiz ekanini,
-   KPI/qatorlar sonini, va agar oy yangi bo'lsa — oy tugmalari to'g'ri ko'rinishini va eski
-   oyga o'tish ishlashini tasdiqlang) — productiondagi raqamlarni ko'r-ko'rona nashr qilmang.
+   KPI/qatorlar sonini, va agar oy yangi bo'lsa — chap paneldagi "Davr" ro'yxatida yangi oy
+   "(joriy)" va o'tgan oy "(yakunlangan)" bo'lib chiqishini, o'tgan oyni tanlaganda uning
+   KPI/grafiklari ko'rinishini tasdiqlang) — productiondagi raqamlarni ko'r-ko'rona nashr qilmang.
+   Eslatma: Tahlil paneli 30.09.2026'da yangi dizaynga o'tgan (chap filtr paneli, KPI kartalar,
+   segmentli trend grafigi, reyting ro'yxatlari, donut). Oy tugmalari (dx-months) endi YO'Q —
+   o'rniga "Davr" filtri (#dx-f-period). Ma'lumot tuzilmasi (MONTHS[]) o'zgarmagan.
 
 6. Ikkala joyga joylashtiring:
    - Claude Artifact: url=https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5,

@@ -10,22 +10,26 @@
 
   <section class="alert" id="apm-alert" role="status"></section>
 
+  <div class="layout">
+  <aside class="side">
+      <div class="filters" id="apm-filters">
+        <div class="hd2" id="apm-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="apm-filters-caret">Yashirish</button></div>
+        <div class="grid">
+          <div class="ffield">Sana
+            <div class="dsel">
+              <button id="apm-prev" class="btn2" type="button" aria-label="Oldingi kun">‹</button>
+              <select id="apm-day"></select>
+              <button id="apm-next" class="btn2" type="button" aria-label="Keyingi kun">›</button>
+            </div>
+          </div>
+          <label class="ffield">IMM<select id="apm-f-imm" aria-label="IMM bo'yicha filtr"><option value="">Barcha IMM</option></select></label>
+        </div>
+        <div class="btnrow"><button type="button" class="fbtn-apply" id="apm-f-apply">Qo'llash</button><button type="button" class="fbtn-clear" id="apm-f-clear">Tozalash</button></div>
+      </div>
+  </aside>
+  <div class="main">
   <section id="apm-day-sec">
     <div class="hd"><h2>Bir kunlik ma'lumot</h2><p id="apm-daylabel"></p></div>
-    <div class="filters" id="apm-filters">
-      <div class="hd2" id="apm-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="apm-filters-caret">Yashirish</button></div>
-      <div class="grid">
-        <div class="ffield">Sana
-          <div class="dsel">
-            <button id="apm-prev" class="btn2" type="button" aria-label="Oldingi kun">‹</button>
-            <select id="apm-day"></select>
-            <button id="apm-next" class="btn2" type="button" aria-label="Keyingi kun">›</button>
-          </div>
-        </div>
-        <label class="ffield">IMM<select id="apm-f-imm" aria-label="IMM bo'yicha filtr"><option value="">Barcha IMM</option></select></label>
-      </div>
-      <div class="btnrow"><button type="button" class="fbtn-apply" id="apm-f-apply">Qo'llash</button><button type="button" class="fbtn-clear" id="apm-f-clear">Tozalash</button></div>
-    </div>
     <div class="kpis" id="apm-kpis"></div>
   </section>
 
@@ -60,7 +64,7 @@
   </section>
 
 
-  <details class="mon" id="apm-mon">
+  <details class="mon" id="apm-mon" open>
     <summary>Oy bo'yicha ko'rinish: 1-24 sentabr</summary>
     <div class="monb">
   <section class="in">
@@ -91,6 +95,8 @@
     </label>
     <div class="nact"><button id="apm-save" class="btn">Saqlash</button><span id="apm-saved" class="cnt"></span></div>
   </section>
+  </div>
+  </div>
 </div>
 <div class="ov" id="apm-ov" hidden role="dialog" aria-label="Ish vaqti xaritasi"><div class="ovb"><div class="hd"><h2>Ish vaqti xaritasi</h2><button id="apm-x" class="btn2" type="button">Yopish</button></div><div class="leg" id="apm-hleg2"></div><div class="hmw"><div class="hm big" id="apm-hm2"></div></div></div></div>
 </div>
