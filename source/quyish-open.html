@@ -76,7 +76,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
   --blue:#2a78d6; --crit:#c9302f; --crit-bg:#fbe6e5; --warn:#9a6300; --warn-bg:#fcf0d2; --ok:#1c7a4b; --ok-bg:#e0f3e8;
   --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
   background:var(--bg);color:var(--ink);font-family:var(--sans);border-radius:8px;padding-inline:16px;border:1px solid var(--line)}
-#v-mon .app{height:calc(100dvh - 72px);min-height:600px;max-width:1800px;margin-inline:auto;display:flex;flex-direction:column;gap:8px;padding-block:10px}
+#v-mon .app{height:calc(100dvh - 72px);min-height:560px;max-width:none;margin-inline:auto;display:flex;flex-direction:column;gap:8px;padding-block:10px}
 #v-mon .top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;justify-content:space-between}
 #v-mon h1{margin:0;font-size:clamp(16px,1.8vw,24px);font-weight:600;letter-spacing:-.01em}
 #v-mon .meta{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;color:var(--muted);font-size:clamp(12px,1.10vw,15px)}
@@ -263,24 +263,25 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 #v-mon .top .stat.r b{color:#ff8f8a}
 #v-mon .top .stat.y b{color:#ffd166}
 #v-mon .mwrap{flex:1;min-height:0;display:grid;grid-template-columns:220px minmax(0,1fr);gap:10px}
-#v-mon .mside{min-height:0;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:8px}
+#v-mon .mside{min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px}
 #v-mon .mside input{max-width:none;flex:none;width:100%}
-#v-mon .mlab{font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:4px}
+#v-mon .mlab{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:2px}
 #v-mon .mst{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 #v-mon .ms{display:flex;justify-content:space-between;align-items:center;gap:4px;font:inherit;font-size:13px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:6px 8px;cursor:pointer;text-align:left}
 #v-mon .ms b{font-family:var(--mono);float:right}
 #v-mon .ms.s0 b{color:var(--crit)}#v-mon .ms.s1 b{color:var(--warn)}#v-mon .ms.s2 b{color:var(--ok)}
 #v-mon .ms[aria-pressed="true"]{border-color:var(--tl);box-shadow:inset 0 0 0 1px var(--tl);background:#e6f5f5}
-#v-mon .mlist{display:flex;flex-direction:column;gap:3px}
-#v-mon .mi{font:inherit;font-size:clamp(13px,1.05vw,15px);display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--ink);background:none;border:0;border-radius:6px;padding:7px 10px;cursor:pointer;text-align:left}
+#v-mon .mlist{display:flex;flex-direction:column;gap:clamp(1px,.25vh,3px)}
+#v-mon .mi{font:inherit;font-size:clamp(12.5px,min(1.05vw,1.9vh),15px);display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--ink);background:none;border:0;border-radius:6px;padding:clamp(2px,.55vh,7px) 10px;cursor:pointer;text-align:left}
 #v-mon .mi:hover{background:#fff}
 #v-mon .mi b{font-family:var(--mono);font-size:.85em;color:var(--muted);font-weight:500}
 #v-mon .mi[aria-pressed="true"]{background:var(--tl);color:#062622;font-weight:600}
 #v-mon .mi[aria-pressed="true"] b{color:#062622}
 #v-mon .mi:focus-visible,#v-mon .ms:focus-visible,#v-mon .pbtn:focus-visible,#v-mon .dots button:focus-visible{outline:3px solid var(--warn);outline-offset:1px}
-#v-mon .mctl{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding-top:8px;border-top:1px solid var(--line)}
-#v-mon .mctl .chip{width:100%;text-align:center;font-size:13.5px;padding:7px 10px}
-#v-mon .mctl .live{padding:2px 0}
+#v-mon .mctl{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-top:8px;border-top:1px solid var(--line)}
+#v-mon .mctl .chip{width:100%;text-align:center;font-size:13px;padding:6px 8px}
+#v-mon .mctl #m-auto,#v-mon .mctl .live{grid-column:1/3}
+#v-mon .mctl .live{padding:2px 0;font-size:11.5px;white-space:normal}
 #v-mon .mmain{min-height:0;display:flex;flex-direction:column;gap:6px}
 #v-mon .pager{display:flex;align-items:center;gap:10px}
 #v-mon .pbtn{font:inherit;font-size:13.5px;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:5px 12px;cursor:pointer}
@@ -289,6 +290,14 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 #v-mon .dots button{width:22px;height:8px;border-radius:4px;background:var(--line);border:0;padding:0;cursor:pointer}
 #v-mon .dots button.on{background:var(--tl)}
 @media (max-width:900px){#v-mon .mwrap{grid-template-columns:1fr}#v-mon .mside{max-height:none}#v-mon .mlist{flex-direction:row;flex-wrap:wrap}#v-mon .mctl{flex-direction:row;flex-wrap:wrap}#v-mon .mctl .chip{width:auto}#v-mon .top .stats{justify-content:flex-start}}
+/* ---- To'liq ekran (kiosk) rejimi: monitor butun ekranni egallaydi ---- */
+html.mon-fs,html.mon-fs body{overflow:hidden}
+html.mon-fs #tabs,html.mon-fs #out{display:none!important}
+html.mon-fs #v-mon{position:fixed;inset:0;z-index:50;margin:0;border:0;border-radius:0;padding:0 12px;overflow:hidden}
+html.mon-fs #v-mon .app{height:100dvh;min-height:0;padding-block:8px}
+#v-mon .mside .ms{font-size:12.5px;padding:5px 7px}
+#v-mon .mside input{padding:6px 10px}
+@media (max-height:800px){#v-mon .mside{gap:4px;padding:6px}#v-mon .mside .ms{padding:3px 7px}#v-mon .mi{padding:2px 10px}#v-mon .mctl{padding-top:5px;gap:4px}#v-mon .mctl .chip{padding:4px 8px}}
 </style>
 <nav class="tabs" id="tabs" role="tablist" aria-label="Ko'rinish">
   <button role="tab" id="tab-mon" aria-selected="true" data-v="mon">Ombor monitori</button>
@@ -656,7 +665,24 @@ $('models').addEventListener('click',e=>{const b=e.target.closest('[data-m]'); i
 $('states').addEventListener('click',e=>{const b=e.target.closest('[data-s]'); if(!b)return; state=+b.dataset.s; page=0; buildStates(); render();});
 $('q').addEventListener('input',()=>{page=0;render()});
 $('auto').addEventListener('click',()=>{paused=!paused;$('auto').setAttribute('aria-pressed',!paused);$('auto').textContent='Avto varaq: '+(paused?'o\'chirilgan':'yoqilgan')});
-$('full').addEventListener('click',()=>{try{const p=document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen(); if(p&&p.catch)p.catch(()=>{})}catch(e){}});
+// To'liq ekran: brauzer Fullscreen API'si ishlamasa ham (masalan iframe ichida) monitor butun oynani egallaydi
+function setFs(on){
+  document.documentElement.classList.toggle('mon-fs',on);
+  $('full').textContent=on?'Chiqish':'To\'liq ekran';$('full').title=on?'To\'liq ekrandan chiqish (Esc)':'';
+  $('full').setAttribute('aria-pressed',on);
+  try{
+    if(on&&!document.fullscreenElement&&document.documentElement.requestFullscreen){const p=document.documentElement.requestFullscreen(); if(p&&p.catch)p.catch(()=>{})}
+    if(!on&&document.fullscreenElement&&document.exitFullscreen){const p=document.exitFullscreen(); if(p&&p.catch)p.catch(()=>{})}
+  }catch(e){}
+  try{localStorage.setItem('mon_fs',on?'1':'0')}catch(e){}
+  setTimeout(render,60);
+}
+$('full').addEventListener('click',()=>setFs(!document.documentElement.classList.contains('mon-fs')));
+document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement&&document.documentElement.classList.contains('mon-fs'))setFs(false); else setTimeout(render,60); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.documentElement.classList.contains('mon-fs'))setFs(false); });
+document.addEventListener('click',e=>{ const t=e.target&&e.target.closest&&e.target.closest('#tabs [data-v]'); if(t&&t.dataset.v!=='mon'&&document.documentElement.classList.contains('mon-fs'))setFs(false); });
+if(location.hash==='#monitor-fs'){setTimeout(()=>setFs(true),0)}
+else{try{if(localStorage.getItem('mon_fs')==='1')setTimeout(()=>{ if(!document.getElementById('v-mon').hidden)setFs(true) },0)}catch(e){}}
 
 function renderStats(){
   const total=rows.reduce((s,r)=>s+r.stock,0), z=rows.filter(r=>r.stock===0).length, low=rows.filter(r=>r.stock>0&&r.need>0).length;
@@ -674,7 +700,7 @@ function filtered(){
 function pageCount(){return Math.max(1,Math.ceil(filtered().length/perPage))}
 function calcPer(){
   const h=$('list').clientHeight; const w=innerWidth;
-  const rowH=w>=1400?Math.max(30,Math.min(36,w/54)):(w>900?34:46);
+  const rowH=w>=1400?Math.max(30,Math.min(36,w/60)):(w>900?34:46);
   perPage=Math.max(5,Math.floor(h/rowH));
   $('list').style.setProperty('--rh',(h/perPage)+'px');
 }
