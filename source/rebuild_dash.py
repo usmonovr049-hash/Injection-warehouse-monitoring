@@ -26,6 +26,18 @@ def model_for(code):
     if k.startswith('B') and k[1:] in code2model: return code2model[k[1:]]
     return '—'
 
+# ---- n (qator raqami) -> model: kunlik oxirgi varaqning C ("Modeli") ustunidan ----
+# Mahsulotlar_REF'da hamma detal yo'q (masalan 102-109 qatorlar), shuning uchun asosiy manba
+# shu varaq; REF faqat zaxira sifatida ishlatiladi.
+_lt = 31
+while f"{_lt:02d}" not in wb.sheetnames: _lt -= 1
+N2MODEL = {}
+_ws = wb[f"{_lt:02d}"]
+for _r in range(4, _ws.max_row + 1):
+    _b = _ws.cell(_r, 2).value; _c = _ws.cell(_r, 3).value
+    if isinstance(_b, (int, float)) and _c not in (None, ''):
+        N2MODEL[int(_b)] = str(_c).strip()
+
 # ---- valid days: largest D where G-vector(D) != G-vector(D+1) ----
 def gvec(tab, n=30):
     ws = wb[tab]
@@ -111,7 +123,7 @@ while pb.cell(r,1).value is not None:
     else: prio='N'
     covers_s = str(covers) if covers is not None else ''
     if covers_s in ('30+.0','30+'): covers_s='30+'
-    rows.append(dict(code=str(code).replace(chr(10),' ') if code is not None else code, name=name, model=model_for(code), tpa=int(tpa) if tpa==int(tpa) else tpa,
+    rows.append(dict(code=str(code).replace(chr(10),' ') if code is not None else code, name=name, model=N2MODEL.get(len(rows)+1) or model_for(code), tpa=int(tpa) if tpa==int(tpa) else tpa,
                       stock=int(stock) if stock==int(stock) else stock,
                       dem=int(dem) if dem==int(dem) else dem,
                       need=int(need) if need==int(need) else need,

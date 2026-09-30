@@ -255,6 +255,40 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .pd .tw{border-radius:8px}
 @media (max-width:1180px){.pd .row2,.pd .row2.b{grid-template-columns:1fr}}
 @media (max-width:860px){.pd .layout{grid-template-columns:1fr}.pd .side{position:static}.pd .rk{grid-template-columns:30px 1fr 84px}.pd .rk .t{grid-column:2/4}}
+/* ---- Ombor monitori: chap filtr paneli + qo'lda varaqlash ---- */
+#v-mon .top .stats{flex:1;justify-content:center}
+#v-mon .top .stat{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);padding:6px 14px}
+#v-mon .top .stat span{color:#b7c3dc}
+#v-mon .top .stat b{color:#fff}
+#v-mon .top .stat.r b{color:#ff8f8a}
+#v-mon .top .stat.y b{color:#ffd166}
+#v-mon .mwrap{flex:1;min-height:0;display:grid;grid-template-columns:220px minmax(0,1fr);gap:10px}
+#v-mon .mside{min-height:0;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:8px}
+#v-mon .mside input{max-width:none;flex:none;width:100%}
+#v-mon .mlab{font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:4px}
+#v-mon .mst{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#v-mon .ms{display:flex;justify-content:space-between;align-items:center;gap:4px;font:inherit;font-size:13px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:6px 8px;cursor:pointer;text-align:left}
+#v-mon .ms b{font-family:var(--mono);float:right}
+#v-mon .ms.s0 b{color:var(--crit)}#v-mon .ms.s1 b{color:var(--warn)}#v-mon .ms.s2 b{color:var(--ok)}
+#v-mon .ms[aria-pressed="true"]{border-color:var(--tl);box-shadow:inset 0 0 0 1px var(--tl);background:#e6f5f5}
+#v-mon .mlist{display:flex;flex-direction:column;gap:3px}
+#v-mon .mi{font:inherit;font-size:clamp(13px,1.05vw,15px);display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--ink);background:none;border:0;border-radius:6px;padding:7px 10px;cursor:pointer;text-align:left}
+#v-mon .mi:hover{background:#fff}
+#v-mon .mi b{font-family:var(--mono);font-size:.85em;color:var(--muted);font-weight:500}
+#v-mon .mi[aria-pressed="true"]{background:var(--tl);color:#062622;font-weight:600}
+#v-mon .mi[aria-pressed="true"] b{color:#062622}
+#v-mon .mi:focus-visible,#v-mon .ms:focus-visible,#v-mon .pbtn:focus-visible,#v-mon .dots button:focus-visible{outline:3px solid var(--warn);outline-offset:1px}
+#v-mon .mctl{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding-top:8px;border-top:1px solid var(--line)}
+#v-mon .mctl .chip{width:100%;text-align:center;font-size:13.5px;padding:7px 10px}
+#v-mon .mctl .live{padding:2px 0}
+#v-mon .mmain{min-height:0;display:flex;flex-direction:column;gap:6px}
+#v-mon .pager{display:flex;align-items:center;gap:10px}
+#v-mon .pbtn{font:inherit;font-size:13.5px;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:5px 12px;cursor:pointer}
+#v-mon .pbtn:hover{background:#fff}
+#v-mon .pbtn:disabled{opacity:.45;cursor:default}
+#v-mon .dots button{width:22px;height:8px;border-radius:4px;background:var(--line);border:0;padding:0;cursor:pointer}
+#v-mon .dots button.on{background:var(--tl)}
+@media (max-width:900px){#v-mon .mwrap{grid-template-columns:1fr}#v-mon .mside{max-height:none}#v-mon .mlist{flex-direction:row;flex-wrap:wrap}#v-mon .mctl{flex-direction:row;flex-wrap:wrap}#v-mon .mctl .chip{width:auto}#v-mon .top .stats{justify-content:flex-start}}
 </style>
 <nav class="tabs" id="tabs" role="tablist" aria-label="Ko'rinish">
   <button role="tab" id="tab-mon" aria-selected="true" data-v="mon">Ombor monitori</button>
@@ -268,26 +302,41 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
       <h1>Ombor monitori: detallar qoldig'i</h1>
       <div class="meta"><span>Qoldiq sanasi: <b id="m-qdate">—</b> (jonli, "31" varag'idan)</span><span>Quyish sexi</span></div>
     </div>
+    <div class="stats" id="m-stats"></div>
     <div class="clock" id="m-clock" aria-label="Hozirgi vaqt"></div>
   </div>
 
-  <div class="stats" id="m-stats"></div>
+  <div class="mwrap">
+    <aside class="mside" aria-label="Filtrlar">
+      <input id="m-q" type="search" placeholder="Qidirish: nomi, raqami" aria-label="Qidirish">
+      <div class="mlab">Holat</div>
+      <div class="mst" id="m-states" role="group" aria-label="Holat bo'yicha filtr"></div>
+      <div class="mlab">Model</div>
+      <div class="mlist" id="m-models" role="group" aria-label="Model bo'yicha filtr"></div>
+      <div class="mctl">
+        <button class="chip" id="m-auto" aria-pressed="true">Avto varaq: yoqilgan</button>
+        <button class="chip" id="m-full">To'liq ekran</button>
+        <button class="chip" id="m-sync">Yangilash</button>
+        <span class="live" id="m-live">Ulanmoqda...</span>
+      </div>
+    </aside>
 
-  <div class="bar">
-    <div class="bar" id="m-models" role="group" aria-label="Model bo'yicha filtr"></div>
-    <input id="m-q" type="search" placeholder="Qidirish: nomi, raqami, modeli" aria-label="Qidirish">
-    <button class="chip" id="m-auto" aria-pressed="true">Avto varaq: yoqilgan</button>
-    <button class="chip" id="m-full">To'liq ekran</button>
-    <button class="chip" id="m-sync">Yangilash</button>
-    <span class="live" id="m-live">Ulanmoqda...</span>
+    <div class="mmain">
+      <div class="board">
+        <div class="hdr"><span>№</span><span>Model</span><span class="c-code">Detal raqami</span><span>Detal nomi</span><span style="text-align:right">Qoldiq</span><span class="c-tag">Holat</span></div>
+        <div class="list" id="m-list"></div>
+      </div>
+      <div class="foot">
+        <div class="pager">
+          <button class="pbtn" id="m-prev" type="button" aria-label="Oldingi varaq">&#8249; Oldingi</button>
+          <span id="m-pg"></span>
+          <button class="pbtn" id="m-next" type="button" aria-label="Keyingi varaq">Keyingi &#8250;</button>
+        </div>
+        <div class="dots" id="m-dots"></div>
+        <span>Manba: ASTATKA jadvali (joriy oy), "31" varag'i. Holat: 0 = tugagan, "Kam" = reja bo'yicha yetishmaydi.</span>
+      </div>
+    </div>
   </div>
-
-  <div class="board">
-    <div class="hdr"><span>№</span><span>Model</span><span class="c-code">Detal raqami</span><span>Detal nomi</span><span style="text-align:right">Qoldiq</span><span class="c-tag">Holat</span></div>
-    <div class="list" id="m-list"></div>
-  </div>
-
-  <div class="foot"><span id="m-pg"></span><div class="dots" id="m-dots"></div><span>Manba: ASTATKA jadvali (joriy oy), "31" varag'i. Holat: 0 = tugagan, "Kam" = reja bo'yicha yetishmaydi.</span></div>
 </div>
 </div>
 <div id="v-dash" class="pd" hidden>
@@ -567,14 +616,14 @@ const RAW=`1|GSVEM|650|95969687|9687 COVER SHELL UPR|90|0|N
 99|BCAR|650|B6224712|4712/13 C PILLAR PATCH BLACK LH/RH|0|0|N
 100|BCAR|650|B6224713|4712/13 C PILLAR PATCH BLACK LH/RH|0|0|N
 101|M300|250|95142036|2036 COVER FRT BPR FASCIA TOW EYE ACC HOLE|0|0|N
-102|—|450|AUL35939|Glass Holder LH/RH|0|565|U
-103|—|450|AUL35957|Glass Holder LH/RH|0|565|U
-104|—|650|95076735|Решётка радиатора 6735 (Шевр) NTRL|96|0|N
-105|—|450|UZK04019|GASKET ASM-O/S RR VIEW MIR LH\RH|0|0|N
-106|—|450|UZK04020|GASKET ASM-O/S RR VIEW MIR LH\RH|0|0|N
-107|—|450|UZK04043|Gasket|0|0|N
-108|—|450|UZK04044|Gasket|0|0|N
-109|—|250|B6292496|DOOR|0|0|N
+102|GSVEM|450|AUL35939|Glass Holder LH/RH|0|565|U
+103|GSVEM|450|AUL35957|Glass Holder LH/RH|0|565|U
+104|J200|650|95076735|Решётка радиатора 6735 (Шевр) NTRL|96|0|N
+105|BCAR|450|UZK04019|GASKET ASM-O/S RR VIEW MIR LH\RH|0|0|N
+106|BCAR|450|UZK04020|GASKET ASM-O/S RR VIEW MIR LH\RH|0|0|N
+107|BSUV|450|UZK04043|Gasket|0|0|N
+108|BSUV|450|UZK04044|Gasket|0|0|N
+109|BCAR|250|B6292496|DOOR|0|0|N
 110|HA2|650|HA2HK-2803718|Front license plate Mounting base|0|0|N
 111|HA2|650|HA2HK-2803714|Front grille lower left decoration plate|0|0|N
 112|HA2|650|HA2HK-2803716|Front grille lower right decoration plate|0|0|N
@@ -589,15 +638,26 @@ const fmt=n=>n.toLocaleString('en-US').replace(/,/g,' ');
 const st=r=>r.stock===0?0:(r.need>0?1:2);
 const ST=['Tugagan','Kam','Yetarli'];
 
-const models=['Hammasi',...[...new Set(rows.map(r=>r.model))]];
-let model='Hammasi', paused=false, page=0, perPage=12;
-$('models').innerHTML=models.map(m=>'<button class="chip" data-m="'+m+'" aria-pressed="'+(m===model)+'">'+m+'</button>').join('');
-$('models').addEventListener('click',e=>{const m=e.target.dataset.m; if(!m)return; model=m; page=0; document.querySelectorAll('#m-models .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===model)); render();});
+let model='Hammasi', state=-1, paused=false, page=0, perPage=12, lastManual=0;
+const esc=x=>String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+function buildModels(){
+  const cnt={}; rows.forEach(r=>cnt[r.model]=(cnt[r.model]||0)+1);
+  const list=[['Hammasi',rows.length]].concat(Object.keys(cnt).sort((a,b)=>(a==='—')-(b==='—')||cnt[b]-cnt[a]||a.localeCompare(b)).map(m=>[m,cnt[m]]));
+  if(!list.some(x=>x[0]===model))model='Hammasi';
+  $('models').innerHTML=list.map(x=>'<button type="button" class="mi" data-m="'+esc(x[0])+'" aria-pressed="'+(x[0]===model)+'"><span>'+esc(x[0])+'</span><b>'+x[1]+'</b></button>').join('');
+}
+function buildStates(){
+  const c=[0,0,0]; rows.forEach(r=>c[st(r)]++);
+  const L=[[-1,'Hammasi',rows.length],[0,'Tugagan',c[0]],[1,'Kam',c[1]],[2,'Yetarli',c[2]]];
+  $('states').innerHTML=L.map(x=>'<button type="button" class="ms s'+x[0]+'" data-s="'+x[0]+'" aria-pressed="'+(x[0]===state)+'">'+x[1]+' <b>'+x[2]+'</b></button>').join('');
+}
+buildModels(); buildStates();
+$('models').addEventListener('click',e=>{const b=e.target.closest('[data-m]'); if(!b)return; model=b.dataset.m; page=0; $('models').querySelectorAll('.mi').forEach(x=>x.setAttribute('aria-pressed',x.dataset.m===model)); render();});
+$('states').addEventListener('click',e=>{const b=e.target.closest('[data-s]'); if(!b)return; state=+b.dataset.s; page=0; buildStates(); render();});
 $('q').addEventListener('input',()=>{page=0;render()});
 $('auto').addEventListener('click',()=>{paused=!paused;$('auto').setAttribute('aria-pressed',!paused);$('auto').textContent='Avto varaq: '+(paused?'o\'chirilgan':'yoqilgan')});
 $('full').addEventListener('click',()=>{try{const p=document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen(); if(p&&p.catch)p.catch(()=>{})}catch(e){}});
 
-// Stats (whole warehouse, independent of filter)
 function renderStats(){
   const total=rows.reduce((s,r)=>s+r.stock,0), z=rows.filter(r=>r.stock===0).length, low=rows.filter(r=>r.stock>0&&r.need>0).length;
   $('stats').innerHTML='<div class="stat"><span>Jami qoldiq</span><b>'+fmt(total)+'</b><span>dona</span></div>'
@@ -609,30 +669,42 @@ renderStats();
 
 function filtered(){
   const q=$('q').value.trim().toLowerCase();
-  return rows.filter(r=>(model==='Hammasi'||r.model===model)&&(!q||(r.name+' '+r.code+' '+r.model).toLowerCase().includes(q)));
+  return rows.filter(r=>(model==='Hammasi'||r.model===model)&&(state<0||st(r)===state)&&(!q||(r.name+' '+r.code+' '+r.model).toLowerCase().includes(q)));
 }
+function pageCount(){return Math.max(1,Math.ceil(filtered().length/perPage))}
 function calcPer(){
   const h=$('list').clientHeight; const w=innerWidth;
-  const rowH=w>=1400?Math.max(33,Math.min(44,w/44)):(w>900?38:46);
+  const rowH=w>=1400?Math.max(30,Math.min(36,w/54)):(w>900?34:46);
   perPage=Math.max(5,Math.floor(h/rowH));
   $('list').style.setProperty('--rh',(h/perPage)+'px');
 }
 function render(){
   calcPer();
   const L=filtered(), pages=Math.max(1,Math.ceil(L.length/perPage));
-  if(page>=pages)page=0;
+  if(page>=pages)page=pages-1; if(page<0)page=0;
   const S=L.slice(page*perPage,page*perPage+perPage);
-  $('list').innerHTML=S.length?S.map(r=>{const s=st(r);return '<div class="row '+(s===0?'zero':s===1?'low':'')+'"><span class="c-n">'+r.n+'</span><span>'+r.model+'</span><span class="c-code">'+r.code+'</span><span class="c-name" title="'+r.name+'">'+r.name+'</span><span class="c-stock">'+fmt(r.stock)+'<small>dona</small></span><span class="c-tag"><span class="tag t-'+s+'">'+ST[s]+'</span></span></div>'}).join(''):'<div class="empty">Hech narsa topilmadi</div>';
+  $('list').innerHTML=S.length?S.map(r=>{const s=st(r);return '<div class="row '+(s===0?'zero':s===1?'low':'')+'"><span class="c-n">'+r.n+'</span><span>'+esc(r.model)+'</span><span class="c-code">'+esc(r.code)+'</span><span class="c-name" title="'+esc(r.name)+'">'+esc(r.name)+'</span><span class="c-stock">'+fmt(r.stock)+'<small>dona</small></span><span class="c-tag"><span class="tag t-'+s+'">'+ST[s]+'</span></span></div>'}).join(''):'<div class="empty">Hech narsa topilmadi</div>';
   $('pg').textContent=L.length+' ta detal · '+(page+1)+' / '+pages+' varaq';
-  $('dots').innerHTML=Array.from({length:pages},(_,i)=>'<i class="'+(i===page?'on':'')+'"></i>').join('');
+  $('prev').disabled=pages<2; $('next').disabled=pages<2;
+  $('dots').innerHTML=Array.from({length:pages},(_,i)=>'<button type="button" data-p="'+i+'" class="'+(i===page?'on':'')+'" aria-label="'+(i+1)+'-varaq"'+(i===page?' aria-current="page"':'')+'></button>').join('');
 }
+function go(d){const pages=pageCount(); page=(page+d+pages)%pages; lastManual=Date.now(); render();}
+$('prev').addEventListener('click',()=>go(-1));
+$('next').addEventListener('click',()=>go(1));
+$('dots').addEventListener('click',e=>{const b=e.target.closest('[data-p]'); if(!b)return; page=+b.dataset.p; lastManual=Date.now(); render();});
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('v-mon').hidden)return;
+  const t=e.target&&e.target.tagName; if(t==='INPUT'||t==='SELECT'||t==='TEXTAREA')return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(1)} else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(-1)}
+});
 function tick(){const d=new Date();$('clock').textContent=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+'  '+d.toLocaleDateString('en-GB').replace(/\//g,'.')}
 tick(); setInterval(tick,1000);
 render(); addEventListener('resize',render);
-setInterval(()=>{ if(paused||document.activeElement===$('q'))return; const pages=Math.max(1,Math.ceil(filtered().length/perPage)); if(pages>1){page=(page+1)%pages;render()} },10000);
+// Avto varaq: har 10 soniyada; qo'lda varaqlangandan keyin 30 soniya kutadi
+setInterval(()=>{ if(paused||document.activeElement===$('q')||Date.now()-lastManual<30000)return; const pages=pageCount(); if(pages>1){page=(page+1)%pages;render()} },10000);
 
 window.__monRender=render;
-window.__monRefresh=function(){renderStats();render()};
+window.__monRefresh=function(){buildModels();buildStates();renderStats();render()};
 })();
 </script>
 <script>
@@ -749,14 +821,14 @@ const MONTHS=[
 99|BCAR|650|B6224712|4712/13 C PILLAR PATCH BLACK LH/RH|0|0|0|30+|N
 100|BCAR|650|B6224713|4712/13 C PILLAR PATCH BLACK LH/RH|0|0|0|30+|N
 101|M300|250|95142036|2036 COVER FRT BPR FASCIA TOW EYE ACC HOLE|0|0|0|30+|N
-102|—|450|AUL35939|Glass Holder LH/RH|0|565|565|0|U|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-103|—|450|AUL35957|Glass Holder LH/RH|0|565|565|0|U|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-104|—|650|95076735|Решётка радиатора 6735 (Шевр) NTRL|96|0|0|30+|N
-105|—|450|UZK04019|GASKET ASM-O/S RR VIEW MIR LH\RH|0|0|0|30+|N
-106|—|450|UZK04020|GASKET ASM-O/S RR VIEW MIR LH\RH|0|0|0|30+|N
-107|—|450|UZK04043|Gasket|0|0|0|30+|N
-108|—|450|UZK04044|Gasket|0|0|0|30+|N
-109|—|250|B6292496|DOOR|0|0|0|30+|N
+102|GSVEM|450|AUL35939|Glass Holder LH/RH|0|565|565|0|U|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+103|GSVEM|450|AUL35957|Glass Holder LH/RH|0|565|565|0|U|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0|0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+104|J200|650|95076735|Решётка радиатора 6735 (Шевр) NTRL|96|0|0|30+|N
+105|BCAR|450|UZK04019|GASKET ASM-O/S RR VIEW MIR LH\RH|0|0|0|30+|N
+106|BCAR|450|UZK04020|GASKET ASM-O/S RR VIEW MIR LH\RH|0|0|0|30+|N
+107|BSUV|450|UZK04043|Gasket|0|0|0|30+|N
+108|BSUV|450|UZK04044|Gasket|0|0|0|30+|N
+109|BCAR|250|B6292496|DOOR|0|0|0|30+|N
 110|HA2|650|HA2HK-2803718|Front license plate Mounting base|0|0|0||N
 111|HA2|650|HA2HK-2803714|Front grille lower left decoration plate|0|0|0||N
 112|HA2|650|HA2HK-2803716|Front grille lower right decoration plate|0|0|0||N
@@ -1063,11 +1135,12 @@ async function liveSync(){
     var text=await res.text();
     var table=parseCSV(text);
     var map={};
-    table.forEach(function(c){ var n=parseInt(c[1],10); if(!isNaN(n)&&n>0){ map[n]=+(c[6]||0) } });
+    var mdl={};
+    table.forEach(function(c){ var n=parseInt(c[1],10); if(!isNaN(n)&&n>0){ map[n]=+(c[6]||0); var m=(c[2]||'').trim(); if(m)mdl[n]=m } });
     if(!Object.keys(map).length)throw new Error('empty');
     [window.__rowsMon,window.__rowsDash].forEach(function(rows){
       if(!rows)return;
-      rows.forEach(function(r){ if(map.hasOwnProperty(r.n))r.stock=map[r.n] });
+      rows.forEach(function(r){ if(map.hasOwnProperty(r.n))r.stock=map[r.n]; if(mdl[r.n]&&(r.model==='—'||!r.model))r.model=mdl[r.n] });
     });
     window.__monRefresh&&window.__monRefresh();
     window.__dashRefresh&&window.__dashRefresh();
