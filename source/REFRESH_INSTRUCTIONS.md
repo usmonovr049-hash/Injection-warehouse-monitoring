@@ -40,7 +40,36 @@ Bu papka "Quyish paneli" tizimining manba kodi. Kunlik avtomatik yangilanish shu
    - GitHub Pages: shu repo (usmonovr049-hash/Injection-warehouse-monitoring), fayl "index.html"
      (repo ildizida), branch "main".
 
-Eslatma: "Plan_Berish" varag'i har kuni yangilanadi (ustuvorlik/kerak/necha kunga yetadi) —
-bu har doim ishonchli. Kunlik "01".."31" varaqlari esa jamoa tomonidan har kuni qo'lda
-to'ldiriladi — ba'zan kechikishi mumkin (masalan bugun hali to'ldirilmagan bo'lishi mumkin).
-Shuning uchun N_DAYS ba'zan bir necha kun o'zgarmasligi mumkin, bu xato emas.
+Eslatma: Kunlik "01".."31" varaqlari jamoa tomonidan har kuni qo'lda to'ldiriladi — ba'zan
+kechikishi mumkin (masalan bugun hali to'ldirilmagan bo'lishi mumkin). Shuning uchun N_DAYS
+ba'zan bir necha kun o'zgarmasligi mumkin, bu xato emas.
+
+MUHIM (30.09.2026'da topilgan muammo): "Plan_Berish" varag'i ILGARI "har doim ishonchli"
+deb yozilgan edi — bu NOTO'G'RI ekan, tuzatildi. Sabab: "Sentabr ASTATKA"dagi Plan_Berish
+o'zi hisoblamaydi — u boshqa jadvaldan IMPORTRANGE orqali ko'chiradi:
+manba fileId = `1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4`
+("Zaxira Yetish Tahlili (IMM Grafik) last rev1"), varaq "Plan_Berish", oralig'i A6:L121.
+Bu manba jadvalda avtomatik kunlik trigger bor ("Kunlik_Panel" varag'i, "Sana" katakchasi
+Balans!AJ1'dan) — sana kun bo'yicha almashganda, o'sha kunning REJASI HALI TUZILMAGAN bo'ladi
+("Kunlik_Panel"dagi "Plan berilganmi (Berilgan_Plan): Hali yo'q" holatida), va shu daqiqada
+Plan_Berish'dagi HAMMA qatorlar vaqtinchalik "Kerak emas" / kerak=0 ko'rsatadi — garchi
+haqiqiy zaxira hali ham kam/tugagan bo'lsa ham! Bu holat 30.09 ertalab soat ~03:50 UTC atrofida
+kuzatildi: bir necha daqiqa oldin yuklab olingan faylda 17 ta SHOSHILINCH / 16 144 dona
+yetishmovchilik bor edi (29.09 kunining yopiq holatiga asoslangan haqiqiy hisob), keyingi
+yuklab olishda esa BARCHA 116 qator "Kerak emas" ko'rsatdi — garchi "Joriy qoldiq" (zaxira)
+ustuni bir xil (o'zgarmagan) qolgan bo'lsa ham. Demak "Kerak emas"ning bu vaqtinchalik
+ko'rinishi ZAXIRA tiklanganidan emas, balki kunlik REJA HALI TUZILMAGANIDAN edi.
+
+Shuning uchun KEYINGI safar yangilashdan oldin albatta tekshiring:
+1. Manba jadval (`1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4`)dagi "Kunlik_Panel" varag'ini
+   o'qing (mcp__Google_Drive__read_file_content bilan — bu tez va yengil, butun faylni
+   yuklab olish shart emas). "Sana:" bugungi kunga mos va "Plan berilganmi (Berilgan_Plan):"
+   qatori "✓ Kiritilgan" ekanini tasdiqlang.
+2. Agar "Plan berilganmi" hali "✗ Hali yo'q" bo'lsa — Plan_Berish'dagi raqamlarga ISHONMANG
+   (ular 0/Kerak emas yoki eski kunning qoldiq keshi bo'lishi mumkin). Nashr qilishni
+   to'xtating, va bir necha soatdan keyin (jamoa kunlik reja bosqichini bajargach) qayta
+   urinib ko'ring — buni foydalanuvchiga aytib qo'ying, chunki bu ularning qo'lda bajaradigan
+   ish jarayoniga bog'liq.
+3. Ikki marta ketma-ket yuklab olib solishtiring (bir necha soniya farq bilan) — agar
+   natijalar mos kelmasa (masalan NEED_TOTAL keskin farq qilsa), bu IMPORTRANGE beqarorligi
+   yoki kunlik trigger o'tish jarayonida ekanini bildiradi; shunday holatda ham nashr qilmang.
