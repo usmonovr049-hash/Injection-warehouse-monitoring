@@ -358,7 +358,7 @@ html.mon-fs #v-mon .app{height:100dvh;min-height:0;padding-block:8px}
   <div class="layout">
     <aside class="side">
       <div class="filters" id="dx-filters">
-        <div class="hd2" id="dx-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="dx-filters-caret">Yashirish</button></div>
+        <div class="hd2" id="dx-filters-toggle"><h2>Filtrlar</h2><button type="button" id="dx-filters-caret">Yashirish</button></div>
         <div class="grid">
           <label class="ffield">Boshlanish sana<input type="date" id="dx-f-from"></label>
           <label class="ffield">Tugash sana<input type="date" id="dx-f-to"></label>
@@ -451,7 +451,7 @@ html.mon-fs #v-mon .app{height:100dvh;min-height:0;padding-block:8px}
   <div class="layout">
   <aside class="side">
   <div class="filters" id="lg-filters">
-    <div class="hd2" id="lg-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="lg-filters-caret">Yashirish</button></div>
+    <div class="hd2" id="lg-filters-toggle"><h2>Filtrlar</h2><button type="button" id="lg-filters-caret">Yashirish</button></div>
     <div class="grid">
       <label class="ffield">Davr<select id="lg-f-period">
         <option value="all">Barcha vaqt</option>
@@ -957,9 +957,9 @@ function drawTrend(){
   if(typeof Chart==='undefined')return;
   const ink=css('--muted'), grid=css('--line');
   const S={prod:['Ishlab chiqarildi',css('--c-prod')],ship:['Jo\'natildi',css('--c-ship')],end:['Kun oxiriga umumiy qoldiq',css('--c-end')]};
-  const keys=seg==='all'?['prod','ship']:[seg];
+  const keys=seg==='all'?['prod','ship','end']:[seg];
   const pr=R.length>40?0:3;
-  const ds=keys.map(k=>({label:S[k][0],data:R.map(t=>t[k]),borderColor:S[k][1],backgroundColor:S[k][1]+(keys.length>1?'14':'24'),fill:true,borderWidth:2,tension:.35,cubicInterpolationMode:'monotone',pointRadius:pr,pointHoverRadius:5,pointBackgroundColor:S[k][1]}));
+  const ds=keys.map(k=>({label:S[k][0],data:R.map(t=>t[k]),borderColor:S[k][1],backgroundColor:S[k][1]+(keys.length>1?'14':'24'),fill:!(keys.length>1&&k==='end'),borderWidth:2,tension:.35,cubicInterpolationMode:'monotone',pointRadius:pr,pointHoverRadius:5,pointBackgroundColor:S[k][1]}));
   $('dx-tleg').innerHTML=ds.map(d=>'<span><i style="background:'+d.borderColor+'"></i>'+d.label+'</span>').join('');
   if(cx)cx.destroy();
   cx=new Chart($('cx'),{type:'line',data:{labels:R.map(t=>t.lab),datasets:ds},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
