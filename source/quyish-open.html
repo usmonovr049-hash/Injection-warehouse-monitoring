@@ -319,6 +319,11 @@ html.mon-fs #v-mon .app{height:100dvh;min-height:0;padding-block:8px}
 .pd section.card.zoomed .tw{max-height:none}
 .pd section.card.zoomed table{font-size:15px}
 .pd section.card.zoomed .heat .c{width:34px;min-width:34px;height:26px}
+.pd .tlrow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.pd .endchk{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--nvy);cursor:pointer;user-select:none;background:var(--wash);border:1px solid var(--line);border-radius:8px;padding:5px 10px}
+.pd .endchk input{width:16px;height:16px;accent-color:var(--c-end);margin:0}
+.pd .endchk[hidden]{display:none}
+.pd section.card.zoomed .endchk{font-size:15px}
 </style>
 <nav class="tabs" id="tabs" role="tablist" aria-label="Ko'rinish">
   <button role="tab" id="tab-mon" aria-selected="true" data-v="mon">Ombor monitori</button>
@@ -407,7 +412,7 @@ html.mon-fs #v-mon .app{height:100dvh;min-height:0;padding-block:8px}
             <div class="seg" id="dx-seg" role="group" aria-label="Ko'rsatkich">
               <button type="button" data-s="all" aria-pressed="true">Umumiy</button><button type="button" data-s="prod" aria-pressed="false">Ishlab chiqarish</button><button type="button" data-s="ship" aria-pressed="false">Jo'natish</button><button type="button" data-s="end" aria-pressed="false">Qoldiq</button>
             </div></div>
-          <div class="leg" id="dx-tleg"></div>
+          <div class="tlrow"><div class="leg" id="dx-tleg"></div><label class="endchk" id="dx-endchk-wrap"><input type="checkbox" id="dx-endchk"> Qoldiqni ham ko'rsatish</label></div>
           <div class="cw"><canvas id="cx" role="img" aria-label="Kunlik ishlab chiqarish, jo'natish va qoldiq"></canvas></div>
         </section>
         <section class="card">
@@ -909,7 +914,7 @@ const TL=[];
 MONTHS.forEach((M,mi)=>M.DAYS.forEach((d,di)=>TL.push({date:M.id+'-'+pad(d),mi,di,d,prod:M.TOT_PROD[di]||0,ship:M.SHIP[di]||0,end:M.END[di]||0,lab:d+' '+M.monShort})));
 
 const F={period:'m'+LIVE_IDX,from:'',to:'',model:'',prio:'',zero:'',q:''};
-let snapIdx=LIVE_IDX, seg='all', R=[], FR=[];
+let snapIdx=LIVE_IDX, seg='all', showEnd=false, R=[], FR=[];
 function cur(){return MONTHS[snapIdx]}
 
 function monthRange(i){const M=MONTHS[i];return [M.id+'-01',M.id+'-'+pad(M.DAYS.length)]}
@@ -978,7 +983,8 @@ function drawTrend(){
   if(typeof Chart==='undefined')return;
   const ink=css('--muted'), grid=css('--line'), zf=$('cx').closest('.zoomed')?15:12;
   const S={prod:['Ishlab chiqarildi',css('--c-prod')],ship:['Jo\'natildi',css('--c-ship')],end:['Kun oxiriga umumiy qoldiq',css('--c-end')]};
-  const keys=seg==='all'?['prod','ship','end']:[seg];
+  const keys=seg==='all'?(showEnd?['prod','ship','end']:['prod','ship']):[seg];
+  $('dx-endchk-wrap').hidden=seg!=='all';
   const pr=R.length>40?0:3;
   const ds=keys.map(k=>({label:S[k][0],data:R.map(t=>t[k]),borderColor:S[k][1],backgroundColor:S[k][1]+(keys.length>1?'14':'24'),fill:!(keys.length>1&&k==='end'),borderWidth:2,tension:.35,cubicInterpolationMode:'monotone',pointRadius:pr,pointHoverRadius:5,pointBackgroundColor:S[k][1]}));
   $('dx-tleg').innerHTML=ds.map(d=>'<span><i style="background:'+d.borderColor+'"></i>'+d.label+'</span>').join('');
@@ -1094,6 +1100,7 @@ function render(){
 
 $('q').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();render()}});
 $('ps').addEventListener('input',drawMain);
+$('dx-endchk').addEventListener('change',()=>{showEnd=$('dx-endchk').checked;drawTrend();});
 $('dx-seg').addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; seg=b.dataset.s; $('dx-seg').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); drawTrend();});
 document.addEventListener('click',e=>{
   if(!e.target)return;
