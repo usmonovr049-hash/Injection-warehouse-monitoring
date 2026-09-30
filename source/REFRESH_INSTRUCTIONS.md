@@ -1,44 +1,83 @@
 # Kunlik yangilash yo'riqnomasi (Tahlil paneli)
 
-Bu papka "Quyish paneli" tizimining manba kodi. Kunlik avtomatik yangilanish shu bosqichlar orqali amalga oshiriladi:
+Bu papka "Quyish paneli" tizimining manba kodi. Kunlik avtomatik yangilanish shu bosqichlar
+orqali amalga oshiriladi. **30.09.2026'da tizim ko'p oylik arxivni qo'llab-quvvatlaydigan
+qilib qayta qurildi (`MONTHS[]` massivi) va yangi "Kirim/Chiqim" jurnali qo'shildi — pastdagi
+3-4-bosqichlar shunga mos yangilangan, eski (bitta oylik, flat const'lar) usulni ENDI
+QO'LLAMANG.**
 
 1. Google Drive orqali "Sentabr ASTATKA" jadvalini yuklab oling:
    fileId = `1BJJXwxWtqL6Xtokhk97GkIfY5TQ9_eJBlWK-hFguyIg`
    mcp__Google_Drive__download_file_content(fileId, exportMimeType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
    Natijani base64'dan .xlsx faylga oching (masalan /tmp/astatka.xlsx).
 
+   Eslatma: fayl nomi hamon "Sentabr ASTATKA" bo'lsa ham, Rustam aytishicha bu fayl
+   OKTABR va undan keyingi oylar uchun ham asosiy (joriy) fayl bo'lib qolaveradi — u
+   sentabrni alohida nusxaga arxivlagan. fileId O'ZGARMAYDI, faqat ichidagi oy o'zgaradi.
+   Shuning uchun "qaysi oy" ekanini fayl nomidan emas, balki Plan_Berish varag'idagi
+   sanadan (pastda) aniqlang — bu avtomatik, sizga qo'lda hech narsa qilish shart emas.
+
 2. `python3 rebuild_dash.py` ni ishga tushiring (avval /tmp/astatka.xlsx yo'lini script ichida
-   tekshiring) — bu /tmp/dash_rebuild.json'ni yaratadi: N_DAYS, NEED_TOTAL, TOT_PROD, SHIP, END,
-   RAW (Tahlil paneli uchun, P/E massivlari bilan), MON_RAW (Ombor monitori uchun, soddaroq).
+   tekshiring) — bu /tmp/dash_rebuild.json'ni yaratadi: N_DAYS, NEED_TOTAL, PLAN_DATE, TOT_PROD,
+   SHIP, END, RAW (Tahlil paneli uchun, P/E massivlari bilan), MON_RAW (Ombor monitori uchun,
+   soddaroq), n_rows.
 
    Muhim: bu skript "valid days" ni avtomatik aniqlaydi — kunlik "01".."31" varaqlaridagi
    "Kun boshiga qoldiq" ustunini solishtirib, oxirgi haqiqiy to'ldirilgan kunni topadi
    (G-vektor ketma-ket kunlar orasida farq qiladimi tekshiriladi). Demak N_DAYS har kuni
-   o'zgarishi mumkin — bu normal.
+   o'zgarishi mumkin — bu normal. Oy boshida (masalan 1-oktabrda, "01" varag'i hali bo'sh
+   yoki faqat bir necha qator to'ldirilgan bo'lsa) N_DAYS juda kichik yoki 0 bo'lishi mumkin
+   — bu ham normal, xato emas.
 
-3. `quyish-open.html` ichida IKKITA "const RAW=`...`;" bloki bor:
-   - Birinchisi (mon skriptida, oldida "// n|model|detal raqami|nomi|qoldiq|kerak..." izohi bor)
-     — MON_RAW bilan almashtiriladi (8 maydon: n|model|tpa|code|name|stock|need|prio).
-   - Ikkinchisi (dash skriptida, oldida "// n|model|IMM, t|code|name|stock|demand|need|covers|
-     priority..." izohi bor) — RAW bilan almashtiriladi (10-12 maydon).
-   XATO QILMASLIK UCHUN: ikkalasini aniq shu izoh matnlari orqali toping, birinchi
-   topilganini emas (bu xato allaqachon bir marta yuz bergan — ehtiyot bo'ling).
-   Bundan tashqari: `const DAYS=Array.from({length:N},...)`, `const TOT_PROD=[...]`,
-   `const NEED_TOTAL=N;`, `const SHIP=[...]`, `const END=[...]` — hammasini yangi qiymatlar
-   bilan almashtiring. Matn yorliqlari ("1-28 sentabr", "29.09 rejasi" kabi) ham N_DAYS va
-   bugungi sanaga mos yangilansin (bir nechta joyda takrorlanadi, grep bilan qidiring).
+3. `python3 apply_dash_update.py quyish-open.html /tmp/dash_rebuild.json` ni ishga tushiring.
+   Bu skript avtomatik ravishda:
+   - Ombor monitori uchun MON RAW blokini har doim yangilaydi.
+   - Tahlil paneli skriptidagi `const MONTHS=[...]` massivini yangilaydi:
+     * Agar oxirgi element hali ham JORIY oy bo'lsa (masalan bugun ham sentabr) — o'sha
+       elementni yangi raqamlar bilan almashtiradi, `frozen:false` qoladi.
+     * Agar oy almashgan bo'lsa (masalan kecha sentabr edi, bugun oktabr) — oxirgi elementni
+       `frozen:true` qilib abadiy MUZLATADI (bundan keyin hech qachon o'zgarmaydi — bu
+       o'tgan oyning yakuniy arxiv nusxasi) va massiv oxiriga YANGI oy uchun `frozen:false`
+       element qo'shadi. Oldingi oylar hech qachon o'chirilmaydi yoki qayta yozilmaydi —
+       shu tufayli sayt UI'sida oy tugmalari orqali istalgan o'tgan oyni ko'rish mumkin.
+   Qaysi oy ekanini skript o'zi Plan_Berish sanasidan (PLAN_DATE) chiqaradi — sizga qo'lda
+   oy nomini yozish shart emas. Skript ishlagach, konsolga nima qilinganini chiqaradi
+   ("Mavjud oy yangilandi" yoki "YANGI OY boshlandi") — buni tekshiring.
+
+   ESKI USUL (ENDI ISHLATMANG): ilgari `quyish-open.html` ichida IKKITA alohida
+   "const RAW=`...`;" bloki bor edi va ularni qo'lda/regex bilan almashtirish kerak edi —
+   bu juda xatoga moyil edi (bir marta ikkalasi aralashtirilib yuborilgan). Endi buning
+   o'rniga shu skript ishlatiladi. `quyish-open.html`da hamon "AppSheet_Kirim varag'i"
+   izohli UCHINCHI bir skript bor (fayl oxirida, "Kirim/Chiqim" jurnali) — BUNGA
+   apply_dash_update.py HECH QACHON TEGMAYDI va sizga ham tegishning HOJATI yo'q: u
+   brauzerda o'zi jonli ishlaydi (AppSheet_Kirim varag'idan to'g'ridan-to'g'ri CSV o'qiydi,
+   hech qanday build/deploy kerak emas).
 
 4. `node build_login.js` — quyish-login.html'ni qayta quradi (parollar o'zgarmaydi: barchasi
-   "uz123456", pastki registrda).
+   "uz123456", pastki registrda). Agar kelajakda `quyish-open.html`ga YANGI (to'rtinchi,
+   beshinchi...) `<script>` blok qo'shsangiz, `build_login.js` ichidagi `scripts[N]`
+   indekslarini ham yangilashni unutmang (apm/admin akkauntlari uchun) — bu haqda
+   build_login.js boshidagi izohlarni o'qing. Hozirgi holat: scripts[0]=mon, [1]=dash,
+   [2]=tab-almashtirish (ishlatilmaydi), [3]=jonli qoldiq sync, [4]=Kirim/Chiqim sync.
 
-5. Playwright bilan tekshiring (ombor/admin/apm hisoblari bilan kirib, xatosiz ekanini va
-   KPI/qatorlar sonini tasdiqlang) — productiondagi raqamlarni ko'r-ko'rona nashr qilmang.
+5. Playwright bilan tekshiring (ombor/admin/apm hisoblari bilan kirib, xatosiz ekanini,
+   KPI/qatorlar sonini, va agar oy yangi bo'lsa — oy tugmalari to'g'ri ko'rinishini va eski
+   oyga o'tish ishlashini tasdiqlang) — productiondagi raqamlarni ko'r-ko'rona nashr qilmang.
 
 6. Ikkala joyga joylashtiring:
    - Claude Artifact: url=https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5,
      file_path=quyish-login.html (avval shu url'ni "read" qiling — "viewed" bo'lishi kerak).
-   - GitHub Pages: shu repo (usmonovr049-hash/Injection-warehouse-monitoring), fayl "index.html"
-     (repo ildizida), branch "main".
+     Agar "newer version" xatosi chiqsa — boshqa sessiya (masalan shu kunlik vazifaning
+     o'zi, yoki foydalanuvchi bilan ishlayotgan boshqa suhbat) allaqachon yangiroq versiya
+     nashr qilgan bo'lishi mumkin: o'sha versiyani o'qing, undagi ma'lumot o'zgarishlarini
+     (masalan yangilangan RAW/TOT_PROD raqamlari) o'z natijangizga qo'shib (merge qilib)
+     qaytadan nashr qiling — hech qachon o'zingizning eski nusxangizni ustidan majburan
+     yozmang.
+   - GitHub Pages: shu repo (usmonovr049-hash/Injection-warehouse-monitoring), fayl
+     "index.html" (repo ildizida) = qayta qurilgan quyish-login.html, branch "main". Shu bilan
+     birga `source/quyish-open.html` va (agar o'zgargan bo'lsa) `source/build_login.js`ni ham
+     shu papkaga qo'shib commit qiling — keyingi kunlik ishga tushirish shu fayllardan
+     boshlanadi.
 
 Eslatma: Kunlik "01".."31" varaqlari jamoa tomonidan har kuni qo'lda to'ldiriladi — ba'zan
 kechikishi mumkin (masalan bugun hali to'ldirilmagan bo'lishi mumkin). Shuning uchun N_DAYS
@@ -73,3 +112,15 @@ Shuning uchun KEYINGI safar yangilashdan oldin albatta tekshiring:
 3. Ikki marta ketma-ket yuklab olib solishtiring (bir necha soniya farq bilan) — agar
    natijalar mos kelmasa (masalan NEED_TOTAL keskin farq qilsa), bu IMPORTRANGE beqarorligi
    yoki kunlik trigger o'tish jarayonida ekanini bildiradi; shunday holatda ham nashr qilmang.
+
+## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
+
+Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
+varag'idagi har bir alohida ishlab chiqarish/jo'natish yozuvini (vaqt, ishchi, IMM, qolip,
+izoh bilan) ko'rsatadi. Bu butunlay client-side, jonli (brauzer to'g'ridan-to'g'ri CSV
+o'qiydi, xuddi "31" varag'idagi qoldiq kabi) — kunlik avtomatik yangilash bu qismga
+UMUMAN TEGMAYDI va tegishi ham shart emas. Agar kelajakda bu varaqning ustun tartibi
+o'zgarsa (masalan yangi ustun qo'shilsa), `quyish-open.html` fayli oxiridagi (izohi
+"Kirim/Chiqim jurnali: Sentabr ASTATKA" bo'lgan) skriptdagi `DEST` massivi va ustun
+indekslarini (0-based, "27 Brigadir,29 IMM,30 Qolip" kabi izohlangan) qo'lda yangilash
+kerak bo'ladi.

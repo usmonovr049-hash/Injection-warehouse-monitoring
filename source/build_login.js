@@ -45,7 +45,7 @@ function tabScriptFor(views){ // views: [{id,btn:'tab-x',get:'v-x',hash:'#x',ren
   document.getElementById('tabs').addEventListener('click',function(e){var v=e.target.dataset&&e.target.dataset.v; if(v)show(v);});
   var h=location.hash; show(${views.map(v=>`h==='${v.hash}'?'${v.id}'`).join(':')}:'mon');
 })();`}
-const VIEW={mon:{id:'mon',get:'v-mon',hash:'#monitor',render:'window.__monRender'},dash:{id:'dash',get:'v-dash',hash:'#tahlil',render:'window.__dashRender'},apm:{id:'apm',get:'v-apm',hash:'#apm',render:'window.__apmRender'},admin:{id:'admin',get:'v-admin',hash:'#admin',render:'window.__adminRender'}};
+const VIEW={mon:{id:'mon',get:'v-mon',hash:'#monitor',render:'window.__monRender'},dash:{id:'dash',get:'v-dash',hash:'#tahlil',render:'window.__dashRender'},log:{id:'log',get:'v-log',hash:'#kirim-chiqim',render:'window.__logRender'},apm:{id:'apm',get:'v-apm',hash:'#apm',render:'window.__apmRender'},admin:{id:'admin',get:'v-admin',hash:'#admin',render:'window.__adminRender'}};
 function withTab(markupBase,btnHtml,contentHtml,afterMarker){
   afterMarker=afterMarker||'<button role="tab" id="tab-dash" aria-selected="false" data-v="dash">Tahlil paneli</button>';
   let m=markupBase.replace(afterMarker,afterMarker+'\n  '+btnHtml);
@@ -56,14 +56,14 @@ function withTab(markupBase,btnHtml,contentHtml,afterMarker){
 // ---- apm account: mon + dash + apm only ----
 let apmMarkup=withTab(markup,'<button role="tab" id="tab-apm" aria-selected="false" data-v="apm">APM: reja va fakt</button>',apmHtml);
 if(!apmMarkup.includes('id="tab-apm"')||!apmMarkup.includes('id="v-apm"'))throw new Error('apm markup injection failed');
-const apmScripts=[scripts[0],scripts[1],scripts[3],apmJs,tabScriptFor([VIEW.mon,VIEW.dash,VIEW.apm])];
+const apmScripts=[scripts[0],scripts[1],scripts[3],scripts[4],apmJs,tabScriptFor([VIEW.mon,VIEW.dash,VIEW.log,VIEW.apm])];
 const apmPayload={css:css+'\n'+apmCss,html:apmMarkup,scripts:apmScripts,chart:chartUrl};
 
 // ---- admin account: mon + dash + apm + admin panel (everything) ----
 let adminMarkup=withTab(markup,'<button role="tab" id="tab-apm" aria-selected="false" data-v="apm">APM: reja va fakt</button>',apmHtml);
 adminMarkup=withTab(adminMarkup,'<button role="tab" id="tab-admin" aria-selected="false" data-v="admin">Admin panel</button>',adminHtml,'<button role="tab" id="tab-apm" aria-selected="false" data-v="apm">APM: reja va fakt</button>');
 if(!adminMarkup.includes('id="tab-apm"')||!adminMarkup.includes('id="v-apm"')||!adminMarkup.includes('id="tab-admin"')||!adminMarkup.includes('id="v-admin"'))throw new Error('admin markup injection failed');
-const adminScripts=[scripts[0],scripts[1],scripts[3],templatesScript,selfRoleScript('admin'),apmJs,adminJs,tabScriptFor([VIEW.mon,VIEW.dash,VIEW.apm,VIEW.admin])];
+const adminScripts=[scripts[0],scripts[1],scripts[3],scripts[4],templatesScript,selfRoleScript('admin'),apmJs,adminJs,tabScriptFor([VIEW.mon,VIEW.dash,VIEW.log,VIEW.apm,VIEW.admin])];
 const adminPayload={css:css+'\n'+apmCss+'\n'+adminCss,html:adminMarkup,scripts:adminScripts,chart:chartUrl};
 
 const B={ombor:enc(monPayload,pw.ombor),admin:enc(adminPayload,pw.admin),apm:enc(apmPayload,pw.apm)};
