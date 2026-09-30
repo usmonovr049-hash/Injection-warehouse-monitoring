@@ -275,15 +275,19 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
   </section>
   <section>
     <div class="hd"><h2>Batafsil ro'yxat: barcha detallar bo'yicha haqiqiy qoldiq</h2><p id="tcount" class="cnt"></p></div>
-    <div class="ctl">
-      <input id="q" type="search" placeholder="Qidirish: nomi, raqami, modeli" aria-label="Detal qidirish" style="flex:1 1 220px">
-      <select id="fm" aria-label="Model bo'yicha filtr"></select>
-      <select id="fp" aria-label="Ustuvorlik bo'yicha filtr">
-        <option value="">Barcha ustuvorliklar</option><option value="U">Shoshilinch</option><option value="H">Yuqori</option><option value="N">Kerak emas</option>
-      </select>
-      <select id="fz" aria-label="Qoldiq bo'yicha filtr">
-        <option value="">Har qanday qoldiq</option><option value="0">Tugagan (0)</option><option value="pos">Qoldiq bor</option>
-      </select>
+    <div class="filters" id="dx-filters">
+      <div class="hd2" id="dx-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="dx-filters-caret">Yashirish</button></div>
+      <div class="grid">
+        <label class="ffield">Qidiruv<input id="q" type="search" placeholder="Nomi, raqami, modeli" aria-label="Detal qidirish"></label>
+        <label class="ffield">Model<select id="fm" aria-label="Model bo'yicha filtr"></select></label>
+        <label class="ffield">Ustuvorlik<select id="fp" aria-label="Ustuvorlik bo'yicha filtr">
+          <option value="">Barcha ustuvorliklar</option><option value="U">Shoshilinch</option><option value="H">Yuqori</option><option value="N">Kerak emas</option>
+        </select></label>
+        <label class="ffield">Qoldiq<select id="fz" aria-label="Qoldiq bo'yicha filtr">
+          <option value="">Har qanday qoldiq</option><option value="0">Tugagan (0)</option><option value="pos">Qoldiq bor</option>
+        </select></label>
+      </div>
+      <div class="btnrow"><button type="button" class="fbtn-apply" id="dx-f-apply">Qo'llash</button><button type="button" class="fbtn-clear" id="dx-f-clear">Tozalash</button></div>
     </div>
     <div class="tw"><table id="tbl"><thead><tr>
       <th class="n"><button data-k="n">#</button></th>
@@ -747,6 +751,16 @@ function drawTable(){
 }
 ['q','fm','fp','fz'].forEach(id=>$(id).addEventListener('input',drawTable));
 document.querySelectorAll('th button').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k; if(sk===k)sd=-sd; else{sk=k;sd=1} drawTable();}));
+document.addEventListener('click',e=>{
+  if(!e.target)return;
+  if(e.target.id==='dx-f-apply')drawTable();
+  else if(e.target.id==='dx-f-clear'){ $('q').value=''; $('fm').value=''; $('fp').value=''; $('fz').value=''; drawTable(); }
+  else if(e.target.id==='dx-filters-toggle'||e.target.id==='dx-filters-caret'){
+    const p=$('dx-filters'); if(!p)return;
+    p.classList.toggle('collapsed');
+    $('dx-filters-caret').textContent=p.classList.contains('collapsed')?'Ko\'rsatish':'Yashirish';
+  }
+});
 
 function fillModelFilter(){
   const M=cur(), models=[...new Set(M.rows.map(r=>r.model))].sort();

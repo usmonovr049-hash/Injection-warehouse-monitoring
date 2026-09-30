@@ -12,10 +12,19 @@
 
   <section id="apm-day-sec">
     <div class="hd"><h2>Bir kunlik ma'lumot</h2><p id="apm-daylabel"></p></div>
-    <div class="dsel">
-      <button id="apm-prev" class="btn2" type="button" aria-label="Oldingi kun">‹</button>
-      <label>Sana <select id="apm-day"></select></label>
-      <button id="apm-next" class="btn2" type="button" aria-label="Keyingi kun">›</button>
+    <div class="filters" id="apm-filters">
+      <div class="hd2" id="apm-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="apm-filters-caret">Yashirish</button></div>
+      <div class="grid">
+        <div class="ffield">Sana
+          <div class="dsel">
+            <button id="apm-prev" class="btn2" type="button" aria-label="Oldingi kun">‹</button>
+            <select id="apm-day"></select>
+            <button id="apm-next" class="btn2" type="button" aria-label="Keyingi kun">›</button>
+          </div>
+        </div>
+        <label class="ffield">IMM<select id="apm-f-imm" aria-label="IMM bo'yicha filtr"><option value="">Barcha IMM</option></select></label>
+      </div>
+      <div class="btnrow"><button type="button" class="fbtn-apply" id="apm-f-apply">Qo'llash</button><button type="button" class="fbtn-clear" id="apm-f-clear">Tozalash</button></div>
     </div>
     <div class="kpis" id="apm-kpis"></div>
   </section>

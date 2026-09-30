@@ -78,3 +78,21 @@
 #v-apm details.mon>summary:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
 #v-apm .monb{padding:0 16px 16px;display:flex;flex-direction:column;gap:22px}
 #v-apm section.in{border:0;padding:0;background:none}
+
+#v-apm .filters{background:var(--wash);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+#v-apm .filters .hd2{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;user-select:none}
+#v-apm .filters .hd2 h2{display:flex;align-items:center;gap:8px;font-size:14px}
+#v-apm .filters .hd2 h2 i{width:16px;height:12px;display:inline-block;position:relative}
+#v-apm .filters .hd2 h2 i::before,#v-apm .filters .hd2 h2 i::after,#v-apm .filters .hd2 h2 i span{content:"";position:absolute;left:0;right:0;height:2px;background:var(--ink);border-radius:1px}
+#v-apm .filters .hd2 h2 i::before{top:0}
+#v-apm .filters .hd2 h2 i span{top:5px;display:block}
+#v-apm .filters .hd2 h2 i::after{top:10px}
+#v-apm .filters .hd2 button{font:inherit;font-size:12px;color:var(--muted);background:none;border:0;cursor:pointer}
+#v-apm .filters .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px 14px}
+#v-apm .ffield{display:flex;flex-direction:column;gap:5px;font-size:11.5px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.03em}
+#v-apm .ffield input,#v-apm .ffield select{font:inherit;font-weight:400;font-size:13.5px;text-transform:none;letter-spacing:normal;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+#v-apm .filters .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+#v-apm .fbtn-apply{font:inherit;font-weight:600;font-size:13.5px;color:#fff;background:linear-gradient(120deg,var(--blue),var(--tl));border:0;border-radius:6px;padding:10px 22px;cursor:pointer}
+#v-apm .fbtn-clear{font:inherit;font-weight:500;font-size:13.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 22px;cursor:pointer}
+#v-apm .filters.collapsed .grid,#v-apm .filters.collapsed .btnrow{display:none}
+#v-apm .filters .dsel{gap:6px}

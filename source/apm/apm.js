@@ -50,14 +50,30 @@ $('apm-sfind').innerHTML=[
  ['Smena rejasi','kiritilmagan','Smena bo\'yicha bajarilish % hisoblanmaydi']
 ].map(function(f){return '<div class="fc"><span>'+f[0]+'</span><div class="big"'+(f[1]==='kiritilmagan'?' style="font-size:18px;color:var(--muted);line-height:1.9"':'')+'>'+f[1]+'</div><p>'+f[2]+'</p></div>'}).join('');
 
-// IMM tables
-var t='<thead><tr><th>IMM</th><th class="n">Tonnaj</th><th class="n">Mavjud soat</th><th class="n">Reja soat</th><th class="n">Reja yuklama</th><th class="n">Fakt soat</th><th class="n">Fakt yuklama</th><th>Holat</th></tr></thead><tbody>';
-MACH.forEach(function(m){t+='<tr><td>'+m[0]+'</td><td class="n">'+m[1]+'</td><td class="n">'+CAP+'</td><td class="n">0.0</td><td class="n">0%</td><td class="n">0.0</td><td class="n">0%</td><td class="na">ma\'lumot yo\'q</td></tr>'});
-$('apm-imm').innerHTML=t+'</tbody><tfoot><tr><td>Jami</td><td></td><td class="n">'+CAP*MACH.length+'</td><td class="n">0.0</td><td class="n">0%</td><td class="n">0.0</td><td class="n">0%</td><td></td></tr></tfoot>';
-$('apm-imm-note').textContent='10 ta IMM: 3 ta 650T, 3 ta 450T, 4 ta 250T. Mavjud soat har bir IMM uchun kuniga 22 soat.';
-var p='<thead><tr><th>IMM</th><th class="n">Tonnaj</th><th>Detal</th><th class="n">Ishlab chiqarilgan, dona</th><th>Holat</th></tr></thead><tbody>';
-MACH.forEach(function(m){p+='<tr><td>'+m[0]+'</td><td class="n">'+m[1]+'</td><td class="na">kiritilmagan</td><td class="n">0</td><td class="na">ma\'lumot yo\'q</td></tr>'});
-$('apm-prod').innerHTML=p+'</tbody><tfoot><tr><td>Jami</td><td></td><td></td><td class="n">0</td><td></td></tr></tfoot>';
+// IMM tables (filterable by IMM)
+var immSel=$('apm-f-imm');
+MACH.forEach(function(m){var o=document.createElement('option');o.value=m[0];o.textContent=m[0];immSel.appendChild(o)});
+function renderImmTables(filterImm){
+  var list=MACH.filter(function(m){return !filterImm||m[0]===filterImm});
+  var t='<thead><tr><th>IMM</th><th class="n">Tonnaj</th><th class="n">Mavjud soat</th><th class="n">Reja soat</th><th class="n">Reja yuklama</th><th class="n">Fakt soat</th><th class="n">Fakt yuklama</th><th>Holat</th></tr></thead><tbody>';
+  list.forEach(function(m){t+='<tr><td>'+m[0]+'</td><td class="n">'+m[1]+'</td><td class="n">'+CAP+'</td><td class="n">0.0</td><td class="n">0%</td><td class="n">0.0</td><td class="n">0%</td><td class="na">ma\'lumot yo\'q</td></tr>'});
+  $('apm-imm').innerHTML=t+'</tbody><tfoot><tr><td>Jami</td><td></td><td class="n">'+CAP*list.length+'</td><td class="n">0.0</td><td class="n">0%</td><td class="n">0.0</td><td class="n">0%</td><td></td></tr></tfoot>';
+  $('apm-imm-note').textContent=filterImm?('Ko\'rsatilmoqda: '+filterImm+'. Mavjud soat har bir IMM uchun kuniga 22 soat.'):'10 ta IMM: 3 ta 650T, 3 ta 450T, 4 ta 250T. Mavjud soat har bir IMM uchun kuniga 22 soat.';
+  var p='<thead><tr><th>IMM</th><th class="n">Tonnaj</th><th>Detal</th><th class="n">Ishlab chiqarilgan, dona</th><th>Holat</th></tr></thead><tbody>';
+  list.forEach(function(m){p+='<tr><td>'+m[0]+'</td><td class="n">'+m[1]+'</td><td class="na">kiritilmagan</td><td class="n">0</td><td class="na">ma\'lumot yo\'q</td></tr>'});
+  $('apm-prod').innerHTML=p+'</tbody><tfoot><tr><td>Jami</td><td></td><td></td><td class="n">0</td><td></td></tr></tfoot>';
+}
+renderImmTables('');
+document.addEventListener('click',function(e){
+  if(!e.target)return;
+  if(e.target.id==='apm-f-apply')renderImmTables(immSel.value);
+  else if(e.target.id==='apm-f-clear'){immSel.value='';renderImmTables('')}
+  else if(e.target.id==='apm-filters-toggle'||e.target.id==='apm-filters-caret'){
+    var pf=$('apm-filters'); if(!pf)return;
+    pf.classList.toggle('collapsed');
+    $('apm-filters-caret').textContent=pf.classList.contains('collapsed')?'Ko\'rsatish':'Yashirish';
+  }
+});
 
 // notes
 var lows=[];DAYS.forEach(function(d,i){if(wd(d)==='yak')lows.push((d<10?'0':'')+d+'.09: '+fmt(TOT[i])+' dona')});
