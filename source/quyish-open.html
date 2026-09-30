@@ -360,7 +360,6 @@ html.mon-fs #v-mon .app{height:100dvh;min-height:0;padding-block:8px}
       <div class="filters" id="dx-filters">
         <div class="hd2" id="dx-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="dx-filters-caret">Yashirish</button></div>
         <div class="grid">
-          <label class="ffield">Davr<select id="dx-f-period" aria-label="Davr"></select></label>
           <label class="ffield">Boshlanish sana<input type="date" id="dx-f-from"></label>
           <label class="ffield">Tugash sana<input type="date" id="dx-f-to"></label>
           <label class="ffield">Model<select id="fm" aria-label="Model bo'yicha filtr"></select></label>
@@ -901,14 +900,10 @@ function presetDates(p){
   return null;
 }
 function fillPeriod(){
-  let h='';
-  for(let i=MONTHS.length-1;i>=0;i--){const M=MONTHS[i]; h+='<option value="m'+i+'">'+M.label+' '+M.id.slice(0,4)+(i===LIVE_IDX?' (joriy)':' (yakunlangan)')+'</option>'}
-  h+='<option value="last7">Oxirgi 7 kun</option><option value="all">Barcha davr ('+MONTHS.length+' oy)</option><option value="custom">Maxsus oraliq</option>';
-  $('dx-f-period').innerHTML=h;
   if(TL.length){['dx-f-from','dx-f-to'].forEach(id=>{$(id).min=TL[0].date;$(id).max=TL[TL.length-1].date})}
 }
 function applyPreset(){
-  const p=$('dx-f-period').value, d=presetDates(p);
+  const d=presetDates('m'+LIVE_IDX);
   if(d){$('dx-f-from').value=d[0];$('dx-f-to').value=d[1]}
 }
 function fillModelFilter(){
@@ -917,7 +912,7 @@ function fillModelFilter(){
   if(models.includes(v))$('fm').value=v;
 }
 function readUI(){
-  F.period=$('dx-f-period').value; F.from=$('dx-f-from').value; F.to=$('dx-f-to').value;
+  F.from=$('dx-f-from').value; F.to=$('dx-f-to').value;
   if(F.from&&F.to&&F.from>F.to){const t=F.from;F.from=F.to;F.to=t;$('dx-f-from').value=F.from;$('dx-f-to').value=F.to}
   F.model=$('fm').value; F.prio=$('fp').value; F.zero=$('fz').value; F.q=$('q').value.trim().toLowerCase();
 }
@@ -1076,15 +1071,13 @@ function render(){
   drawKpis(); drawTrend(); drawTop(); drawModels(); drawDist(); fillPartSelect(); drawMain(); drawHeat(); drawTable();
 }
 
-$('dx-f-period').addEventListener('change',()=>{applyPreset();render()});
-['dx-f-from','dx-f-to'].forEach(id=>$(id).addEventListener('change',()=>{$('dx-f-period').value='custom'}));
 $('q').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();render()}});
 $('ps').addEventListener('input',drawMain);
 $('dx-seg').addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; seg=b.dataset.s; $('dx-seg').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); drawTrend();});
 document.addEventListener('click',e=>{
   if(!e.target)return;
   if(e.target.id==='dx-f-apply')render();
-  else if(e.target.id==='dx-f-clear'){ $('dx-f-period').value='m'+LIVE_IDX; applyPreset(); $('q').value=''; $('fm').value=''; $('fp').value=''; $('fz').value=''; render(); }
+  else if(e.target.id==='dx-f-clear'){ applyPreset(); $('q').value=''; $('fm').value=''; $('fp').value=''; $('fz').value=''; render(); }
   else if(e.target.id==='dx-filters-toggle'||e.target.id==='dx-filters-caret'){
     const p=$('dx-filters'); if(!p)return;
     p.classList.toggle('collapsed');
@@ -1092,7 +1085,7 @@ document.addEventListener('click',e=>{
   }
 });
 
-fillPeriod(); $('dx-f-period').value='m'+LIVE_IDX; applyPreset(); fillModelFilter(); render();
+fillPeriod(); applyPreset(); fillModelFilter(); render();
 if(matchMedia('(max-width:860px)').matches){$('dx-filters').classList.add('collapsed');$('dx-filters-caret').textContent='Ko\'rsatish';}
 
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>setTimeout(render,50));

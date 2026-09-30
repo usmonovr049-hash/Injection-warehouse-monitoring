@@ -39,8 +39,8 @@ QO'LLAMANG.**
        `frozen:true` qilib abadiy MUZLATADI (bundan keyin hech qachon o'zgarmaydi — bu
        o'tgan oyning yakuniy arxiv nusxasi) va massiv oxiriga YANGI oy uchun `frozen:false`
        element qo'shadi. Oldingi oylar hech qachon o'chirilmaydi yoki qayta yozilmaydi —
-       shu tufayli sayt UI'sida chap paneldagi "Davr" filtri orqali istalgan o'tgan oyni
-       (yoki "Barcha davr" — bir nechta oyni birga) ko'rish mumkin.
+       shu tufayli sayt UI'sida chap paneldagi "Boshlanish/Tugash sana" orqali istalgan o'tgan
+       oyni (yoki bir necha oyni birga) ko'rish mumkin.
    Qaysi oy ekanini skript "01" varag'ining G2 katagidagi sanadan (MONTH_DATE, oyning 1-kuni)
    chiqaradi; bo'lmasa Plan_Berish sanasidan (PLAN_DATE). Ikkalasi turli oyni ko'rsatsa,
    OGOHLANTIRISH chiqadi va "01" varag'i olinadi. Skript ishlagach, konsolga nima qilinganini
@@ -73,12 +73,11 @@ QO'LLAMANG.**
    [2]=tab-almashtirish (ishlatilmaydi), [3]=jonli qoldiq sync, [4]=Kirim/Chiqim sync.
 
 5. Playwright bilan tekshiring (ombor/admin/apm hisoblari bilan kirib, xatosiz ekanini,
-   KPI/qatorlar sonini, va agar oy yangi bo'lsa — chap paneldagi "Davr" ro'yxatida yangi oy
-   "(joriy)" va o'tgan oy "(yakunlangan)" bo'lib chiqishini, o'tgan oyni tanlaganda uning
-   KPI/grafiklari ko'rinishini tasdiqlang) — productiondagi raqamlarni ko'r-ko'rona nashr qilmang.
+   KPI/qatorlar sonini, va agar oy yangi bo'lsa — chap paneldagi Boshlanish/Tugash sanani o'tgan
+   oyga qo'yib "Qo'llash" bosilganda o'sha oyning KPI/grafiklari ko'rinishini tasdiqlang) — productiondagi raqamlarni ko'r-ko'rona nashr qilmang.
    Eslatma: Tahlil paneli 30.09.2026'da yangi dizaynga o'tgan (chap filtr paneli, KPI kartalar,
-   segmentli trend grafigi, reyting ro'yxatlari, donut). Oy tugmalari (dx-months) endi YO'Q —
-   o'rniga "Davr" filtri (#dx-f-period). Ma'lumot tuzilmasi (MONTHS[]) o'zgarmagan.
+   segmentli trend grafigi, reyting ro'yxatlari, donut). Oy tugmalari va "Davr" filtri endi YO'Q (foydalanuvchi so'rovi bilan olib
+   tashlangan) — oy sana oralig'i (#dx-f-from/#dx-f-to) orqali tanlanadi. Ma'lumot tuzilmasi (MONTHS[]) o'zgarmagan.
 
 6. Ikkala joyga joylashtiring:
    - Claude Artifact: url=https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5,
