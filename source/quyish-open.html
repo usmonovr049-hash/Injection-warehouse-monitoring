@@ -172,6 +172,22 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .pd .live.ok::before{background:var(--tl)}
 .pd .live.err{color:var(--crit)}
 .pd .live.err::before{background:var(--crit)}
+.pd .filters{background:var(--wash);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+.pd .filters .hd2{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;user-select:none}
+.pd .filters .hd2 h2{display:flex;align-items:center;gap:8px;font-size:14px}
+.pd .filters .hd2 h2 i{width:16px;height:12px;display:inline-block;position:relative}
+.pd .filters .hd2 h2 i::before,.pd .filters .hd2 h2 i::after,.pd .filters .hd2 h2 i span{content:"";position:absolute;left:0;right:0;height:2px;background:var(--ink);border-radius:1px}
+.pd .filters .hd2 h2 i::before{top:0}
+.pd .filters .hd2 h2 i span{top:5px;display:block}
+.pd .filters .hd2 h2 i::after{top:10px}
+.pd .filters .hd2 button{font:inherit;font-size:12px;color:var(--muted);background:none;border:0;cursor:pointer}
+.pd .filters .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px 14px}
+.pd .ffield{display:flex;flex-direction:column;gap:5px;font-size:11.5px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.03em}
+.pd .ffield input,.pd .ffield select{font:inherit;font-weight:400;font-size:13.5px;text-transform:none;letter-spacing:normal;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+.pd .filters .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.pd .fbtn-apply{font:inherit;font-weight:600;font-size:13.5px;color:#fff;background:linear-gradient(120deg,var(--blue),var(--tl));border:0;border-radius:6px;padding:10px 22px;cursor:pointer}
+.pd .fbtn-clear{font:inherit;font-weight:500;font-size:13.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 22px;cursor:pointer}
+.pd .filters.collapsed .grid,.pd .filters.collapsed .btnrow{display:none}
 </style>
 <nav class="tabs" id="tabs" role="tablist" aria-label="Ko'rinish">
   <button role="tab" id="tab-mon" aria-selected="true" data-v="mon">Ombor monitori</button>
@@ -298,6 +314,34 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
     </div>
   </header>
 
+  <div class="filters" id="lg-filters">
+    <div class="hd2" id="lg-filters-toggle"><h2><i><span></span></i>Filtrlar</h2><button type="button" id="lg-filters-caret">Yashirish</button></div>
+    <div class="grid">
+      <label class="ffield">Davr<select id="lg-f-period">
+        <option value="all">Barcha vaqt</option>
+        <option value="month" selected>Joriy oy</option>
+        <option value="7d">Oxirgi 7 kun</option>
+        <option value="custom">Maxsus oraliq</option>
+      </select></label>
+      <label class="ffield">Boshlanish sana<input type="date" id="lg-f-from"></label>
+      <label class="ffield">Tugash sana<input type="date" id="lg-f-to"></label>
+      <label class="ffield">Turi<select id="lg-f-type">
+        <option value="">Barchasi</option>
+        <option value="Ishlab chiqarish">Kirim (ishlab chiqarish)</option>
+        <option value="Chiqim">Chiqim (jo'natish)</option>
+      </select></label>
+      <label class="ffield">Yo'nalish<select id="lg-f-dest"><option value="">Barchasi</option></select></label>
+      <label class="ffield">Brigadir / ishchi<select id="lg-f-brig"><option value="">Barchasi</option></select></label>
+      <label class="ffield">Status<select id="lg-f-status"><option value="">Barchasi</option></select></label>
+      <label class="ffield">Qolip almashtirish<select id="lg-f-swap">
+        <option value="">Barchasi</option>
+        <option value="swap">Faqat almashtirilgan</option>
+      </select></label>
+      <label class="ffield">Qidiruv<input id="lg-f-q" type="search" placeholder="Uskuna, izoh, brigadir"></label>
+    </div>
+    <div class="btnrow"><button type="button" class="fbtn-apply" id="lg-f-apply">Qo'llash</button><button type="button" class="fbtn-clear" id="lg-f-clear">Tozalash</button></div>
+  </div>
+
   <div class="kpis" id="lg-kpis"></div>
 
   <section>
@@ -316,18 +360,6 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 
   <section>
     <div class="hd"><h2>Yozuvlar</h2><p id="lg-count" class="cnt"></p></div>
-    <div class="ctl">
-      <input id="lg-q" type="search" placeholder="Qidirish: detal, model, brigadir" aria-label="Qidirish" style="flex:1 1 240px">
-      <select id="lg-type" aria-label="Turi bo'yicha filtr">
-        <option value="">Barcha yozuvlar</option>
-        <option value="Ishlab chiqarish">Faqat kirim (ishlab chiqarish)</option>
-        <option value="Chiqim">Faqat chiqim (jo'natish)</option>
-      </select>
-      <select id="lg-swap" aria-label="Qolip almashtirish bo'yicha filtr">
-        <option value="">Barchasi</option>
-        <option value="swap">Faqat qolip almashtirilgan yozuvlar</option>
-      </select>
-    </div>
     <div class="tw"><table id="lg-tbl"><thead><tr>
       <th>Vaqt</th><th>Turi</th><th>Model</th><th>Detal raqami</th><th>Detal nomi</th><th class="n">Miqdor</th><th>Yo'nalish</th><th>IMM / Qolip</th><th>Qolip almashtirish</th><th>Brigadir</th><th>Izoh</th>
     </tr></thead><tbody></tbody></table></div>
@@ -962,7 +994,7 @@ function buildRows(table){
     out.push({ts:c[0]||'',day:dayOf(c[0]),turi:turi,model:c[5]||'',code:cleanNum(c[6]),name:c[7]||'',qty:qty,
       destBreak:destBreak,dest:destBreak.map(function(d){return d[0]+': '+fmt(d[1])}).join(', '),
       imm:cleanNum(c[29]),qolip:c[30]||'',extras:extras,
-      brigadir:c[27]||c[24]||c[25]||c[26]||'',izoh:c[19]||''});
+      brigadir:c[27]||c[24]||c[25]||c[26]||'',status:c[18]||'',izoh:c[19]||''});
   }
   out.sort(function(a,b){return a.ts<b.ts?1:a.ts>b.ts?-1:0});
   return out;
@@ -971,23 +1003,23 @@ function extrasLabel(r){
   if(!r.extras.length)return '';
   return r.extras.map(function(e){return '⇄ '+e.label+(e.qolip?' ('+e.qolip+')':'')+': '+fmt(e.qty)+' dona'}).join('; ');
 }
-function drawDest(){
+function drawDest(rows){
   var agg={};
-  rowsRaw.forEach(function(r){ r.destBreak.forEach(function(d){
+  rows.forEach(function(r){ r.destBreak.forEach(function(d){
     var k=d[0]; if(!agg[k])agg[k]={qty:0,n:0,first:r.day,last:r.day};
     agg[k].qty+=d[1]; agg[k].n++; if(r.day<agg[k].first)agg[k].first=r.day; if(r.day>agg[k].last)agg[k].last=r.day;
   })});
   var keys=Object.keys(agg).sort(function(a,b){return agg[b].qty-agg[a].qty});
   var totalChiqim=keys.reduce(function(s,k){return s+agg[k].qty},0);
-  document.getElementById('lg-dest-sub').textContent = keys.length ? (keys.length+' ta yo\'nalish, jami '+fmt(totalChiqim)+' dona jo\'natildi') : 'Hozircha chiqim yozuvi yo\'q';
+  document.getElementById('lg-dest-sub').textContent = keys.length ? (keys.length+' ta yo\'nalish, jami '+fmt(totalChiqim)+' dona jo\'natildi') : 'Tanlangan filtr bo\'yicha chiqim yozuvi yo\'q';
   document.getElementById('lg-dest-tbl').tBodies[0].innerHTML = keys.length ? keys.map(function(k){
     var a=agg[k];
     return '<tr><td>'+k+'</td><td class="n">'+fmt(a.qty)+'</td><td class="n">'+a.n+'</td><td>'+a.first+'</td><td>'+a.last+'</td></tr>';
   }).join('') : '<tr><td colspan="5" class="cnt" style="text-align:center">Hozircha yozuv yo\'q</td></tr>';
 }
-function drawDays(){
+function drawDays(rows){
   var agg={};
-  rowsRaw.forEach(function(r){
+  rows.forEach(function(r){
     if(!agg[r.day])agg[r.day]={kirim:0,chiqim:0,n:0};
     agg[r.day][r.turi==='Chiqim'?'chiqim':'kirim']+=r.qty; agg[r.day].n++;
   });
@@ -997,28 +1029,65 @@ function drawDays(){
     return '<tr><td>'+d+'</td><td class="n">'+fmt(a.kirim)+'</td><td class="n">'+fmt(a.chiqim)+'</td><td class="n">'+a.n+'</td></tr>';
   }).join('') : '<tr><td colspan="4" class="cnt" style="text-align:center">Hozircha yozuv yo\'q</td></tr>';
 }
-function render(){
-  var qEl=document.getElementById('lg-q'), tEl=document.getElementById('lg-type'), sEl=document.getElementById('lg-swap');
-  if(!qEl)return;
-  var q=qEl.value.trim().toLowerCase(), tf=tEl.value, sf=sEl.value;
-  var L=rowsRaw.filter(function(r){
-    return (!tf||r.turi===tf) && (!sf||r.extras.length>0) && (!q || (r.name+' '+r.code+' '+r.model+' '+r.brigadir).toLowerCase().indexOf(q)>=0);
+function fillSelect(id, values, cur){
+  var el=document.getElementById(id); if(!el)return;
+  var opts=['<option value="">Barchasi</option>'].concat(values.map(function(v){return '<option'+(v===cur?' selected':'')+'>'+v+'</option>'}));
+  el.innerHTML=opts.join('');
+}
+function fillFilterOptions(){
+  var dest=[...new Set(rowsRaw.reduce(function(a,r){return a.concat(r.destBreak.map(function(d){return d[0]}))},[]))].sort();
+  var brig=[...new Set(rowsRaw.map(function(r){return r.brigadir}).filter(Boolean))].sort();
+  var status=[...new Set(rowsRaw.map(function(r){return r.status}).filter(Boolean))].sort();
+  var dEl=document.getElementById('lg-f-dest'), bEl=document.getElementById('lg-f-brig'), sEl=document.getElementById('lg-f-status');
+  fillSelect('lg-f-dest', dest, dEl?dEl.value:'');
+  fillSelect('lg-f-brig', brig, bEl?bEl.value:'');
+  fillSelect('lg-f-status', status, sEl?sEl.value:'');
+}
+function todayStr(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function applyPeriodPreset(){
+  var p=document.getElementById('lg-f-period').value, from=document.getElementById('lg-f-from'), to=document.getElementById('lg-f-to');
+  var t=new Date();
+  if(p==='all'){ from.value=''; to.value=''; }
+  else if(p==='month'){ from.value=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-01'; to.value=todayStr(); }
+  else if(p==='7d'){ var d=new Date(t.getTime()-6*86400000); from.value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); to.value=todayStr(); }
+  // 'custom': leave from/to as user set them
+}
+function getFiltered(){
+  var from=(document.getElementById('lg-f-from')||{}).value||'', to=(document.getElementById('lg-f-to')||{}).value||'';
+  var tf=(document.getElementById('lg-f-type')||{}).value||'', df=(document.getElementById('lg-f-dest')||{}).value||'';
+  var bf=(document.getElementById('lg-f-brig')||{}).value||'', sf=(document.getElementById('lg-f-status')||{}).value||'';
+  var swf=(document.getElementById('lg-f-swap')||{}).value||'', q=((document.getElementById('lg-f-q')||{}).value||'').trim().toLowerCase();
+  return rowsRaw.filter(function(r){
+    if(from && r.day<from)return false;
+    if(to && r.day>to)return false;
+    if(tf && r.turi!==tf)return false;
+    if(df && !r.destBreak.some(function(d){return d[0]===df}))return false;
+    if(bf && r.brigadir!==bf)return false;
+    if(sf && r.status!==sf)return false;
+    if(swf && !r.extras.length)return false;
+    if(q && (r.name+' '+r.code+' '+r.model+' '+r.brigadir+' '+r.izoh).toLowerCase().indexOf(q)<0)return false;
+    return true;
   });
-  document.getElementById('lg-count').textContent=L.length+' / '+rowsRaw.length+' yozuv';
-  var kirim=rowsRaw.filter(function(r){return r.turi!=='Chiqim'}), chiqim=rowsRaw.filter(function(r){return r.turi==='Chiqim'});
+}
+function render(){
+  if(!document.getElementById('lg-f-period'))return;
+  fillFilterOptions();
+  var L=getFiltered();
+  document.getElementById('lg-count').textContent=L.length+' / '+rowsRaw.length+' yozuv (joriy filtr bo\'yicha)';
+  var kirim=L.filter(function(r){return r.turi!=='Chiqim'}), chiqim=L.filter(function(r){return r.turi==='Chiqim'});
   var kirimSum=kirim.reduce(function(s,r){return s+r.qty},0), chiqimSum=chiqim.reduce(function(s,r){return s+r.qty},0);
-  var swapCount=rowsRaw.filter(function(r){return r.extras.length>0}).length;
+  var swapCount=L.filter(function(r){return r.extras.length>0}).length;
   document.getElementById('lg-kpis').innerHTML=[
-    ['Jami yozuvlar',rowsRaw.length,'ta operatsiya',''],
+    ['Yozuvlar (filtr)',L.length,L.length===rowsRaw.length?'jami barchasi':'jami '+rowsRaw.length+' tadan',''],
     ['Kirim (ishlab chiqarish)',fmt(kirimSum),kirim.length+' ta yozuv',''],
     ["Chiqim (jo'natish)",fmt(chiqimSum),chiqim.length+' ta yozuv',''],
     ['Qolip almashtirilgan',swapCount,'ta yozuvda',''],
-    ['Oxirgi yozuv',rowsRaw[0]?fmtTs(rowsRaw[0].ts):'—','','']
+    ['Oxirgi yozuv',L[0]?fmtTs(L[0].ts):'—','','']
   ].map(function(k){return '<div class="kpi"><span>'+k[0]+'</span><b>'+k[1]+'</b><small>'+k[2]+'</small></div>'}).join('');
   document.getElementById('lg-tbl').tBodies[0].innerHTML = L.length ? L.map(function(r){
     return '<tr><td>'+fmtTs(r.ts)+'</td><td><span class="pill '+(r.turi==='Chiqim'?'p-U':'p-N')+'">'+(r.turi==='Chiqim'?'Chiqim':'Kirim')+'</span></td><td>'+r.model+'</td><td class="code">'+r.code+'</td><td class="nm">'+r.name+'</td><td class="n">'+fmt(r.qty)+'</td><td>'+(r.dest||'—')+'</td><td>'+[r.imm,r.qolip].filter(Boolean).join(' / ')+'</td><td class="nm">'+(extrasLabel(r)||'—')+'</td><td>'+(r.brigadir||'—')+'</td><td class="nm">'+(r.izoh||'')+'</td></tr>';
-  }).join('') : '<tr><td colspan="11" class="cnt" style="text-align:center">Hozircha yozuv yo\'q</td></tr>';
-  drawDest(); drawDays();
+  }).join('') : '<tr><td colspan="11" class="cnt" style="text-align:center">Tanlangan filtr bo\'yicha yozuv yo\'q</td></tr>';
+  drawDest(L); drawDays(L);
 }
 window.__logRender=render;
 window.__logState={status:'connecting'};
@@ -1080,8 +1149,24 @@ async function syncQolipSwap(){
     document.getElementById('qs-empty-note').hidden=false;
   }
 }
-document.addEventListener('input',function(e){ if(e.target&&(e.target.id==='lg-q'||e.target.id==='lg-type'||e.target.id==='lg-swap'))render(); });
-document.addEventListener('click',function(e){ if(e.target&&e.target.id==='lg-sync'){syncLog();syncQolipSwap()} });
+document.addEventListener('change',function(e){ if(e.target&&e.target.id==='lg-f-period')applyPeriodPreset(); });
+document.addEventListener('keydown',function(e){ if(e.target&&e.target.id==='lg-f-q'&&e.key==='Enter'){e.preventDefault();render()} });
+document.addEventListener('click',function(e){
+  if(!e.target)return;
+  if(e.target.id==='lg-sync'){syncLog();syncQolipSwap()}
+  else if(e.target.id==='lg-f-apply')render();
+  else if(e.target.id==='lg-f-clear'){
+    document.getElementById('lg-f-period').value='all'; applyPeriodPreset();
+    ['lg-f-type','lg-f-dest','lg-f-brig','lg-f-status','lg-f-swap'].forEach(function(id){var el=document.getElementById(id); if(el)el.value=''});
+    document.getElementById('lg-f-q').value='';
+    render();
+  } else if(e.target.id==='lg-filters-toggle'||e.target.id==='lg-filters-caret'){
+    var p=document.getElementById('lg-filters'); if(!p)return;
+    p.classList.toggle('collapsed');
+    document.getElementById('lg-filters-caret').textContent=p.classList.contains('collapsed')?'Ko\'rsatish':'Yashirish';
+  }
+});
+applyPeriodPreset();
 syncLog();
 syncQolipSwap();
 setInterval(syncLog,60000);
