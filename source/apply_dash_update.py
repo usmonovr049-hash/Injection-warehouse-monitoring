@@ -64,6 +64,11 @@ def main():
     if md:
         m2 = month_meta(md)
         if m2['id'] != meta['id']:
+            if meta['id'] > m2['id']:
+                # Plan_Berish yangi oyga o'tgan, kunlik varaqlar esa hali eski oyniki: yangi oy rejasi
+                # (ko'pincha 0) eski oyning ustuvorliklarini buzib yuboradi. Hech narsa o'zgartirmaymiz.
+                raise AssertionError('XAVFLI: Plan_Berish sanasi (%s) "01" varag\'idagi oydan (%s) keyinroq — jadval yangi oyga '
+                                     'o\'tkazilmoqda. Kunlik varaqlar yangilanmaguncha hech narsa o\'zgartirilmadi.' % (meta['id'], m2['id']))
             print('OGOHLANTIRISH: Plan_Berish sanasi (%s) va "01" varag\'i sanasi (%s) turli oyda. Oy sifatida "01" varag\'i olinadi.' % (meta['id'], m2['id']))
         for k in ('id', 'label', 'monShort', 'monNum'):
             meta[k] = m2[k]

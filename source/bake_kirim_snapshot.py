@@ -15,7 +15,7 @@ import openpyxl
 
 def cell(v):
     if v is None: return ''
-    if isinstance(v, datetime.datetime): return v.strftime('%d/%m/%Y %H:%M:%S')
+    if isinstance(v, datetime.datetime): return (v + datetime.timedelta(microseconds=500000)).replace(microsecond=0).strftime('%d/%m/%Y %H:%M:%S')  # Google kabi yaxlitlash
     if isinstance(v, datetime.date): return v.strftime('%d/%m/%Y')
     if isinstance(v, float) and v == int(v): return str(int(v))
     return str(v)
