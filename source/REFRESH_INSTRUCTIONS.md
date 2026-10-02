@@ -128,6 +128,19 @@ Shuning uchun KEYINGI safar yangilashdan oldin albatta tekshiring:
    natijalar mos kelmasa (masalan NEED_TOTAL keskin farq qilsa), bu IMPORTRANGE beqarorligi
    yoki kunlik trigger o'tish jarayonida ekanini bildiradi; shunday holatda ham nashr qilmang.
 
+**Eslatma (02.10.2026'da kuzatilgan holat):** "Plan berilganmi (Berilgan_Plan)" qiymati
+har doim "✗ Hali yo'q" shaklida bo'lishi shart emas — ba'zan shunchaki "—" (tire) ko'rinishida
+chiqadi, va shu bilan birga "Fakt kiritilganmi:" qatorida "#NUM!" xatosi bo'ladi. Bu ham xuddi
+"Hali yo'q" bilan bir xil holat: Plan_Berish'dagi BARCHA 116 qator "Kerak emas" / kerak=0
+ko'rsatadi (ikki marta ketma-ket yuklab solishtirilganda ham bir xil, aynan bir xil fayl
+hajmi — demak bu IMPORTRANGE beqarorligi emas, balki kunlik reja hali tuzilmagan degani).
+Shu kuni "01" varag'i G2'si ham hali SENTABR (2026-09-01)ni ko'rsatardi (Plan_Berish B2 esa
+2026-10-01) — ya'ni kunlik "01".."31" varaqlari ham sentabrning 30- va keyingi kunlariga
+hali yetib bormagan edi (oxirgi haqiqiy kun N_DAYS=29, saytdagi joriy qiymat bilan bir xil —
+demak yangilash uchun yangi kun ma'lumoti ham yo'q edi). XULOSA: "Plan berilganmi" ustuni
+aniq "✓ Kiritilgan" bo'lmaguncha, NEED_TOTAL=0 yoki barcha qatorlar "Kerak emas" bo'lsa —
+bu signal, nashr qilmang, hatto N_DAYS saytdagidan farqlanmasa ham.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
