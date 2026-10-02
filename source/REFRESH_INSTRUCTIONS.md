@@ -71,10 +71,12 @@ QO'LLAMANG.**
    bo'lmasa o'tgan oy yozuvlari panel'dan yo'qoladi. Sahifa arxiv + jonli yozuvlarni birlashtiradi.
    Arxivdan hech qachon yozuv o'chirmang. Sentabr 2026 yozuvlari 02.10.2026'da qo'lda arxivlangan.
 
-   Oy almashishi haqida (02.10.2026): fayl nomi "Oktabr ASTATKA" bo'ldi, lekin kunlik varaqlar hali sentabrniki,
-   Plan_Berish esa 01.10 (reja 0). apply_dash_update.py bu holatda "XAVFLI: Plan_Berish ... keyinroq" deb
-   to'xtaydi — bu TO'G'RI xatti-harakat: nashr qilmang, faqat qayd eting. "01"!G2 = 01.10.2026 bo'lgach
-   oktabr avtomatik yangi oy sifatida qo'shiladi, sentabr muzlatiladi. Ombor monitori/Tahlil jonli qoldig'i
+   Oy almashishi (02.10.2026 11:40 da BAJARILDI): fayl "Oktabr ASTATKA", birinchi kun varag'i "01.10.2026" deb
+   qayta nomlangan (rebuild_dash.py endi "01", "01.10.2026" kabi nomlarni o'zi topadi). Sentabr frozen:true,
+   oktabr qo'shilgan. Kunlik varaqlardagi "№" ustuni oktabrda 1..118 (ikki raqam tashlab ketilgan), "31" va
+   Plan_Berish esa 1..116 — bu muammo emas: kunlik hisoblar detal raqami/qator bo'yicha, jonli qoldiq "31"
+   bo'yicha olinadi. Plan_Berish'da yangi ustuvorlik "O'rta" paydo bo'ldi — panelda 'M' ("O'rta") sifatida
+   ko'rsatiladi. Ombor monitori/Tahlil jonli qoldig'i
    "31" varag'ida hamma qoldiq 0 bo'lsa uni e'tiborsiz qoldiradi (yangi oy varag'i hali to'ldirilmagan).
 
 3b. Kirim/Chiqim zaxira nusxasi (02.10.2026'dan): `python3 source/bake_kirim_snapshot.py quyish-open.html /tmp/astatka.xlsx`

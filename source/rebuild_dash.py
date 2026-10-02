@@ -2,6 +2,14 @@ import openpyxl, re, sys
 
 wb = openpyxl.load_workbook('/tmp/astatka.xlsx', data_only=True)
 
+# Kunlik varaq nomlari: "01".."31"; foydalanuvchi ba'zan "01.10.2026" kabi qayta nomlaydi (02.10.2026).
+def TAB(d):
+    k = f"{d:02d}"
+    if k in wb.sheetnames: return k
+    for n in wb.sheetnames:
+        if re.match(r'^0?%d(\D|$)' % d, n.strip()): return n
+    return None
+
 # ---- code -> model map ----
 ref = wb['Mahsulotlar_REF']
 code2model = {}
@@ -30,25 +38,27 @@ def model_for(code):
 # Mahsulotlar_REF'da hamma detal yo'q (masalan 102-109 qatorlar), shuning uchun asosiy manba
 # shu varaq; REF faqat zaxira sifatida ishlatiladi.
 _lt = 31
-while f"{_lt:02d}" not in wb.sheetnames: _lt -= 1
+while TAB(_lt) is None: _lt -= 1
 N2MODEL = {}
-_ws = wb[f"{_lt:02d}"]
+_ws = wb[TAB(_lt)]
 for _r in range(4, _ws.max_row + 1):
     _b = _ws.cell(_r, 2).value; _c = _ws.cell(_r, 3).value
     if isinstance(_b, (int, float)) and _c not in (None, ''):
         N2MODEL[int(_b)] = str(_c).strip()
 
 # ---- valid days: largest D where G-vector(D) != G-vector(D+1) ----
-def gvec(tab, n=30):
-    ws = wb[tab]
-    return tuple(ws.cell(r,7).value for r in range(4,4+n))
+def gvec(tab):
+    ws = wb[TAB(tab)]
+    out = []; r = 4
+    while ws.cell(r,2).value is not None:
+        out.append(ws.cell(r,7).value); r += 1
+    return tuple(out)
 
 last_tab = 31
-while f"{last_tab:02d}" not in wb.sheetnames: last_tab -= 1
+while TAB(last_tab) is None: last_tab -= 1
 cutoff = 1
 for d in range(1, last_tab):
-    t1, t2 = f"{d:02d}", f"{d+1:02d}"
-    if gvec(t1) != gvec(t2):
+    if gvec(d) != gvec(d+1):
         cutoff = d
 n_days = cutoff + 1  # day (cutoff+1) is the first day whose data is confirmed real (closing carried in), but we already
 # actually: cutoff = last day D with G(D)!=G(D+1) => day D's closeout produced a new G(D+1), so day D itself is real,
@@ -58,8 +68,7 @@ N_DAYS = cutoff
 print("last existing tab:", last_tab, "valid days 1..", N_DAYS)
 
 def day_totals(day):
-    tab = f"{day:02d}"
-    ws = wb[tab]
+    ws = wb[TAB(day)]
     prod = 0.0; ship = 0.0; close = 0.0
     r = 4
     while ws.cell(r,2).value is not None:
@@ -81,8 +90,7 @@ for d in range(1, N_DAYS+1):
 def part_series(code, days):
     P=[]; E=[]
     for d in range(1, days+1):
-        tab = f"{d:02d}"
-        ws = wb[tab]
+        ws = wb[TAB(d)]
         r = 4
         found=False
         while ws.cell(r,2).value is not None:
@@ -106,7 +114,7 @@ NEED_TOTAL = pb.cell(2,6).value
 PLAN_DATE = pb.cell(2,2).value
 # Oy aniqlash uchun ishonchli manba: "01" varag'i G2 katagi (oyning 1-kuni sanasi).
 # Plan_Berish B2 sanasi IMPORTRANGE sababli vaqtincha eski oyni ko'rsatishi mumkin.
-MONTH_DATE = wb['01'].cell(2,7).value if '01' in wb.sheetnames else None
+MONTH_DATE = wb[TAB(1)].cell(2,7).value if TAB(1) else None
 rows = []
 r = 6
 while pb.cell(r,1).value is not None:
@@ -120,6 +128,7 @@ while pb.cell(r,1).value is not None:
     prio_raw = (pb.cell(r,11).value or '').strip()
     if prio_raw == 'SHOSHILINCH!': prio='U'
     elif 'yuqori' in prio_raw.lower() or prio_raw.lower()=='high': prio='H'
+    elif prio_raw.lower().replace('\u2019',"'") in ("o'rta","orta","o‘rta","medium"): prio='M'   # 02.10.2026'dan
     else: prio='N'
     covers_s = str(covers) if covers is not None else ''
     if covers_s in ('30+.0','30+'): covers_s='30+'
@@ -136,7 +145,7 @@ prev_series=None
 for i,rw in enumerate(rows,1):
     parts=[str(i), rw['model'], str(rw['tpa']), str(rw['code']), rw['name'].replace('|',' '),
            str(rw['stock']), str(rw['dem']), str(rw['need']), rw['covers'], rw['prio']]
-    if rw['prio'] in ('U','H') and rw['need']>0:
+    if rw['prio'] in ('U','H','M') and rw['need']>0:
         P,E = part_series(rw['code'], N_DAYS)
         parts.append(','.join(str(x) for x in P))
         parts.append(','.join(str(x) for x in E))
