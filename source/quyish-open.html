@@ -486,8 +486,8 @@ html.dash-fs #v-dash .wrap{padding:12px 16px 32px}
     <div class="hd2" id="lg-filters-toggle"><h2>Filtrlar</h2><button type="button" id="lg-filters-caret">Yashirish</button></div>
     <div class="grid">
       <label class="ffield">Davr<select id="lg-f-period">
-        <option value="all">Barcha vaqt</option>
-        <option value="month" selected>Joriy oy</option>
+        <option value="all" selected>Barcha vaqt</option>
+        <option value="month">Joriy oy</option>
         <option value="prev">O'tgan oy</option>
         <option value="7d">Oxirgi 7 kun</option>
         <option value="custom">Maxsus oraliq</option>
@@ -539,12 +539,12 @@ html.dash-fs #v-dash .wrap{padding:12px 16px 32px}
   </section>
 
   <section>
-    <div class="hd"><h2>Qolip almashtirish (Qolip_Almashtirish varag'i)</h2><p id="qs-count" class="cnt"></p></div>
-    <div class="tw"><table id="qs-tbl"><thead><tr></tr></thead><tbody></tbody></table></div>
-    <p class="note" id="qs-empty-note" hidden>Bu varaq hozircha bo'sh &mdash; qolip almashtirish alohida yozuvlar sifatida hali kiritilmagan. Yuqoridagi jadvalda har bir yozuv qatorida "Qolip almashtirish" ustuni bor: agar bitta operatsiya davomida ikkinchi/uchinchi qolipda ham ishlab chiqarilgan bo'lsa, shu yerda ko'rinadi (hozircha qolip almashtirish shu tarzda, AppSheet_Kirim yozuvi ichida qayd etiladi).</p>
+    <div class="hd"><h2>Qolip almashtirishlar</h2><p id="qs-count" class="cnt"></p></div>
+    <div class="tw"><table id="qs-tbl"><thead><tr><th>Vaqt</th><th>IMM</th><th>Avvalgi detal</th><th>Avvalgi qolip</th><th class="n">Avvalgi, dona</th><th>Yangi detal</th><th>Yangi qolip</th><th class="n">Yangi, dona</th><th>Brigadir</th></tr></thead><tbody></tbody></table></div>
+    <p class="note">AppSheet_Kirim yozuvida "Detal_2" (yoki "Detal_3") to'ldirilgan bo'lsa, shu smenada IMM boshqa qolipga almashtirilgan deb hisoblanadi. Jadval tanlangan filtr bo'yicha.</p>
   </section>
 
-  <p class="note">Manba: ASTATKA jadvali, "AppSheet_Kirim" va "Qolip_Almashtirish" varaqlari &mdash; sexdagi xodimlar AppSheet orqali kiritgan har bir kirim (ishlab chiqarish) va chiqim (jo'natish) operatsiyasi, jonli, har daqiqada yangilanadi. Bu jurnal alohida operatsion hisobot bo'lib, kunlik "01-31" varaqlaridagi rasmiy jamlangan raqamlarni almashtirmaydi.</p>
+  <p class="note">Manba: ASTATKA jadvali, "AppSheet_Kirim" varag'i &mdash; sexdagi xodimlar AppSheet orqali kiritgan har bir kirim (ishlab chiqarish) va chiqim (jo'natish) operatsiyasi, jonli, har daqiqada yangilanadi. Bu jurnal alohida operatsion hisobot bo'lib, kunlik "01-31" varaqlaridagi rasmiy jamlangan raqamlarni almashtirmaydi.</p>
   </div>
   </div>
 </div>
@@ -1266,7 +1266,17 @@ function fmt(n){return Math.round(n).toLocaleString('en-US').replace(/,/g,' ')}
 function num(v){var n=parseFloat(v);return isNaN(n)?0:n}
 function cleanNum(v){v=(v==null?'':v).toString().trim(); return v.replace(/\.0$/,'')}
 function fmtTs(v){return (v||'').toString().replace(/\.\d+$/,'')}
-function dayOf(ts){return (ts||'').toString().slice(0,10)} // "2026-09-24 06:23:..." -> "2026-09-24"
+// Vaqtni bir xil ko'rinishga keltirish: "24/09/2026 06:23:25", "24.09.2026 06:23", "Date(2026,8,24,6,23,25)",
+// "2026-09-24 06:23:25" -> "2026-09-24 06:23:25". Sana filtri va saralash shu ko'rinishda ishlaydi.
+function p2(n){n=String(n);return n.length<2?'0'+n:n}
+function normTs(v){
+  v=(v==null?'':v).toString().trim(); var m;
+  if((m=v.match(/^Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+)(?:,(\d+))?)?/)))return m[1]+'-'+p2(+m[2]+1)+'-'+p2(m[3])+' '+p2(m[4]||0)+':'+p2(m[5]||0)+':'+p2(m[6]||0);
+  if((m=v.match(/^(\d{1,2})[\/.](\d{1,2})[\/.](\d{4})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?/)))return m[3]+'-'+p2(m[2])+'-'+p2(m[1])+' '+p2(m[4]||0)+':'+p2(m[5]||0)+':'+p2(m[6]||0);
+  if((m=v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?/)))return m[1]+'-'+p2(m[2])+'-'+p2(m[3])+' '+p2(m[4]||0)+':'+p2(m[5]||0)+':'+p2(m[6]||0);
+  return v;
+}
+function dayOf(ts){return normTs(ts).slice(0,10)}
 function partLabel(partKey){ // "MODEL | CODE - NAME" -> short "CODE - NAME"
   partKey=(partKey||'').toString(); var i=partKey.indexOf('|');
   return i<0?partKey:partKey.slice(i+1).trim();
@@ -1285,11 +1295,12 @@ function buildRows(table){
     else { qty=num(c[8])+num(c[9]); }
     var extras=[];
     [[31,32,33],[34,35,36]].forEach(function(idx){
-      var part=c[idx[0]], qolip=c[idx[1]], soni=num(c[idx[2]]);
-      if(part&&soni){ extras.push({label:partLabel(part),qolip:qolip||'',qty:soni}) }
+      // Detal_2/Detal_3 to'ldirilgan bo'lsa — shu smenada qolip almashtirilgan
+      var part=(c[idx[0]]||'').toString().trim(), qolip=(c[idx[1]]||'').toString().trim(), soni=num(c[idx[2]]);
+      if(part){ extras.push({label:partLabel(part),qolip:qolip,qty:soni}) }
     });
     if(!qty&&!extras.length)continue;
-    out.push({ts:c[0]||'',day:dayOf(c[0]),turi:turi,model:c[5]||'',code:cleanNum(c[6]),name:c[7]||'',qty:qty,
+    out.push({ts:normTs(c[0]),day:dayOf(c[0]),turi:turi,model:c[5]||'',code:cleanNum(c[6]),name:c[7]||'',qty:qty,
       destBreak:destBreak,dest:destBreak.map(function(d){return d[0]+': '+fmt(d[1])}).join(', '),
       imm:cleanNum(c[29]),qolip:c[30]||'',extras:extras,
       brigadir:c[27]||c[24]||c[25]||c[26]||'',status:c[18]||'',izoh:c[19]||''});
@@ -1299,7 +1310,8 @@ function buildRows(table){
 }
 function extrasLabel(r){
   if(!r.extras.length)return '';
-  return r.extras.map(function(e){return '⇄ '+e.label+(e.qolip?' ('+e.qolip+')':'')+': '+fmt(e.qty)+' dona'}).join('; ');
+  var prev=r.qolip||'?';
+  return r.extras.map(function(e){var t='⇄ '+prev+' → '+(e.qolip||'?')+': '+e.label+(e.qty?' — '+fmt(e.qty)+' dona':''); if(e.qolip)prev=e.qolip; return t}).join('; ');
 }
 function drawDest(rows){
   var agg={};
@@ -1394,7 +1406,17 @@ function render(){
   document.getElementById('lg-tbl').tBodies[0].innerHTML = L.length ? L.map(function(r){
     return '<tr><td>'+fmtTs(r.ts)+'</td><td><span class="pill '+(r.turi==='Chiqim'?'p-U':'p-N')+'">'+(r.turi==='Chiqim'?'Chiqim':'Kirim')+'</span></td><td>'+r.model+'</td><td class="code">'+r.code+'</td><td class="nm">'+r.name+'</td><td class="n">'+fmt(r.qty)+'</td><td>'+(r.dest||'—')+'</td><td>'+[r.imm,r.qolip].filter(Boolean).join(' / ')+'</td><td class="nm">'+(extrasLabel(r)||'—')+'</td><td>'+(r.brigadir||'—')+'</td><td class="nm">'+(r.izoh||'')+'</td></tr>';
   }).join('') : '<tr><td colspan="11" class="cnt" style="text-align:center">Tanlangan filtr bo\'yicha yozuv yo\'q</td></tr>';
-  drawDest(L); drawDays(L);
+  drawDest(L); drawDays(L); drawSwaps(L);
+}
+function drawSwaps(rows){
+  var out=[];
+  rows.forEach(function(r){ var pl=r.code?(r.code+' - '+r.name):r.name, pq=r.qolip, pn=r.qty;
+    r.extras.forEach(function(e){ out.push([fmtTs(r.ts),r.imm||'—',pl,pq||'—',pn,e.label,e.qolip||'—',e.qty,r.brigadir||'—']); pl=e.label; pq=e.qolip; pn=e.qty; });
+  });
+  document.getElementById('qs-count').textContent=out.length+' ta almashtirish';
+  document.getElementById('qs-tbl').tBodies[0].innerHTML=out.length?out.map(function(x){
+    return '<tr><td>'+x[0]+'</td><td>'+x[1]+'</td><td class="nm">'+x[2]+'</td><td>'+x[3]+'</td><td class="n">'+(x[4]?fmt(x[4]):'—')+'</td><td class="nm">'+x[5]+'</td><td>'+x[6]+'</td><td class="n">'+(x[7]?fmt(x[7]):'—')+'</td><td>'+x[8]+'</td></tr>'}).join('')
+    :'<tr><td colspan="9" class="cnt" style="text-align:center">Tanlangan filtr bo\'yicha qolip almashtirish yo\'q</td></tr>';
 }
 window.__logRender=render;
 window.__logState={status:'connecting'};
@@ -1417,7 +1439,8 @@ async function syncLog(){
     render();
     window.__logState={status:'ok',time:new Date()};
   }catch(x){
-    window.__logState.status='err';
+    window.__logState.status='err'; window.__logState.error=String(x&&x.message||x);
+    if(!window.__logRetry){window.__logRetry=setTimeout(function(){window.__logRetry=null;syncLog()},8000)}
   }
   paintLog();
 }
@@ -1460,7 +1483,7 @@ document.addEventListener('change',function(e){ if(e.target&&e.target.id==='lg-f
 document.addEventListener('keydown',function(e){ if(e.target&&e.target.id==='lg-f-q'&&e.key==='Enter'){e.preventDefault();render()} });
 document.addEventListener('click',function(e){
   if(!e.target)return;
-  if(e.target.id==='lg-sync'){syncLog();syncQolipSwap()}
+  if(e.target.id==='lg-sync'){syncLog()}
   else if(e.target.id==='lg-f-apply')render();
   else if(e.target.id==='lg-f-clear'){
     document.getElementById('lg-f-period').value='all'; applyPeriodPreset();
@@ -1475,8 +1498,6 @@ document.addEventListener('click',function(e){
 });
 applyPeriodPreset();
 syncLog();
-syncQolipSwap();
 setInterval(syncLog,60000);
-setInterval(syncQolipSwap,60000);
 })();
 </script>
