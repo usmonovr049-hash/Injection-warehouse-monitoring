@@ -5,7 +5,7 @@
       <h1>APM: reja va fakt nazorati</h1>
       <p class="sub">Kunlik va smenalar bo'yicha fakt, IMM yuklamasi va umumiy bajarilish. Faqat APM uchun.</p>
     </div>
-    <div class="stamp">Manba: "Zaxira Yetish Tahlili (IMM Grafik)", 25.09.2026</div>
+    <div class="hdr-r"><div class="stamp">Manba: "Zaxira Yetish Tahlili (IMM Grafik)", 30.09.2026</div><button id="apm-full" class="btn2" type="button" aria-pressed="false">&#x26F6; To'liq ekran</button></div>
   </header>
 
   <section class="alert" id="apm-alert" role="status"></section>
@@ -37,38 +37,27 @@
 
 
   <section>
-    <div class="hd"><h2>IMM yuklamasi: reja va fakt</h2><p>25.09.2026 uchun (IMM_Yuklama varag'i)</p></div>
+    <div class="hd"><h2>IMM yuklamasi: reja va fakt</h2><p>01.10.2026 uchun (IMM_Yuklama varag'i, reja soat)</p></div>
     <div class="tw" style="max-height:none"><table id="apm-imm"></table></div>
     <p class="note" id="apm-imm-note"></p>
   </section>
 
   <section>
-    <div class="hd"><h2>IMM bo'yicha ishlab chiqarish</h2><p>25.09.2026 uchun (IMM_Fact varag'i)</p></div>
-    <div class="tw" style="max-height:none"><table id="apm-prod"></table></div>
-  </section>
-
-  <section>
-    <div class="hd"><h2>IMM ish vaqti</h2><p>Mavjud soat va fakt soat, 25.09.2026</p></div>
-    <div class="leg"><span><i style="background:var(--muted);opacity:.45"></i>Mavjud soat (22 soat/kun)</span><span><i style="background:var(--blue)"></i>Fakt soat</span></div>
-    <div class="cw s"><canvas id="apm-time" role="img" aria-label="IMM mavjud va fakt ish vaqti"></canvas></div>
-  </section>
-
-  <section>
     <div class="hd">
-      <div><h2>Ish vaqti xaritasi</h2><p>Soatlar bo'yicha holat, 25.09.2026: 08:00 dan 07:00 gacha</p></div>
+      <div><h2>Ish vaqti xaritasi</h2><p>Soatlar bo'yicha holat, 01.10.2026: 08:00 dan 07:00 gacha</p></div>
       <button id="apm-big" class="btn2" type="button">Kattalashtirish ↗</button>
     </div>
     <div class="leg" id="apm-hleg"></div>
     <div class="hmw"><div class="hm" id="apm-hm"></div></div>
-    <p class="note">Soatlik holat "IMM_Grafik" varag'idan olinadi. 25.09.2026 uchun bu varaq bo'sh, shuning uchun barcha kataklar "ma'lumot yo'q".</p>
+    <p class="note">Soatlik holat "IMM_Grafik" varag'idan olinadi. 01.10.2026 uchun bu varaq hali bo'sh, shuning uchun barcha kataklar "ma'lumot yo'q".</p>
   </section>
 
 
   <details class="mon" id="apm-mon" open>
-    <summary>Oy bo'yicha ko'rinish: 1-24 sentabr</summary>
+    <summary>Oy bo'yicha ko'rinish: <span class="apm-range">1-29 sentabr</span></summary>
     <div class="monb">
   <section class="in">
-    <div class="hd"><h2>Kunlik reja va fakt</h2><p>1-24 sentabr, butun sex, dona</p></div>
+    <div class="hd"><h2>Kunlik reja va fakt</h2><p><span class="apm-range">1-29 sentabr</span>, butun sex, dona</p></div>
     <div class="leg"><span><i style="background:var(--blue)"></i>Fakt</span><span><i style="background:var(--muted);opacity:.5"></i>Reja: kiritilmagan</span></div>
     <div class="cw"><canvas id="apm-daily" role="img" aria-label="Kunlik fakt"></canvas></div>
     <div class="tw" style="max-height:320px"><table id="apm-dtbl"></table></div>
@@ -80,8 +69,9 @@
     <div class="find" id="apm-sfind"></div>
   </section>
   <section class="in">
-    <div class="hd"><h2>Umumiy reja va fakt</h2><p>1-24 sentabr, yig'ma dona</p></div>
-    <div class="leg"><span><i style="background:var(--ink)"></i>Yig'ma fakt</span><span><i style="background:var(--muted);opacity:.5"></i>Reja: kiritilmagan</span></div>
+    <div class="hd"><h2>Oy boshidan jami ishlab chiqarilgan</h2><p><span class="apm-range">1-29 sentabr</span>, yig'ma dona</p></div>
+    <p class="note" style="margin:0 0 8px">Har bir nuqta — 1-sentabrdan o'sha kungacha <b>jami</b> ishlab chiqarilgan dona. Chiziq keskin ko'tarilsa — o'sha kuni ko'p ishlab chiqarilgan; tekis qolsa — o'sha kuni ishlab chiqarilmagan (masalan yakshanba). Oxirgi nuqta = oy bo'yicha jami: <b id="apm-cum-total"></b> dona.</p>
+    <div class="leg"><span><i style="background:var(--ink)"></i>Yig'ma fakt (oy boshidan jami)</span></div>
     <div class="cw s"><canvas id="apm-cum" role="img" aria-label="Yig'ma fakt"></canvas></div>
   </section>
     </div>
@@ -90,10 +80,6 @@
   <section id="apm-notes">
     <h2>Izohlar (Notes)</h2>
     <ul class="nl" id="apm-nl"></ul>
-    <label class="nb">Sizning izohlaringiz
-      <textarea id="apm-ta" rows="5" placeholder="Bu yerga izoh yozing. Izoh faqat shu brauzerda saqlanadi."></textarea>
-    </label>
-    <div class="nact"><button id="apm-save" class="btn">Saqlash</button><span id="apm-saved" class="cnt"></span></div>
   </section>
   </div>
   </div>
