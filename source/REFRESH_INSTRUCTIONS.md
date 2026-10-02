@@ -65,6 +65,15 @@ QO'LLAMANG.**
    brauzerda o'zi jonli ishlaydi (AppSheet_Kirim varag'idan to'g'ridan-to'g'ri CSV o'qiydi,
    hech qanday build/deploy kerak emas).
 
+3b. Kirim/Chiqim zaxira nusxasi (02.10.2026'dan): `python3 source/bake_kirim_snapshot.py quyish-open.html /tmp/astatka.xlsx`
+   — AppSheet_Kirim varag'ini sahifadagi `<template id="kirim-snap">` blokiga joylaydi. claude.ai artifact
+   sahifasi ba'zan Google Sheets'ga ulana olmaydi; shunda Kirim/Chiqim shu nusxani ko'rsatadi. Bu skript faqat
+   shu template blokiga tegadi (Kirim/Chiqim skriptining o'ziga emas). Xato bersa — nashrni to'xtatmang,
+   faqat session xulosasida ayting.
+
+   Nashr: Artifact'ni `capabilities` parametrisiz nashr qiling (saqlangan `{db, downloads}` ruxsatlari
+   avtomatik saqlanadi; `downloads` — Excel'ga yuklash tugmasi uchun kerak).
+
 4. `node build_login.js` — quyish-login.html'ni qayta quradi (parollar o'zgarmaydi: barchasi
    "uz123456", pastki registrda). Agar kelajakda `quyish-open.html`ga YANGI (to'rtinchi,
    beshinchi...) `<script>` blok qo'shsangiz, `build_login.js` ichidagi `scripts[N]`
