@@ -164,6 +164,17 @@ demak yangilash uchun yangi kun ma'lumoti ham yo'q edi). XULOSA: "Plan berilganm
 aniq "✓ Kiritilgan" bo'lmaguncha, NEED_TOTAL=0 yoki barcha qatorlar "Kerak emas" bo'lsa —
 bu signal, nashr qilmang, hatto N_DAYS saytdagidan farqlanmasa ham.
 
+**Eslatma (03.10.2026, soat ~02:50 UTC / ~07:50 mahalliy, kunlik avtomatik vazifa):**
+Manba jadval (`1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4`, "Kunlik_Panel" varag'i) tekshirildi:
+Sana = 2026-10-03, "Fakt kiritilganmi: ✗ Hali yo'q", "Chiqim kiritilganmi: ✓ Kiritilgan",
+"Plan berilganmi (Berilgan_Plan): ✗ Hali yo'q", "IMM_Fact to'ldirilganmi: ✗ Hali yo'q".
+Bu aynan yuqorida tasvirlangan "reja hali tuzilmagan" holati — shuning uchun bu kunlik ishga
+tushirishda Oktabr ASTATKA yuklab olinmadi, rebuild_dash.py/apply_dash_update.py ISHGA
+TUSHIRILMADI va HECH NARSA qayta nashr qilinmadi (Artifact ham, GitHub Pages ham eski holida
+qoldi). Kirim/Chiqim arxivlash (3a/3b) ham shu safar o'tkazib yuborildi — chunki butun
+kunlik oqim bitta nashrga birlashtirilgan va qisman (faqat arxiv) nashr qilish keyinroq
+chalkashlikka olib kelishi mumkin. Avtomatik qayta urinish ~4 soatdan keyin rejalashtirildi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
