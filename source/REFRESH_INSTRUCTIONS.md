@@ -175,6 +175,26 @@ qoldi). Kirim/Chiqim arxivlash (3a/3b) ham shu safar o'tkazib yuborildi — chun
 kunlik oqim bitta nashrga birlashtirilgan va qisman (faqat arxiv) nashr qilish keyinroq
 chalkashlikka olib kelishi mumkin. Avtomatik qayta urinish ~4 soatdan keyin rejalashtirildi.
 
+**Davomi (03.10.2026, ~06:53 UTC / ~11:53 mahalliy):** Qayta tekshirildi — "Fakt kiritilganmi"
+endi "✓ Kiritilgan" bo'lgan, lekin "Plan berilganmi (Berilgan_Plan)" hamon "✗ Hali yo'q".
+Nashr yana o'tkazib yuborildi, ~3 soatdan keyin uchinchi tekshiruv rejalashtirildi.
+
+**Davomi (03.10.2026, ~09:55 UTC / ~14:55 mahalliy) — G'AYRIODDIY HOLAT:** Uchinchi tekshiruvda
+"Sana:" katakchasi (A1/F1) kutilmaganda **2026-10-04**ni ko'rsatdi (haqiqiy mahalliy vaqt hali
+2026-10-03 kunduzi edi) — ya'ni manba jadvalning kunlik avto-trigger sanasi (Balans!AJ1) real
+kalendar kunidan BIR KUN OLDINGA o'tib ketgan, va shu bilan birga 2026-10-03 kuni uchun
+"Plan berilganmi" hech qachon "✓ Kiritilgan" bo'lib ko'rinmadi — "Fakt kiritilganmi" va
+"Chiqim kiritilganmi" ham yangi (10-04 sanali) holatda yana "✗ Hali yo'q"ga qaytib tushdi.
+Bu avvalgi ikki holatdan (MUHIM bo'limida yozilgan) farqli — bu safar muammo Plan_Berish'ning
+IMPORTRANGE/trigger beqarorligida emas, balki manba jadvalning kunlik sana-trigger mexanizmida
+bo'lishi mumkin (ehtimol vaqt mintaqasi noto'g'ri sozlangan yoki kecha kun TUGATILMAGAN holda
+avtomatik keyingisiga o'tgan). Natijada 2026-10-03 kuni uchun hech qachon ishonchli Plan_Berish
+ma'lumoti olinmadi — shu kunlik nashr butunlay o'tkazib yuborildi. Bu holat foydalanuvchiga
+PushNotification orqali xabar qilindi (g'ayrioddiy, ularning e'tiborini talab qiladi) va keyingi
+qayta urinishlar to'xtatildi — ertangi standart kunlik vazifa (CRON_TZ=Asia/Tashkent 07:47) o'zi
+yangi kun bilan qaytadan boshlaydi. Agar bu holat takrorlansa, manba jadvalning kunlik
+trigger skriptini (qaysi vaqt mintaqasida ishlayotganini) tekshirish kerak bo'ladi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
