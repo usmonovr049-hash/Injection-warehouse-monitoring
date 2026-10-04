@@ -195,6 +195,16 @@ qayta urinishlar to'xtatildi — ertangi standart kunlik vazifa (CRON_TZ=Asia/Ta
 yangi kun bilan qaytadan boshlaydi. Agar bu holat takrorlansa, manba jadvalning kunlik
 trigger skriptini (qaysi vaqt mintaqasida ishlayotganini) tekshirish kerak bo'ladi.
 
+**04.10.2026, ~02:49 UTC / ~07:49 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent 07:47):**
+Kunlik_Panel sanasi endi to'g'ri — "Sana:" = 2026-10-04, ya'ni kechagi (03.10.2026) sana-trigger
+g'ayrioddiyligi o'z-o'zidan tuzalgan (qo'shimcha tekshirish shart emas, hozircha). Lekin "Fakt
+kiritilganmi", "Chiqim kiritilganmi", "Plan berilganmi (Berilgan_Plan)" va "IMM_Fact
+to'ldirilganmi" — to'rttasi ham "✗ Hali yo'q". Bu kunning eng boshida (ertalab ~07:49 mahalliy)
+odatiy holat — jamoa hali kunlik rejани kiritmagan. MUHIM bo'limiga ko'ra Plan_Berish'ga
+ishonib bo'lmaydi, shuning uchun Oktabr ASTATKA yuklab olinmadi va hech narsa (Artifact, GitHub
+Pages) qayta nashr qilinmadi. ~4 soatdan keyin (taxminan 06:49 UTC / ~11:49 mahalliy) shu sessiya
+o'zi qayta tekshiradi (send_later orqali rejalashtirilgan).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
