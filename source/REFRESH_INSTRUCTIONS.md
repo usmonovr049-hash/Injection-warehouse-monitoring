@@ -205,6 +205,14 @@ ishonib bo'lmaydi, shuning uchun Oktabr ASTATKA yuklab olinmadi va hech narsa (A
 Pages) qayta nashr qilinmadi. ~4 soatdan keyin (taxminan 06:49 UTC / ~11:49 mahalliy) shu sessiya
 o'zi qayta tekshiradi (send_later orqali rejalashtirilgan).
 
+**Davomi (04.10.2026, ~06:52 UTC / ~11:52 mahalliy):** Qayta tekshirildi (send_later orqali
+o'z-o'ziga rejalashtirilgan eslatma bilan) — sana hamon to'g'ri (2026-10-04), lekin "Fakt
+kiritilganmi / Chiqim kiritilganmi / Plan berilganmi (Berilgan_Plan) / IMM_Fact to'ldirilganmi"
+hali ham to'rttasi ham "✗ Hali yo'q" (02.10-03.10'dagi "reja hali tuzilmagan" naqshiga mos,
+g'ayrioddiy emas). Nashr yana o'tkazib yuborildi. Yana ~3 soatdan keyin (taxminan 09:52 UTC /
+~14:52 mahalliy) uchinchi tekshiruv rejalashtirildi (02.10-03.10'dagi naqshga mos, kuniga
+ko'pi bilan 3 marta).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
