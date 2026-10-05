@@ -240,6 +240,13 @@ Pages) qayta nashr qilinmadi. ~4 soatdan keyin (taxminan 06:49 UTC / ~11:49 maha
 o'zi qayta tekshiradi (send_later orqali rejalashtirilgan). Bu kunning odatiy boshlanishi bo'lgani
 uchun foydalanuvchiga PushNotification yuborilmadi (g'ayrioddiy belgi yo'q).
 
+**Davomi (05.10.2026, ~06:54 UTC / ~11:54 mahalliy):** Ikkinchi tekshiruv (send_later orqali
+o'z-o'ziga rejalashtirilgan eslatma bilan) — sana hamon to'g'ri (2026-10-05, anomaliya yo'q), lekin
+Fakt/Chiqim/Plan/IMM_Fact to'rttasi ham hamon "✗ Hali yo'q" (bir kun oldingi faylga aynan bir xil
+baza64 hajmi — IMPORTRANGE beqarorligi emas, shunchaki reja hali tuzilmagan). Nashr yana
+o'tkazib yuborildi. Bugungi uchinchi (oxirgi) tekshiruv ~3 soatdan keyin (taxminan 09:54 UTC /
+~14:54 mahalliy) rejalashtirildi (kuniga ko'pi bilan 3 marta naqshiga mos).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
