@@ -247,6 +247,22 @@ baza64 hajmi — IMPORTRANGE beqarorligi emas, shunchaki reja hali tuzilmagan). 
 o'tkazib yuborildi. Bugungi uchinchi (oxirgi) tekshiruv ~3 soatdan keyin (taxminan 09:54 UTC /
 ~14:54 mahalliy) rejalashtirildi (kuniga ko'pi bilan 3 marta naqshiga mos).
 
+**Davomi (05.10.2026, ~10:03 UTC / ~15:03 mahalliy) — SANA-TRIGGER ANOMALIYASI UCHINCHI MARTA
+TAKRORLANDI:** Uchinchi (oxirgi) tekshiruvda "Sana:" katakchasi (Kunlik_Panel A1/F1) **2026-10-06**ni
+ko'rsatdi — haqiqiy UTC vaqt hali 2026-10-05 10:03 edi (konteyner soatiga ko'ra tasdiqlangan, mahalliy
+~15:03 Toshkent). Bu 03.10 (~14:55 mahalliy) va 04.10 (~14:56 mahalliy) kunlarida kuzatilgan xuddi
+shu anomaliya — UCHINCHI marta, va UCHALASI HAM ~14:55-15:03 Toshkent vaqti oralig'ida sodir bo'lgan.
+Bu endi tasodif emas, balki manba jadvalning kunlik sana-trigger mexanizmida (Balans!AJ1, "Kunlik_Panel"
+sanasini belgilaydi) ANIQ TIZIMLI MUAMMO ekanini tasdiqlaydi — ehtimol ~15:00 Toshkent atrofida
+ishga tushadigan kunlik trigger skripti vaqt mintaqasini noto'g'ri hisoblab, "ertangi" sanaga o'tib
+ketadi. Yangi (10-06) sanada ham Fakt/Chiqim/Plan/IMM_Fact hammasi "✗ Hali yo'q". Bugungi (05.10.2026)
+uchun hech narsa (Oktabr ASTATKA, Artifact, GitHub Pages) nashr qilinmadi/o'zgartirilmadi. Bu bugungi
+UCHINCHI (oxirgi) tekshiruv bo'lgani uchun bugun uchun yangi send_later yuborilmadi — ertangi standart
+kunlik vazifa (CRON_TZ=Asia/Tashkent 07:47) o'zi yangi kun bilan davom etadi. Foydalanuvchiga
+PushNotification orqali xabar qilindi, chunki bu endi UCHINCHI marta ketma-ket (xuddi shu ~15:00
+Toshkent vaqt oynasida) takrorlangan tizimli belgi — manba jadvalning "Kunlik_Panel" sanasini
+belgilaydigan Apps Script/trigger vaqt mintaqasini tekshirish qat'iy tavsiya etiladi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
