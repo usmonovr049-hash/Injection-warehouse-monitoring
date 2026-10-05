@@ -229,6 +229,17 @@ IKKI marta ketma-ket takrorlangan tizimli belgi — manba jadvalning "Kunlik_Pan
 belgilaydigan Apps Script/trigger vaqt mintaqasini (ehtimol ~14:55 Toshkent atrofida ishga
 tushib, kunni oldinga siljitadi) tekshirish tavsiya etiladi.
 
+**05.10.2026, ~02:49 UTC / ~07:49 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent 07:47):**
+Kunlik_Panel sanasi bugun TO'G'RI — "Sana:" = 2026-10-05 (04.10'dagi ikki marta takrorlangan
+sana-trigger anomaliyasi bugun YO'Q, o'z-o'zidan tuzalgan ko'rinadi, qo'shimcha tekshirish
+shart emas hozircha). Lekin "Fakt kiritilganmi", "Chiqim kiritilganmi", "Plan berilganmi
+(Berilgan_Plan)" va "IMM_Fact to'ldirilganmi" — to'rttasi ham "✗ Hali yo'q" (02.10-04.10'dagi
+ertalabki odatiy naqshga mos, g'ayrioddiy emas). MUHIM bo'limiga ko'ra Plan_Berish'ga hali
+ishonib bo'lmaydi, shuning uchun Oktabr ASTATKA yuklab olinmadi va hech narsa (Artifact, GitHub
+Pages) qayta nashr qilinmadi. ~4 soatdan keyin (taxminan 06:49 UTC / ~11:49 mahalliy) shu sessiya
+o'zi qayta tekshiradi (send_later orqali rejalashtirilgan). Bu kunning odatiy boshlanishi bo'lgani
+uchun foydalanuvchiga PushNotification yuborilmadi (g'ayrioddiy belgi yo'q).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
