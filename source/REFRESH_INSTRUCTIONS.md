@@ -287,6 +287,24 @@ o'tkazib yuborildi (Oktabr ASTATKA yuklab olinmadi, hech narsa o'zgartirilmadi).
 ko'pi bilan 3 marta naqshiga mos — 03-05.10'da aynan shu soat oralig'ida sana-trigger anomaliyasi
 uch marta kuzatilgani uchun bu tekshiruvda ham sanaga alohida e'tibor berilади).
 
+**Davomi (06.10.2026, ~09:59 UTC / ~14:59 mahalliy) — SANA-TRIGGER ANOMALIYASI TO'RTINCHI MARTA
+KETMA-KET TAKRORLANDI:** Bugungi uchinchi (oxirgi) tekshiruvda "Sana:" katakchasi (Kunlik_Panel A1/F1)
+**2026-10-07**ni ko'rsatdi — haqiqiy UTC vaqt hali 2026-10-06 09:59 edi (konteyner soatiga ko'ra
+tasdiqlangan, mahalliy ~14:59 Toshkent). Bu 03.10 (~14:55), 04.10 (~14:56) va 05.10 (~15:03) kunlarida
+kuzatilgan xuddi shu anomaliya — TO'RTINCHI marta ketma-ket, va TO'RTTASI HAM ~14:55-15:03 Toshkent
+vaqti oralig'ida sodir bo'lgan. Bu endi shubhasiz manba jadvalning kunlik sana-trigger mexanizmida
+(Balans!AJ1, "Kunlik_Panel" sanasini belgilaydi) DOIMIY TAKRORLANADIGAN TIZIMLI MUAMMO — har kuni
+~15:00 Toshkent atrofida ishga tushadigan kunlik trigger skripti kunni ertangiga siljitib yuboradi.
+Yangi (10-07) sanada ham Fakt/Chiqim/Plan/IMM_Fact hammasi "✗ Hali yo'q". Bugungi (06.10.2026) uchun
+hech narsa (Oktabr ASTATKA, Artifact, GitHub Pages) nashr qilinmadi/o'zgartirilmadi. Bu bugungi
+UCHINCHI (oxirgi) tekshiruv bo'lgani uchun bugun uchun yangi send_later yuborilmadi — ertangi standart
+kunlik vazifa (CRON_TZ=Asia/Tashkent 07:47) o'zi yangi kun bilan davom etadi. Foydalanuvchiga
+PushNotification orqali xabar qilindi, chunki bu endi TO'RTINCHI marta ketma-ket (har safar aynan shu
+~15:00 Toshkent vaqt oynasida) takrorlangan tizimli belgi — manba jadvalning "Kunlik_Panel" sanasini
+belgilaydigan Apps Script/trigger vaqt mintaqasini (ehtimol UTC+6 yoki boshqa noto'g'ri offset bilan
+ishlab, Toshkent kechqurunida "ertangi kun"ga o'tib ketadi) albatta tekshirish va tuzatish kerak —
+avtomatik qayta urinishlar buni o'zidan hal qila olmaydi, chunki muammo manba tomonida.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
