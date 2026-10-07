@@ -305,6 +305,21 @@ belgilaydigan Apps Script/trigger vaqt mintaqasini (ehtimol UTC+6 yoki boshqa no
 ishlab, Toshkent kechqurunida "ertangi kun"ga o'tib ketadi) albatta tekshirish va tuzatish kerak —
 avtomatik qayta urinishlar buni o'zidan hal qila olmaydi, chunki muammo manba tomonida.
 
+**07.10.2026, ~02:49 UTC / ~07:49 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent 07:47):**
+Kunlik_Panel sanasi bugun TO'G'RI — "Sana:" = 2026-10-07 (06.10'dagi to'rtinchi marta ketma-ket
+takrorlangan sana-trigger anomaliyasi bugun YO'Q, konteyner vaqti ham 2026-10-07 02:49 UTC bilan
+mos — qo'shimcha tekshirish shart emas hozircha, chunki bu tekshiruv ertalab bo'ldi, anomaliya esa
+doim ~14:55-15:03 mahalliy atrofida kuzatilgan). Lekin "Fakt kiritilganmi", "Chiqim kiritilganmi",
+"Plan berilganmi (Berilgan_Plan)" va "IMM_Fact to'ldirilganmi" — to'rttasi ham "✗ Hali yo'q"
+(02.10-06.10'dagi ertalabki odatiy naqshga mos, g'ayrioddiy emas). MUHIM bo'limiga ko'ra
+Plan_Berish'ga hali ishonib bo'lmaydi, shuning uchun Oktabr ASTATKA yuklab olinmadi,
+rebuild_dash.py/apply_dash_update.py ishga tushirilmadi va hech narsa (Artifact, GitHub Pages)
+qayta nashr qilinmadi. Kirim/Chiqim arxivlash (3a/3b) ham shu safar o'tkazib yuborildi (butun
+kunlik oqim bitta nashrga birlashtirilgan). ~4 soatdan keyin (taxminan 06:49 UTC / ~11:49 mahalliy)
+shu sessiya o'zi qayta tekshiradi (send_later orqali rejalashtirilgan). Bu kunning odatiy
+boshlanishi bo'lgani uchun foydalanuvchiga PushNotification yuborilmadi (g'ayrioddiy belgi yo'q —
+sana-trigger bugun to'g'ri ishladi).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
