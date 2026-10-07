@@ -331,6 +331,28 @@ narsa o'zgartirilmadi). Bugungi uchinchi (oxirgi) tekshiruv ~3 soatdan keyin (ta
 shu soat oralig'ida sana-trigger anomaliyasi to'rt marta kuzatilgani uchun bu tekshiruvda ham
 sanaga alohida e'tibor beriladi).
 
+**Davomi (07.10.2026, ~09:57 UTC / ~14:57 mahalliy) — SANA-TRIGGER ANOMALIYASI BESHINCHI MARTA
+KETMA-KET TAKRORLANDI:** Bugungi uchinchi (oxirgi) tekshiruvda "Sana:" katakchasi (Kunlik_Panel
+A1/F1) **2026-10-08**ni ko'rsatdi — haqiqiy UTC vaqt hali 2026-10-07 09:57 edi (konteyner soatiga
+ko'ra tasdiqlangan, mahalliy ~14:57 Toshkent). Bu 03.10 (~14:55), 04.10 (~14:56), 05.10 (~15:03)
+va 06.10 (~14:59) kunlarida kuzatilgan xuddi shu anomaliya — BESHINCHI marta ketma-ket, va
+BESHTASI HAM ~14:55-15:03 Toshkent vaqti oralig'ida sodir bo'lgan. Bu safar qo'shimcha, ilgari
+kuzatilmagan belgi ham bor edi: "Bugun MINUSga tushadiganlar" 0 tadan 31 taga sakrab ketdi va
+"ENG USTUVOR 10 DETAL" ro'yxatidagi BARCHA qatorlar "Ustuvorlik: SHOSHILINCH!" va "Necha kunga
+yetadi: 0" ko'rsatdi (avval "Yuqori"/"1 kun" edi, "Kerak (dona)" raqamlari ham kattalashgan) —
+bu, oldingi kunlardagi "hammasi Kerak emas" holatiga teskari, lekin xuddi shunday ishonchsiz:
+tizim "yangi kun (08.10) boshlandi, hali plan yo'q" deb hisoblab, zaxirani noldan hisoblayotganga
+o'xshaydi. "Plan berilganmi (Berilgan_Plan)" (yangi, noto'g'ri 08.10 sanasida) "✗ Hali yo'q", shuning
+uchun bu raqamlarga ham ishonib bo'lmaydi. Bugungi (07.10.2026) uchun hech narsa (Oktabr ASTATKA,
+Artifact, GitHub Pages) nashr qilinmadi/o'zgartirilmadi. Bu bugungi UCHINCHI (oxirgi) tekshiruv
+bo'lgani uchun bugun uchun yangi send_later yuborilmadi — ertangi standart kunlik vazifa
+(CRON_TZ=Asia/Tashkent 07:47) o'zi yangi kun bilan davom etadi. Foydalanuvchiga PushNotification
+orqali xabar qilindi — bu endi BESHINCHI marta ketma-ket (har safar aynan shu ~15:00 Toshkent vaqt
+oynasida) takrorlangan tizimli belgi, ustiga ustak bu safar Plan_Berish qiymatlari ham yangi
+(noto'g'ri) tomonga (haddan tashqari shoshilinch) siljidi — manba jadvalning "Kunlik_Panel" sanasini
+belgilaydigan Apps Script/trigger vaqt mintaqasini zudlik bilan tekshirish va tuzatish tavsiya
+etiladi, chunki besh kunlik barqaror naqsh buni tasodif emasligini tasdiqlaydi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
