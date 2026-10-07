@@ -320,6 +320,17 @@ shu sessiya o'zi qayta tekshiradi (send_later orqali rejalashtirilgan). Bu kunni
 boshlanishi bo'lgani uchun foydalanuvchiga PushNotification yuborilmadi (g'ayrioddiy belgi yo'q —
 sana-trigger bugun to'g'ri ishladi).
 
+**Davomi (07.10.2026, ~06:53 UTC / ~11:53 mahalliy):** Ikkinchi tekshiruv (send_later orqali
+o'z-o'ziga rejalashtirilgan eslatma bilan) — sana hamon to'g'ri (2026-10-07, anomaliya yo'q).
+"Fakt kiritilganmi" endi "✓ Kiritilgan" bo'lgan, lekin "Chiqim kiritilganmi", "Plan berilganmi
+(Berilgan_Plan)" va "IMM_Fact to'ldirilganmi" hamon uchtasi ham "✗ Hali yo'q". MUHIM bo'limiga
+ko'ra "Plan berilganmi" aniq "✓ Kiritilgan" bo'lmaguncha Plan_Berish'dagi raqamlarga ishonib
+bo'lmaydi, shuning uchun nashr yana o'tkazib yuborildi (Oktabr ASTATKA yuklab olinmadi, hech
+narsa o'zgartirilmadi). Bugungi uchinchi (oxirgi) tekshiruv ~3 soatdan keyin (taxminan 09:53 UTC
+/ ~14:53 mahalliy) rejalashtirildi (kuniga ko'pi bilan 3 marta naqshiga mos — 03-06.10'da aynan
+shu soat oralig'ida sana-trigger anomaliyasi to'rt marta kuzatilgani uchun bu tekshiruvda ham
+sanaga alohida e'tibor beriladi).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
