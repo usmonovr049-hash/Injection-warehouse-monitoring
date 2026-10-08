@@ -376,6 +376,28 @@ o'zgarmadi; agar kunning keyingi tekshiruvlarida ham sana beqaror bo'lib qolaver
 to'sqinlik davom etsa, bu albatta qayd etiladi). ~4 soatdan keyin (taxminan 06:48 UTC / ~11:48
 mahalliy) shu sessiya o'zi qayta tekshiradi (send_later orqali rejalashtirilgan).
 
+**Davomi (08.10.2026, ~06:53 UTC / ~11:53 mahalliy) — SANA "YOPISHIB QOLGAN" (yangi, jiddiyroq
+holat):** Ikkinchi tekshiruv. "Plan berilganmi (Berilgan_Plan)" ENDI "✓ Berilgan" ko'rsatadi ("Fakt"
+va "Chiqim" ham ✓, faqat "IMM_Fact to'ldirilganmi" hamon "✗ Hali yo'q") — ya'ni sirtdan qarasa nashr
+qilish mumkin bo'lib ko'rinadi. LEKIN sana katakchasi (Kunlik_Panel F1, va manba Balans!AJ1, va
+Plan_Berish!B2 — uchtasi ham) hamon **2026-10-07**ni ko'rsatmoqda — haqiqiy bugungi kun 2026-10-08
+(konteyner vaqti 06:53 UTC = ~11:53 Toshkent bilan tasdiqlangan). Demak sana birinchi tekshiruvdan
+(~07:48 mahalliy, shunda ham 10-07 edi) buyon 4 soatdan ortiq **O'ZGARMAGAN** — bu ilgari besh marta
+kuzatilgan "soat ~15:00da oldinga sakrash so'ngra ertasi kuni o'z-o'zidan to'g'rilanish" naqshidan
+TUBDAN FARQLI: bu safar sana ertalabdan beri butunlay YOPISHIB QOLGAN (kechagi 10-07da muzlagan),
+va — eng muhimi — "Plan berilganmi" belgisi SHU muzlagan (noto'g'ri) sana uchun "✓" bo'lib qoldi.
+Ya'ni Plan_Berish'dagi raqamlar aslida 07.10 kuni uchun berilgan rejaga tegishli bo'lishi mumkin,
+08.10 uchun emas — tashqi ko'rinishda "tayyor" signal bersa ham. MUHIM bo'limiga ko'ra bu holatda
+ham Plan_Berish'ga ISHONIB BO'LMAYDI (sana bugungi kun bilan mos emas), shuning uchun Oktabr
+ASTATKA yuklab olinmadi va hech narsa (rebuild, arxiv, Artifact, GitHub Pages) nashr
+qilinmadi/o'zgartirilmadi. Bu — "Plan berilganmi: ✓" holati sana noto'g'ri bo'lgan paytda birinchi
+marta kuzatilgani va sana "jump" emas balki "frozen" ko'rinishi sababli — foydalanuvgaga
+PushNotification orqali xabar qilindi (ilgarigi besh martalik "oldinga sakrash" naqshidan farqli,
+yangi va potentsial xavfliroq belgi: manba jadval sanasi butunlay to'xtab qolgan bo'lishi mumkin).
+Bugungi uchinchi (oxirgi) tekshiruv ~3-4 soatdan keyin (taxminan 09:53-10:53 UTC / ~14:53-15:53
+mahalliy) rejalashtirildi — aynan shu vaqt oynasida ilgari besh marta sana-anomaliyasi kuzatilgani
+uchun bu tekshiruvda sanaga alohida e'tibor beriladi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
