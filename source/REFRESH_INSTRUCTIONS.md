@@ -398,6 +398,46 @@ Bugungi uchinchi (oxirgi) tekshiruv ~3-4 soatdan keyin (taxminan 09:53-10:53 UTC
 mahalliy) rejalashtirildi — aynan shu vaqt oynasida ilgari besh marta sana-anomaliyasi kuzatilgani
 uchun bu tekshiruvda sanaga alohida e'tibor beriladi.
 
+**Davomi (08.10.2026, ~10:27 UTC / ~15:27 mahalliy) — UCHINCHI TEKSHIRUV: SANA O'ZI TO'G'IRLANDI,
+KUNLIK YANGILASH BAJARILDI:** Sana endi **2026-10-08** bilan mos (Kunlik_Panel F1, Balans!AJ1,
+Plan_Berish!B2 — uchtasi ham) — kechagi "yopishib qolgan" holat o'z-o'zidan tuzalgan (qo'shimcha
+aralashuv shart bo'lmadi). "Plan berilganmi: ✓ Berilgan", ikki marta ketma-ket yuklab solishtirilganda
+NEED_TOTAL=45637 barqaror chiqdi — Plan_Berish!F2 bilan ham mos. Shuning uchun to'liq kunlik
+yangilash bajarildi:
+- Oktabr ASTATKA yuklandi; `rebuild_dash.py`: N_DAYS=7, NEED_TOTAL=45637, 116 qator, crit=0, high=32.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 7 kun, kerak=45637" — XAVFLI xato yo'q.
+- `archive_kirim_month.py ... all`: **bitta haqiqiy dastur xatosi topildi va tuzatildi** — skript
+  `month=="all"` holatini hech qachon alohida ko'rib chiqmagan edi (`month_of(r[0]) == month` sharti
+  "all" satriga hech qachon teng kelmaydi), shuning uchun 02.10'dan beri har kungi "all" bilan
+  chaqiruv aslida HECH QACHON yangi yozuv qo'shmagan (arxivda hamon faqat 02.10'da qo'lda qo'shilgan
+  4 ta sentabr yozuvi bor edi). Skriptga `if month=='all': barcha qatorlar olinadi` degan maxsus holat
+  qo'shildi. AMALIYOTDA buning ta'siri HOZIRCHA NOL: "AppSheet_Kirim" varag'ining o'zi (Oktabr ASTATKA
+  faylida) hozircha sarlavhadan boshqa hech qanday qator-ma'lumotga ega emas (Google Drive'ning o'z
+  "table range" metadatasi ham A1:AK1 deb ko'rsatadi) — bu 02.10'dan beri shunday (o'sha kungi birinchi
+  bake_kirim_snapshot natijasi ham faqat sarlavha edi). Ya'ni jamoa Kirim/Chiqim jurnalini hali
+  to'ldirmagan (yoki boshqa sababga ko'ra bo'sh) — bu kod xatosi emas, operatsion holat; agar/qachon
+  jurnal to'ldirilsa, endi tuzatilgan skript uni to'g'ri arxivlaydi.
+- `bake_kirim_snapshot.py`: OK, 0 ta yozuv (yuqoridagi sabab bilan bir xil), vaqt belgisi yangilandi.
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi (barchasi "uz123456").
+- Playwright tekshiruvi (`source/playwright_check.js`, kelajakda qayta ishlatish uchun repo'da
+  qoldirildi): barcha uch hisob (ombor/admin/apm) login xatosiz ishladi; ombor hisobida Tahlil
+  paneli tabi YO'Q (to'g'ri, kutilgandek); Oktabr KPI: Jami qoldiq 134 513/116 detal, Shoshilinch
+  yetishmovchilik 0, Tugagan detallar 32 (0 tasi shoshilinch), Ishlab chiqarildi 62 911 (1-7 okt),
+  Jo'natildi 48 743. Sentabr filtri (2026-09-01..2026-09-30) qo'llanganda: Ishlab chiqarildi
+  **646 593 dona, 1-29 sen** — talab qilingan tekshiruv qiymati bilan AYNAN mos, sentabr o'zgarmagan
+  holda tasdiqlandi. Konsol xatolari faqat tarmoq/CDN bloklanishi edi (`ERR_TUNNEL_CONNECTION_FAILED`
+  — Chart.js/boshqa CDN so'rovlari sandboxda bloklangan, kutilgan holat), ilova mantig'ida xato yo'q.
+- Claude Artifact (https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5): o'qildi (viewed), so'ng
+  `quyish-login.html` bilan `capabilities`siz nashr qilindi — "newer version" xatosi chiqmadi, eski
+  db/downloads ruxsatlari saqlanib qoldi.
+- GitHub Pages: `index.html` (= yangi `quyish-login.html`), `source/quyish-open.html` va
+  `source/archive_kirim_month.py` (bug fix) shu commitda push qilindi; `source/playwright_check.js`
+  ham repo'ga qo'shildi (kelajakdagi kunlik Playwright tekshiruvlari uchun qayta ishlatiladigan skript).
+
+Xulosa: bugun (08.10.2026) kunlik yangilash MUVAFFAQIYATLI yakunlandi — 7 kunlik oktabr ma'lumoti
+bilan (uchinchi tekshiruvda, sana o'zi tuzalgandan keyin). Ertangi standart kunlik vazifa
+(CRON_TZ=Asia/Tashkent 07:47) odatdagidek davom etadi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"

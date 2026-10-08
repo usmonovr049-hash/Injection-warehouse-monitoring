@@ -32,7 +32,11 @@ def main():
     html_path, xlsx_path, month = sys.argv[1], sys.argv[2], sys.argv[3]
     ws = openpyxl.load_workbook(xlsx_path, data_only=True)['AppSheet_Kirim']
     rows = [[cell(v) for v in r] for r in ws.iter_rows(values_only=True)]
-    header, data = rows[0], [r for r in rows[1:] if any(r) and month_of(r[0]) == month]
+    if month == 'all':
+        data = [r for r in rows[1:] if any(r)]
+    else:
+        data = [r for r in rows[1:] if any(r) and month_of(r[0]) == month]
+    header = rows[0]
     src = open(html_path, encoding='utf-8').read()
     pat = re.compile(r'<template id="kirim-arch"([^>]*)>(.*?)</template>', re.S)
     m = pat.search(src)
