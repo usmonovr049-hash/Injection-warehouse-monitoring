@@ -353,6 +353,29 @@ oynasida) takrorlangan tizimli belgi, ustiga ustak bu safar Plan_Berish qiymatla
 belgilaydigan Apps Script/trigger vaqt mintaqasini zudlik bilan tekshirish va tuzatish tavsiya
 etiladi, chunki besh kunlik barqaror naqsh buni tasodif emasligini tasdiqlaydi.
 
+**08.10.2026, ~02:48 UTC / ~07:48 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent 07:47) —
+YANGI TUR ANOMALIYA (ORQAGA SILJISH):** Kunlik_Panel tekshirildi: "Sana:" katakchasi (A1/F1)
+**2026-10-07**ni ko'rsatdi — ya'ni haqiqiy bugungi kundan (2026-10-08) BIR KUN ORQADA, konteyner
+vaqti 2026-10-08 02:48 UTC bilan tasdiqlangan holda. Bu ilgari besh marta kuzatilgan anomaliyadan
+(sana ~15:00 Toshkentda OLDINGA, ertangi kunga siljiydi) FARQLI yo'nalish: bu safar ertalabki
+tekshiruvda sana haqiqiy kundan ORQADA qoldi, holbuki oldingi kunlarning har birida (02.10-07.10)
+ertalabki tekshiruvda sana har doim TO'G'RI (bugungi kun bilan mos) edi. Ehtimoliy izoh: 07.10 kuni
+~14:57 mahalliyda sana anomal ravishda 2026-10-08'ga sakrab ketgan edi (beshinchi marta); so'ng
+kechqurun/tun davomida manba trigger normal yo'l bilan sanani "to'g'irlashga" harakat qilib,
+haqiqiy 07.10 kuni uchun mo'ljallangan qiymatni yozgan bo'lishi mumkin (ya'ni ikki marta ketma-ket
+yangilanish — biri anomal oldinga, keyin "normal" trigger o'zining hali 07.10 deb hisoblagan
+qiymatini yozib qo'ygan) — bu taxmin, tasdiqlanmagan. Natija bir xil: Kunlik_Panel sanasiga bugun
+ham ishonib bo'lmaydi. Holat ustunlari: "Fakt kiritilganmi: ✓ Kiritilgan", "Chiqim kiritilganmi:
+✓ Kiritilgan", "Plan berilganmi (Berilgan_Plan): ✗ Hali yo'q", "IMM_Fact to'ldirilganmi: ✗ Hali
+yo'q" — "Plan berilganmi" baribir "✗ Hali yo'q" bo'lgani uchun (sana to'g'ri bo'lganida ham) MUHIM
+bo'limiga ko'ra bugun uchun hech narsa (Oktabr ASTATKA, rebuild, Kirim/Chiqim arxiv, Artifact,
+GitHub Pages) nashr qilinmadi/o'zgartirilmadi — oddiy ertalabki "reja hali tuzilmagan" holati bilan
+bir xil xulosaga olib keladi, shuning uchun bu safar foydalanuvchiga alohida PushNotification
+yuborilmadi (sana-anomaliyaning yo'nalishi yangi bo'lsa-da, oqibat — nashrni kechiktirish —
+o'zgarmadi; agar kunning keyingi tekshiruvlarida ham sana beqaror bo'lib qolaversa yoki nashrga
+to'sqinlik davom etsa, bu albatta qayd etiladi). ~4 soatdan keyin (taxminan 06:48 UTC / ~11:48
+mahalliy) shu sessiya o'zi qayta tekshiradi (send_later orqali rejalashtirilgan).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
