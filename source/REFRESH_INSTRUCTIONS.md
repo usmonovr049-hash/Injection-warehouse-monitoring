@@ -487,6 +487,38 @@ uchun qo'shimcha PushNotification yuborilmadi. Bugungi uchinchi (oxirgi) tekshir
 bir necha marta sana-anomaliyasi/tuzalishi kuzatilgani uchun bu tekshiruvda ham sanaga alohida
 e'tibor beriladi.
 
+**Davomi (09.10.2026, ~10:13 UTC / ~15:13 mahalliy) — UCHINCHI TEKSHIRUV: SANA O'ZI TO'G'IRLANDI,
+KUNLIK YANGILASH BAJARILDI:** Sana endi **2026-10-09** bilan mos (Kunlik_Panel F1) — "Fakt
+kiritilganmi: ✓", "Chiqim kiritilganmi: ✓", "Plan berilganmi: ✓ Berilgan", "IMM_Fact
+to'ldirilganmi: ✓ To'ldirilgan" (to'rttasi ham ✓ — bu haftaning eng yaxshi holati). Oktabr ASTATKA
+ikki marta ketma-ket yuklab solishtirildi — Plan_Berish!B2=2026-10-09, F2 (Jami kerakli dona)=41432
+ikkalasida ham bir xil, barqaror. Shuning uchun to'liq kunlik yangilash bajarildi:
+- `rebuild_dash.py`: N_DAYS=8 (1-8 okt), NEED_TOTAL=41432, 116 qator, crit=0, high=19 — XAVFLI xato
+  yo'q.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 8 kun, kerak=41432" — XAVFLI xato yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (AppSheet_Kirim hamon faqat sarlavha — jamoa
+  jurnalni hali to'ldirmagan, 02.10'dan beri bir xil holat, kod xatosi emas). Arxivda hamon 4 ta
+  sentabr yozuvi.
+- `bake_kirim_snapshot.py`: OK, 0 ta yozuv, vaqt belgisi yangilandi.
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi.
+- Playwright tekshiruvi (`source/playwright_check.js`): barcha hisoblar xatosiz login qildi; Oktabr
+  KPI (1-8 okt filtri): Jami qoldiq 121 363/116 detal, Shoshilinch yetishmovchilik 0, Tugagan
+  detallar 31 (0 shoshilinch), Ishlab chiqarildi 87 123, Jo'natildi 86 105. Sentabr filtri
+  (2026-09-01..2026-09-30): Ishlab chiqarildi **646 593 dona, 1-29 sen** — talab qilingan tekshiruv
+  qiymati bilan AYNAN mos, sentabr o'zgarmagan holda tasdiqlandi. Konsol xatolari faqat CDN
+  bloklanishi (ERR_TUNNEL_CONNECTION_FAILED, kutilgan, ilova mantig'ida xato yo'q).
+- Claude Artifact (https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5): o'qildi (viewed), so'ng
+  `quyish-login.html` bilan `capabilities`siz nashr qilindi (Version 47) — "newer version" xatosi
+  chiqmadi.
+- GitHub Pages: `index.html` va `source/quyish-open.html` shu commitda push qilinadi.
+
+Xulosa: bugun (09.10.2026) kunlik yangilash MUVAFFAQIYATLI yakunlandi — 8 kunlik oktabr ma'lumoti
+bilan (uchinchi tekshiruvda, sana ertalabki ikki tekshiruvda orqada bo'lgandan keyin o'z-o'zidan
+to'g'irlangach). Bu safar sana-anomaliyasi (orqaga siljish) ikkinchi kun ketma-ket birinchi va
+ikkinchi tekshiruvda kuzatilgan bo'lsa ham, uchinchi (kechqurungi) tekshiruvda yana muvaffaqiyatli
+tuzalgani kuzatildi — bu 08.10'dagi naqshga mos ("ertalab orqada, kech tushgacha o'zi tuzaladi").
+Ertangi standart kunlik vazifa (CRON_TZ=Asia/Tashkent 07:47) odatdagidek davom etadi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
