@@ -473,6 +473,20 @@ trigger skripti (Balans!AJ1) ishga tushish vaqti/vaqt mintaqasini tekshirish tav
 ~4 soatdan keyin (taxminan 06:48 UTC / ~11:48 mahalliy) shu sessiya o'zi qayta tekshiradi
 (send_later orqali rejalashtirilgan).
 
+**Davomi (09.10.2026, ~06:53 UTC / ~11:53 mahalliy):** Ikkinchi tekshiruv (send_later orqali
+o'z-o'ziga rejalashtirilgan eslatma bilan) — "Sana:" katakchasi hamon **2026-10-08** (haqiqiy
+bugungi kun 2026-10-09, konteyner vaqti 06:53 UTC bilan tasdiqlangan) — ya'ni birinchi tekshiruvdan
+(~02:48 UTC) buyon 4 soatdan ortiq O'ZGARMAGAN, 08.10'da kuzatilgan "sana yopishib qolgan" holatiga
+o'xshash. "Fakt kiritilganmi: ✓", "Chiqim kiritilganmi: ✓", "Plan berilganmi (Berilgan_Plan): ✓
+Berilgan", "IMM_Fact to'ldirilganmi: ✗ Hali yo'q" — birinchi tekshiruv bilan AYNAN bir xil (o'zgarish
+yo'q). MUHIM bo'limiga ko'ra sana bugungi kun bilan mos emasligi sababli Plan_Berish'ga hamon
+ISHONIB BO'LMAYDI, shuning uchun Oktabr ASTATKA yuklab olinmadi va hech narsa nashr
+qilinmadi/o'zgartirilmadi. Bu ertalabki tekshiruv bilan bir xil holat (yangi ma'lumot yo'q) bo'lgani
+uchun qo'shimcha PushNotification yuborilmadi. Bugungi uchinchi (oxirgi) tekshiruv ~3-4 soatdan keyin
+(taxminan 10:00-10:53 UTC / ~15:00-15:53 mahalliy) rejalashtirildi — aynan shu vaqt oynasida ilgari
+bir necha marta sana-anomaliyasi/tuzalishi kuzatilgani uchun bu tekshiruvda ham sanaga alohida
+e'tibor beriladi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
