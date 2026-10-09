@@ -92,6 +92,25 @@ def main():
         for r in yk.iter_rows(min_row=6, max_row=15, values_only=True):
             if not r or not r[0] or not str(r[0]).startswith('№'): continue
             snap[str(r[0]).strip()] = {'plan': round(num(r[2]) or 0, 1), 'fact': round(num(r[5]) or 0, 1), 'parts': parts.get(str(r[0]).strip(), '')}
+        # Soatlik grafik (IMM_Grafik): I..AF ustunlar = 08:00..07:00. Raqam = shu soatda reja bo'yicha dona,
+        # "QOLIP" = qolip almashtirish, 12:00 va 00:00 dagi bo'sh katak = tushlik, boshqa bo'sh = ish yo'q.
+        gr = wb['IMM_Grafik']
+        gdate = list(gr.iter_rows(min_row=2, max_row=2, values_only=True))[0][1]
+        if isinstance(gdate, datetime.datetime) and gdate.date() == ydate.date():
+            for r in gr.iter_rows(min_row=5, max_row=14, values_only=True):
+                if not r or not r[1] or str(r[1]).strip() not in snap: continue
+                cells = list(r[8:32]) + [None] * (24 - len(r[8:32]))
+                nums = sorted(v for v in (num(c) for c in cells) if v)
+                med = nums[len(nums)//2] if nums else 0
+                codes, qty = [], []
+                for k, c in enumerate(cells):
+                    v = num(c)
+                    if isinstance(c, str) and 'QOLIP' in c.upper(): codes.append('s'); qty.append(0)
+                    elif v: codes.append('p' if med and v < 0.75 * med else 'r'); qty.append(round(v))
+                    elif k in (4, 16): codes.append('b'); qty.append(0)   # 12:00 va 00:00 — tushlik
+                    else: codes.append('i'); qty.append(0)
+                snap[str(r[1]).strip()]['hours'] = ''.join(codes)
+                snap[str(r[1]).strip()]['hq'] = qty
         if sum(v['plan'] for v in snap.values()) > 0:
             entry['imm'][str(ydate.day)] = snap
     # apm.js ga yozish

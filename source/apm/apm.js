@@ -10,7 +10,7 @@ var css=function(n){return getComputedStyle(document.getElementById('v-apm')).ge
 // APM_DATA_START
 var APM_MONTHS=[
 {"id":"2026-09","label":"Sentabr","short":"sen","asOf":"30.09.2026","frozen":true,"days":29,"s1":[0,13759,12460,11654,18755,11612,13785,13028,14133,16650,14796,10577,0,17363,19062,23548,11820,13494,17815,11937,13924,14014,13499,28834,17154,13048,0,11205,4704],"s2":[0,8808,9513,11450,9317,0,8729,9667,11333,13260,18705,8980,0,15549,23550,14346,11357,5764,15115,0,7574,7769,12328,11716,12454,8597,0,8082,0],"fakt":null,"plan":null,"imm":{}},
-{"id":"2026-10","label":"Oktabr","short":"okt","asOf":"09.10.2026","frozen":false,"days":8,"s1":[0,7112,0,0,7700,5464,15250,13929],"s2":[0,8200,0,0,5700,4810,8675,10283],"fakt":[0,15312,0,0,13400,10274,23925,24212],"plan":[null,null,null,null,null,null,18640,28142],"imm":{"8":{"№01-650T":{"plan":22.0,"fact":0,"parts":"52021395 PANEL ASM-BODY L/PLR UPR — 1320"},"№02-650T":{"plan":26.0,"fact":0,"parts":"B6224661 4661/62 C PILLAR BLACK L — 2640"},"№03-650T":{"plan":24.0,"fact":0,"parts":"26305045 5045/47 COVER-FRT FOG LP — 900; 26305043 5043/44 COVER-FRT FOG LP — 360"},"№04-450T":{"plan":24.0,"fact":0,"parts":"52024228 PANEL ASM-CTR PLR LWR TR — 1320"},"№05-450T":{"plan":22.0,"fact":0,"parts":"UZK04019 GASKET ASM-O/S RR VIEW M — 1320"},"№06-450T":{"plan":39.0,"fact":0,"parts":"52027905 7905 GRILLE RAD UPPER (L — 240; 52164052 4052 DUCT ASM-AIR DISTR  — 2040"},"№07-250T":{"plan":23.0,"fact":0,"parts":"52016400 6400 TRAY ASM-I/P STOW — 660; B52016400 6400 TRAY ASM-I/P STOW — 660"},"№08-250T":{"plan":22.0,"fact":0,"parts":"UZK04015 GLASS HOLDER LH\\RH BCAR  — 1320"},"№09-250T":{"plan":19.0,"fact":0,"parts":"26249119 9119/20 TIRE DEFLECTOR L — 2640"},"№10-250T":{"plan":21.0,"fact":0,"parts":"avc43471\n(94758905) 3471 COVER-CHILD ST RST  — 720; 26244139 CAP-RR S/D I/S HDL BOLT — 2450"}}}}
+{"id":"2026-10","label":"Oktabr","short":"okt","asOf":"09.10.2026","frozen":false,"days":8,"s1":[0,7112,0,0,7700,5464,15250,13929],"s2":[0,8200,0,0,5700,4810,8675,10283],"fakt":[0,15312,0,0,13400,10274,23925,24212],"plan":[null,null,null,null,null,null,18640,28142],"imm":{"8":{"№01-650T":{"plan":22.0,"fact":0,"parts":"52021395 PANEL ASM-BODY L/PLR UPR — 1320","hours":"rrrrbrrrrrrrrrrrbrrrrrrr","hq":[60,60,60,60,0,60,60,60,60,60,60,60,60,60,60,60,0,60,60,60,60,60,60,60]},"№02-650T":{"plan":26.0,"fact":0,"parts":"B6224661 4661/62 C PILLAR BLACK L — 2640","hours":"rrrrbrrrrrrrrrrrbrrrrrrr","hq":[103,103,103,103,0,103,103,103,103,103,103,103,103,103,103,103,0,103,103,103,103,103,103,103]},"№03-650T":{"plan":24.0,"fact":0,"parts":"26305045 5045/47 COVER-FRT FOG LP — 900; 26305043 5043/44 COVER-FRT FOG LP — 360","hours":"rrrrbrrrrrrrrrrrbpsrrrrr","hq":[58,58,58,58,0,58,58,58,58,58,58,58,58,58,58,58,0,30,0,58,58,58,58,58]},"№04-450T":{"plan":24.0,"fact":0,"parts":"52024228 PANEL ASM-CTR PLR LWR TR — 1320","hours":"rrrrbrrrrrrrrrrrbrrrrrrr","hq":[55,55,55,55,0,55,55,55,55,55,55,55,55,55,55,55,0,55,55,55,55,55,55,55]},"№05-450T":{"plan":22.0,"fact":0,"parts":"UZK04019 GASKET ASM-O/S RR VIEW M — 1320","hours":"rrrrbrrrrrrrrrrrbrrrrrrr","hq":[60,60,60,60,0,60,60,60,60,60,60,60,60,60,60,60,0,60,60,60,60,60,60,60]},"№06-450T":{"plan":39.0,"fact":0,"parts":"52027905 7905 GRILLE RAD UPPER (L — 240; 52164052 4052 DUCT ASM-AIR DISTR  — 2040","hours":"rrrrbsrrrrrrrrrrbrrrrrrr","hq":[60,60,60,60,0,0,60,60,60,60,60,60,60,60,60,60,0,60,60,60,60,60,60,60]},"№07-250T":{"plan":23.0,"fact":0,"parts":"52016400 6400 TRAY ASM-I/P STOW — 660; B52016400 6400 TRAY ASM-I/P STOW — 660","hours":"rrrrbrrrrrrrsrrrbrrrrrrr","hq":[60,60,60,60,0,60,60,60,60,60,60,60,0,60,60,60,0,60,60,60,60,60,60,60]},"№08-250T":{"plan":22.0,"fact":0,"parts":"UZK04015 GLASS HOLDER LH\\RH BCAR  — 1320","hours":"rrrrbrrrrrrrrrrrbrrrrrrr","hq":[60,60,60,60,0,60,60,60,60,60,60,60,60,60,60,60,0,60,60,60,60,60,60,60]},"№09-250T":{"plan":19.0,"fact":0,"parts":"26249119 9119/20 TIRE DEFLECTOR L — 2640","hours":"rrrrbrrrrrrrrrrrbrrrpiii","hq":[144,144,144,144,0,144,144,144,144,144,144,144,144,144,144,144,0,144,144,144,48,0,0,0]},"№10-250T":{"plan":21.0,"fact":0,"parts":"avc43471\n(94758905) 3471 COVER-CHILD ST RST  — 720; 26244139 CAP-RR S/D I/S HDL BOLT — 2450","hours":"rrrrbsrrrrrrrrrrbrrrrrpi","hq":[180,180,180,180,0,0,160,160,160,160,160,160,160,160,160,160,0,160,160,160,160,160,50,0]}}}}
 ];
 // APM_DATA_END
 
@@ -120,6 +120,9 @@ function renderImmTables(filterImm){
   });
   $('apm-imm').innerHTML=t+'</tbody><tfoot><tr><td>Jami</td><td></td><td class="n">'+CAP*list.length+'</td><td class="n">'+(snap?tp:'-')+'</td><td class="n">'+(snap?Math.round(tp/(CAP*list.length)*100)+'%':'-')+'</td><td class="n">'+(snap?tf:'-')+'</td><td></td><td></td></tr></tfoot>';
   $('apm-imm-sub').textContent=snap?(dlabel(d)+' uchun (IMM_Yuklama va IMM_Taqsimot varaqlari)'):(dlabel(d)+' uchun IMM yuklamasi saqlanmagan');
+  var hasH=snap&&Object.keys(snap).some(function(k){return snap[k].hours});
+  var hn=$('apm-hm-note'); if(hn)hn.textContent=hasH?('Reja grafigi (IMM_Grafik varag\'i), '+dlabel(d)+'. Katakka kursorni olib borsangiz, shu soatda reja bo\'yicha necha dona quyilishi ko\'rinadi. Bu haqiqiy ish holati emas — reja.'):(dlabel(d)+' uchun soatlik grafik saqlanmagan (IMM_Grafik har kuni yangi sana bilan ustidan yoziladi, shuning uchun faqat panel yangilangan kunlar saqlanadi).');
+  var hs2=$('apm-hm-sub'); if(hs2)hs2.textContent='Soatlar bo\'yicha reja grafigi, '+dlabel(d)+': 08:00 dan 07:00 gacha';
   $('apm-imm-note').textContent=(immFilter?'Ko\'rsatilmoqda: '+immFilter+'. ':'')+'Mavjud soat har bir IMM uchun kuniga 22 soat. Fakt soat "IMM_Fact" varag\'idan (kiritilmagan bo\'lsa 0).';
   if(window.__apmMap)window.__apmMap();
 }
@@ -137,16 +140,17 @@ document.addEventListener('click',function(e){
 
 // ---- ish vaqti xaritasi ----
 // Soatlik holat kodlari: run (ishlamoqda), part (qisman), stop (to'xtagan), svc (qolip almashtirish / servis). null = ma'lumot yo'q.
-var HOUR_STATUS={};
-var ST={run:['Ishlamoqda','var(--run)'],part:['Qisman ishlagan','var(--part)'],stop:['To\'xtab turgan','var(--stop)'],svc:['Qolip almashtirish / servis','var(--svc)'],none:['Ma\'lumot yo\'q','var(--none)']};
+var ST={run:['Ishlaydi (to\'liq soat)','var(--run)'],part:['Qisman soat','var(--part)'],svc:['Qolip almashtirish','var(--svc)'],brk:['Tushlik','#f2c46d'],stop:['Ish rejalashtirilmagan','var(--stop)'],none:['Ma\'lumot yo\'q','var(--none)']};
+var HCODE={r:'run',p:'part',s:'svc',b:'brk',i:'stop'};
 var HRS=[];for(var q=8;q<32;q++)HRS.push(q%24);
 function legend(el){el.innerHTML=Object.keys(ST).map(function(k){return '<span><i style="background:'+ST[k][1]+'"></i>'+ST[k][0]+'</span>'}).join('')}
 function map(el){
   var h='<div></div>'+HRS.map(function(x){return '<div class="h">'+pad(x)+'</div>'}).join('');
   MACH.filter(function(m){return !immFilter||m[0]===immFilter}).forEach(function(m){
     h+='<div class="m">'+m[0]+'</div>';
-    var row=HOUR_STATUS[m[0]]||[];
-    HRS.forEach(function(x,i){var s=row[i]||'none';h+='<div class="c" style="background:'+ST[s][1]+'" title="'+m[0]+', '+pad(x)+':00 - '+ST[s][0]+'"></div>'});
+    var snap=(M&&M.imm||{})[String(+sel.value)], r=snap&&snap[m[0]], hs=(r&&r.hours)||'', hq=(r&&r.hq)||[];
+    HRS.forEach(function(x,i){var s=HCODE[hs[i]]||'none', q=hq[i]?': '+fmt(hq[i])+' dona':'';
+      h+='<div class="c" style="background:'+ST[s][1]+'" title="'+m[0]+', '+pad(x)+':00 — '+ST[s][0]+q+(i===0&&r&&r.parts?'\n'+r.parts:'')+'"></div>'});
   });
   el.innerHTML=h;
 }
