@@ -79,6 +79,16 @@ QO'LLAMANG.**
    ko'rsatiladi. Ombor monitori/Tahlil jonli qoldig'i
    "31" varag'ida hamma qoldiq 0 bo'lsa uni e'tiborsiz qoldiradi (yangi oy varag'i hali to'ldirilmagan).
 
+3c. APM bo'limi (09.10.2026'dan, har kuni): manba "Zaxira Yetish Tahlili (IMM Grafik)" jadvali,
+   fileId `1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4` — xlsx qilib yuklab /tmp/zyt.xlsx ga saqlang (javob katta,
+   tool-results fayldan base64'ni o'qing), so'ng: `python3 source/rebuild_apm.py source/apm/apm.js /tmp/zyt.xlsx`
+   (build_login.js apm/ papkasini o'qiydi — ishchi nusxangizda apm/apm.js ni ishlating). Skript faqat apm.js ichidagi
+   `// APM_DATA_START ... // APM_DATA_END` blokini yangilaydi: joriy oy kunlik fakt/smena/reja va shu kungi IMM yuklamasi
+   (IMM kunlik nusxalari yig'ilib boradi — IMM_Yuklama har kuni ustidan yoziladi, shuning uchun har kuni ishga tushirish
+   muhim). Oy almashganda oldingi oyni muzlatadi. "XAVFLI" bilan to'xtasa — APM'ni o'tkazib yuboring, qolganini nashr
+   qilsa bo'ladi, session xulosasida ayting. Ilgari APM qo'lda kiritilgan statik sentabr ma'lumoti edi va shu sababli
+   oktabrga o'tmay qolgan edi (09.10.2026 da tuzatildi).
+
 3b. Kirim/Chiqim zaxira nusxasi (02.10.2026'dan): `python3 source/bake_kirim_snapshot.py quyish-open.html /tmp/astatka.xlsx`
    — AppSheet_Kirim varag'ini sahifadagi `<template id="kirim-snap">` blokiga joylaydi. claude.ai artifact
    sahifasi ba'zan Google Sheets'ga ulana olmaydi; shunda Kirim/Chiqim shu nusxani ko'rsatadi. Bu skript faqat
