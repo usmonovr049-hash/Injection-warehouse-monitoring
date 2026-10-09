@@ -438,6 +438,31 @@ Xulosa: bugun (08.10.2026) kunlik yangilash MUVAFFAQIYATLI yakunlandi — 7 kunl
 bilan (uchinchi tekshiruvda, sana o'zi tuzalgandan keyin). Ertangi standart kunlik vazifa
 (CRON_TZ=Asia/Tashkent 07:47) odatdagidek davom etadi.
 
+**09.10.2026, ~02:48 UTC / ~07:48 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent 07:47) —
+SANA YANA ORQADA (IKKINCHI MARTA KETMA-KET):** Manba jadval (`1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4`,
+"Kunlik_Panel" varag'i) tekshirildi. Texnik eslatma: bu safar `mcp__Google_Drive__read_file_content`
+haqiqiy katak qiymatlarini QAYTARMADI (fayl juda katta — 30+ varaq — faqat range metadata chiqdi);
+shuning uchun to'liq fayl `download_file_content` (xlsx) bilan yuklab olindi va openpyxl bilan
+Kunlik_Panel o'qildi — kelajakda read_file_content ishlamasa shu usul ishlatilsin.
+
+Natija: "Sana:" katakchasi (A1/F1) **2026-10-08**ni ko'rsatdi — haqiqiy bugungi kun 2026-10-09
+(konteyner vaqti 02:48 UTC bilan tasdiqlangan), ya'ni yana BIR KUN ORQADA. Bu AYNAN 08.10.2026
+ertalabki birinchi tekshiruvda kuzatilgan "orqaga siljish" naqshi — endi IKKINCHI marta KETMA-KET
+(ikki kun ketma-ket ertalab). Holat ustunlari: "Fakt kiritilganmi: ✓ Kiritilgan", "Chiqim
+kiritilganmi: ✓ Kiritilgan", "Plan berilganmi (Berilgan_Plan): ✓ Berilgan", "IMM_Fact
+to'ldirilganmi: ✗ Hali yo'q". Bu AYNAN 08.10'ning ikkinchi tekshiruvida ("sana yopishib qolgan")
+kuzatilgan xavfli kombinatsiya bilan bir xil: "Plan berilganmi" ✓ ko'rinadi, LEKIN sana
+muzlagan/orqada bo'lgani uchun bu raqamlar aslida KECHAGI (08.10) kuniga tegishli bo'lishi mumkin,
+bugungi (09.10) kunga emas — garchi 08.10 kuni kechqurun (~15:27 mahalliyda) allaqachon
+muvaffaqiyatli nashr qilingan bo'lsa ham (7 kunlik ma'lumot bilan). MUHIM bo'limiga ko'ra bu
+holatda Plan_Berish'ga ISHONIB BO'LMAYDI (sana bugungi kun bilan mos emas), shuning uchun Oktabr
+ASTATKA yuklab olinmadi va hech narsa (rebuild, Kirim/Chiqim arxiv, Artifact, GitHub Pages) nashr
+qilinmadi/o'zgartirilmadi. Foydalanuvchiga PushNotification orqali xabar qilindi — "sana orqada +
+Plan ✓" xavfli kombinatsiyasi endi IKKINCHI marta ketma-ket kuzatildi, manba jadvalning kunlik
+trigger skripti (Balans!AJ1) ishga tushish vaqti/vaqt mintaqasini tekshirish tavsiya etiladi.
+~4 soatdan keyin (taxminan 06:48 UTC / ~11:48 mahalliy) shu sessiya o'zi qayta tekshiradi
+(send_later orqali rejalashtirilgan).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
