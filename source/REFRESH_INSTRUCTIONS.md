@@ -519,6 +519,29 @@ ikkinchi tekshiruvda kuzatilgan bo'lsa ham, uchinchi (kechqurungi) tekshiruvda y
 tuzalgani kuzatildi — bu 08.10'dagi naqshga mos ("ertalab orqada, kech tushgacha o'zi tuzaladi").
 Ertangi standart kunlik vazifa (CRON_TZ=Asia/Tashkent 07:47) odatdagidek davom etadi.
 
+**10.10.2026, ~02:51 UTC / ~07:51 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent 07:47) —
+SANA YANA ORQADA (UCHINCHI MARTA KETMA-KET XAVFLI KOMBINATSIYA):** Manba jadval
+(`1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4`) xlsx qilib yuklab olindi (`read_file_content` bu
+safar ham faqat range-metadata qaytardi — katta fayl, 30+ varaq — shuning uchun `download_file_content`
++ openpyxl ishlatildi, 09.10'dagi eslatmaga mos). Natija: Kunlik_Panel F1 ("Sana:") = **2026-10-09**,
+Balans!AJ1 = 2026-10-09, Plan_Berish!B2 = 2026-10-09 — uchtasi ham bir xil, lekin haqiqiy bugungi kun
+2026-10-10 (konteyner vaqti 02:51 UTC bilan tasdiqlangan) — ya'ni yana BIR KUN ORQADA. Holat ustunlari:
+"Fakt kiritilganmi: ✓ Kiritilgan", "Chiqim kiritilganmi: ✓ Kiritilgan", "Plan berilganmi
+(Berilgan_Plan): ✓ Berilgan", "IMM_Fact to'ldirilganmi: ✓ To'ldirilgan" — to'rttasi ham ✓. Bu AYNAN
+08.10 (ikkinchi tekshiruv) va 09.10 (birinchi tekshiruv)da kuzatilgan "sana orqada + Plan ✓" xavfli
+kombinatsiyasi — endi UCHINCHI marta (bu aniq kombinatsiya bo'yicha), lekin bu safar hatto IMM_Fact
+ham ✓ (avvalgi ikki holatda IMM_Fact hali "✗ Hali yo'q" edi) — ya'ni manba jadval o'zi kechagi (09.10)
+kunni "to'liq yopilgan" deb hisoblamoqda, bugungi (10.10) kun uchun esa hali umuman mavjud emas.
+Plan_Berish!F2 (Jami kerakli dona) = 44125 — bu raqam 09.10 kuniga tegishli bo'lishi mumkin, 10.10
+uchun emas. MUHIM bo'limiga ko'ra bu holatda Plan_Berish'ga ISHONIB BO'LMAYDI (sana bugungi kun bilan
+mos emas), shuning uchun Oktabr ASTATKA yuklab olinmadi va hech narsa (rebuild_dash, apply_dash_update,
+Kirim/Chiqim arxiv/snapshot, APM, Artifact, GitHub Pages) nashr qilinmadi/o'zgartirilmadi — butun
+kunlik oqim bitta nashrga birlashtirilgani uchun qisman nashr qilinmadi. Foydalanuvgaga PushNotification
+orqali xabar qilindi — bu "sana orqada + Plan/IMM_Fact ✓" xavfli kombinatsiyasi endi UCHINCHI marta
+(va eng to'liq ✓ holatda) kuzatildi, manba jadvalning kunlik sana-trigger mexanizmi (Balans!AJ1)
+hamon tuzatilmagan ko'rinadi. ~4 soatdan keyin (taxminan 06:51 UTC / ~11:51 mahalliy) shu sessiya
+o'zi qayta tekshiradi (send_later orqali rejalashtirilgan, 08.10-09.10'dagi naqshga mos).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
