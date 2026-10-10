@@ -542,6 +542,21 @@ orqali xabar qilindi — bu "sana orqada + Plan/IMM_Fact ✓" xavfli kombinatsiy
 hamon tuzatilmagan ko'rinadi. ~4 soatdan keyin (taxminan 06:51 UTC / ~11:51 mahalliy) shu sessiya
 o'zi qayta tekshiradi (send_later orqali rejalashtirilgan, 08.10-09.10'dagi naqshga mos).
 
+**Davomi (10.10.2026, ~06:53 UTC / ~11:53 mahalliy):** Ikkinchi tekshiruv (send_later orqali
+o'z-o'ziga rejalashtirilgan eslatma bilan) — "Sana:" katakchasi (Kunlik_Panel F1, Balans!AJ1,
+Plan_Berish!B2 — uchtasi ham) hamon **2026-10-09** (haqiqiy bugungi kun 2026-10-10, konteyner vaqti
+06:53 UTC bilan tasdiqlangan) — ya'ni birinchi tekshiruvdan (~02:51 UTC) buyon 4 soatdan ortiq
+O'ZGARMAGAN, 08.10/09.10'da kuzatilgan "sana yopishib qolgan" holatiga mos. Fakt/Chiqim/Plan/IMM_Fact
+to'rttasi ham hamon ✓ (birinchi tekshiruv bilan bir xil), lekin Plan_Berish!F2 (Jami kerakli dona)
+43696 ga o'zgardi (birinchi tekshiruvda 44125 edi) — ya'ni "muzlagan" sanaga qaramay, ortidagi
+hisob-kitob hamon biroz siljib turibdi (statik keshlanган emas). Bu MUHIM bo'limiga ko'ra sanaga
+ishonib bo'lmasligini o'zgartirmaydi, shuning uchun Oktabr ASTATKA yuklab olinmadi va hech narsa
+nashr qilinmadi/o'zgartirilmadi. Ertalabki tekshiruv bilan bir xil holat (faqat ichki raqam ozgina
+siljigan, sana hamon noto'g'ri) bo'lgani uchun qo'shimcha PushNotification yuborilmadi. Bugungi
+uchinchi (oxirgi) tekshiruv ~4 soatdan keyin (taxminan 10:53 UTC / ~15:53 mahalliy) rejalashtirildi —
+aynan shu vaqt oynasida ilgari bir necha marta sana-anomaliyasi/tuzalishi kuzatilgani uchun bu
+tekshiruvda ham sanaga alohida e'tibor beriladi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
