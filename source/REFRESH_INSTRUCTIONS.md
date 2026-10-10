@@ -557,6 +557,28 @@ uchinchi (oxirgi) tekshiruv ~4 soatdan keyin (taxminan 10:53 UTC / ~15:53 mahall
 aynan shu vaqt oynasida ilgari bir necha marta sana-anomaliyasi/tuzalishi kuzatilgani uchun bu
 tekshiruvda ham sanaga alohida e'tibor beriladi.
 
+**Davomi (10.10.2026, ~10:57 UTC / ~15:57 mahalliy) — UCHINCHI (OXIRGI) TEKSHIRUV: SANA O'ZI
+TO'G'IRLANDI, LEKIN BUGUNGI REJA HALI YO'Q:** Sana endi **2026-10-10** bilan mos (Kunlik_Panel F1,
+Balans!AJ1, Plan_Berish!B2 — uchtasi ham) — ertalabki/tushdagi "09.10'da yopishib qolgan" holat
+aynan shu (~15:57 mahalliy) vaqt oynasida o'z-o'zidan tuzalgan (ilgarigi bir necha martalik naqshga
+mos). LEKIN "Plan berilganmi (Berilgan_Plan)" endi "✗ Hali yo'q" (Fakt/Chiqim/IMM_Fact uchtasi ham
+✓) — sana to'g'irlangach tizim bugungi (10.10) kun uchun rejani hali tuzmagan holatga qaytdi (sana
+kecha 09.10'da "muzlab" turganda ko'rsatilgan ✓ aslida 09.10 kuniga tegishli bo'lgani, 10.10 uchun
+umuman yangi reja bo'lmagani endi tasdiqlandi). MUHIM bo'limiga ko'ra "Plan berilganmi" aniq
+"✓ Berilgan" bo'lmaguncha Plan_Berish'dagi raqamlarga (F2=43667) ishonib bo'lmaydi, shuning uchun
+Oktabr ASTATKA yuklab olinmadi va hech narsa (rebuild, Kirim/Chiqim arxiv/snapshot, APM, Artifact,
+GitHub Pages) nashr qilinmadi/o'zgartirilmadi.
+
+**Bugungi (10.10.2026) kun xulosasi:** uch marta tekshirildi (02:51, 06:53, 10:57 UTC) — birinchi
+ikkisida sana 09.10'da "yopishib qolgan" edi (xavfli "sana orqada + Plan ✓" kombinatsiyasi, bu aniq
+kombinatsiya bo'yicha UCHINCHI marta ketma-ket, PushNotification birinchi tekshiruvda yuborildi),
+uchinchisida sana tuzaldi-yu, endi bugungi reja hali tuzilmagan ("Plan berilganmi: ✗") holatiga
+o'tdi. Natijada BUGUN HECH NARSA (Artifact, GitHub Pages) nashr qilinmadi/o'zgartirilmadi — saytda
+hamon 09.10.2026'da nashr qilingan 8 kunlik (1-8 okt) holat qolmoqda. Bu bugungi OXIRGI tekshiruv
+bo'lgani uchun bugun uchun yangi send_later yuborilmadi — ertangi standart kunlik vazifa
+(CRON_TZ=Asia/Tashkent 07:47) yangi kun bilan davom etadi. Foydalanuvchiga yakuniy PushNotification
+yuborildi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
