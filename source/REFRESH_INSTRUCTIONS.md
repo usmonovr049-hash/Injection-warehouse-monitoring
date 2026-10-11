@@ -618,6 +618,30 @@ rejalashtirildi — bu bugun ikkinchi kun ketma-ket (10.10 ham o'tkazib yuborilg
 qolish xavfi borligi uchun uchinchi tekshiruv natijasi, baribir chiqmasa, albatta PushNotification
 bilan xabar qilinadi.
 
+**Davomi (11.10.2026, ~10:45 UTC / ~15:45 mahalliy) — UCHINCHI (OXIRGI) TEKSHIRUV: SANA O'ZI
+TO'G'IRLANDI, LEKIN BUGUNGI REJA UMUMAN HALI BOSHLANMAGAN:** Kunlik_Panel F1 ("Sana:") endi
+**2026-10-11** bilan mos (ertalabki/tushdagi "10.10'da yopishib qolgan" holat aynan shu
+(~15:45 mahalliy) vaqt oynasida o'z-o'zidan tuzalgan — 08-10.10'dagi naqshga mos). LEKIN bu safar
+sana to'g'irlangandan keyin "Fakt kiritilganmi", "Chiqim kiritilganmi" VA "Plan berilganmi
+(Berilgan_Plan)" — uchtasi ham "✗ Hali yo'q" (faqat "IMM_Fact to'ldirilganmi" ✓, bu kechagi 10.10
+kuniga tegishli bo'lishi mumkin). Plan_Berish!B2=2026-10-11 (to'g'ri sana), F2=43368 — lekin
+"Plan berilganmi" ✗ bo'lgani uchun MUHIM bo'limiga ko'ra bu raqamga ISHONIB BO'LMAYDI. Shuning uchun
+Oktabr ASTATKA yuklab olinmadi va hech narsa (rebuild, Kirim/Chiqim arxiv/snapshot, APM, Artifact,
+GitHub Pages) nashr qilinmadi/o'zgartirilmadi.
+
+**Bugungi (11.10.2026) kun xulosasi:** uch marta tekshirildi (02:48, 06:52, 10:45 UTC) — birinchi
+ikkisida sana 10.10'da "yopishib qolgan" edi va Plan ✗ edi; uchinchisida sana tuzaldi (2026-10-11),
+lekin bugungi kun uchun Fakt/Chiqim/Plan uchtasi ham hali umuman kiritilmagan ("reja hali
+boshlanmagan" — bu 10.10'ning uchinchi tekshiruvida kuzatilgan "Plan hali yo'q" holatidan ham bir
+qadam ortda, chunki bu safar Fakt/Chiqim ham ✗). Natijada BUGUN HAM HECH NARSA (Artifact, GitHub
+Pages) nashr qilinmadi/o'zgartirilmadi — saytda hamon 09.10.2026'da nashr qilingan 8 kunlik (1-8 okt)
+holat qolmoqda. Bu ENDI IKKI KUN KETMA-KET (10.10 va 11.10) to'liq o'tkazib yuborilgan kunlik nashr —
+foydalanuvchiga PushNotification orqali xabar qilindi, chunki bu e'tiborga arzigulik: manba
+jadvalning kunlik ish oqimi (jamoa tomonidan Fakt/Chiqim/Plan kiritish) so'nggi ikki kunda odatdagidan
+sezilarli kech qolmoqda yoki umuman bajarilmagan bo'lishi mumkin. Bu bugungi OXIRGI tekshiruv bo'lgani
+uchun yangi send_later yuborilmadi — ertangi standart kunlik vazifa (CRON_TZ=Asia/Tashkent 07:47)
+yangi kun bilan davom etadi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
