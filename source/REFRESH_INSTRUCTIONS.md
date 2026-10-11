@@ -604,6 +604,20 @@ topildi (origin/main'da esa bor edi — faqat local klonning "main" ref'i eskirg
 merge bilan tuzatildi, ma'lumot yo'qolmadi; bu safar hech qanday push kerak bo'lmadi (origin allaqachon
 yangilangan edi).
 
+**Davomi (11.10.2026, ~06:52 UTC / ~11:52 mahalliy):** Ikkinchi tekshiruv (send_later orqali
+o'z-o'ziga rejalashtirilgan eslatma bilan) — Kunlik_Panel F1 ("Sana:") hamon **2026-10-10** (haqiqiy
+bugungi kun 2026-10-11, konteyner vaqti 06:52 UTC bilan tasdiqlangan) — ya'ni birinchi tekshiruvdan
+(~02:48 UTC) buyon 4 soatdan ortiq O'ZGARMAGAN, 08-10.10'da bir necha marta kuzatilgan "sana yopishib
+qolgan" holatiga mos. "Plan berilganmi (Berilgan_Plan)" ham hamon "✗ Hali yo'q" (Fakt/Chiqim/IMM_Fact
+uchtasi ✓, birinchi tekshiruv bilan bir xil — o'zgarish yo'q). Xavfli "sana orqada + Plan ✓"
+kombinatsiyasi EMAS, shuning uchun MUHIM bo'limiga ko'ra Plan_Berish'ga hamon ishonib bo'lmaydi va
+Oktabr ASTATKA yuklab olinmadi, hech narsa nashr qilinmadi/o'zgartirilmadi. Birinchi tekshiruv bilan
+bir xil (yangi ma'lumot yo'q) holat bo'lgani uchun qo'shimcha PushNotification yuborilmadi. Bugungi
+uchinchi (oxirgi) tekshiruv ~3-4 soatdan keyin (taxminan 09:52-10:52 UTC / ~14:52-15:52 mahalliy)
+rejalashtirildi — bu bugun ikkinchi kun ketma-ket (10.10 ham o'tkazib yuborilgan) nashr qilinmay
+qolish xavfi borligi uchun uchinchi tekshiruv natijasi, baribir chiqmasa, albatta PushNotification
+bilan xabar qilinadi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
