@@ -579,6 +579,31 @@ bo'lgani uchun bugun uchun yangi send_later yuborilmadi — ertangi standart kun
 (CRON_TZ=Asia/Tashkent 07:47) yangi kun bilan davom etadi. Foydalanuvchiga yakuniy PushNotification
 yuborildi.
 
+**11.10.2026, ~02:48 UTC / ~07:48 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent 07:47) —
+SANA YANA ORQADA:** Manba jadval (`1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4`) xlsx qilib yuklab
+olindi (`download_file_content` + openpyxl, oldingi kunlardagi usul bilan — `read_file_content` bu
+safar ham faqat range-metadata qaytargan bo'lardi, shuning uchun to'g'ridan-to'g'ri xlsx ishlatildi).
+Natija: Kunlik_Panel F1 ("Sana:") = **2026-10-10** — haqiqiy bugungi kun 2026-10-11 (konteyner vaqti
+02:48 UTC bilan tasdiqlangan), ya'ni yana BIR KUN ORQADA (08-10.10'dagi ertalabki "orqaga siljish"
+naqshiga mos). Holat ustunlari: "Fakt kiritilganmi: ✓ Kiritilgan", "Chiqim kiritilganmi:
+✓ Kiritilgan", "Plan berilganmi (Berilgan_Plan): ✗ Hali yo'q", "IMM_Fact to'ldirilganmi:
+✓ To'ldirilgan". Bu safar "Plan berilganmi" ✗ bo'lgani uchun (xavfli "sana orqada + Plan ✓"
+kombinatsiyasi EMAS — faqat oddiy "reja hali tuzilmagan" holati, sana orqada bo'lsa ham), MUHIM
+bo'limiga ko'ra ham sana mosligi, ham "Plan berilganmi: ✓" talab qilinganidan kelib chiqib,
+Plan_Berish'ga ishonib bo'lmaydi. Shuning uchun Oktabr ASTATKA yuklab olinmadi va hech narsa
+(rebuild_dash, apply_dash_update, Kirim/Chiqim arxiv/snapshot, APM, Artifact, GitHub Pages) nashr
+qilinmadi/o'zgartirilmadi — saytda hamon 09.10.2026'da nashr qilingan 8 kunlik (1-8 okt) holat
+qolmoqda (bu endi IKKINCHI kun ketma-ket yangilanmay qolgan holat — 10.10 ham o'tkazib yuborilgan
+edi). Bu oddiy ertalabki "reja hali tuzilmagan" holati (xavfli ✓ kombinatsiyasi emas) bo'lgani uchun
+foydalanuvchiga alohida PushNotification yuborilmadi. ~4 soatdan keyin (taxminan 06:48 UTC / ~11:48
+mahalliy) shu sessiya o'zi qayta tekshiradi (send_later orqali rejalashtirilgan).
+
+Eslatma (repo gigienasi): bugungi tekshiruvda avvalgi sessiyaning oxirgi hujjat-commiti (10.10.2026
+kun xulosasi) local repo'da "detached HEAD"da qolib, main branch'ga hali birlashtirilmagan holatda
+topildi (origin/main'da esa bor edi — faqat local klonning "main" ref'i eskirgan edi). Fast-forward
+merge bilan tuzatildi, ma'lumot yo'qolmadi; bu safar hech qanday push kerak bo'lmadi (origin allaqachon
+yangilangan edi).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
