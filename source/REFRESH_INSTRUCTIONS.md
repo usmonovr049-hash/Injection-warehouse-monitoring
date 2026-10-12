@@ -642,6 +642,27 @@ sezilarli kech qolmoqda yoki umuman bajarilmagan bo'lishi mumkin. Bu bugungi OXI
 uchun yangi send_later yuborilmadi — ertangi standart kunlik vazifa (CRON_TZ=Asia/Tashkent 07:47)
 yangi kun bilan davom etadi.
 
+**12.10.2026, ~02:49 UTC / ~07:49 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent 07:47) —
+SANA YANA ORQADA (BESHINCHI KUN KETMA-KET ERTALAB):** Manba jadval
+(`1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4`) xlsx qilib yuklab olindi (`download_file_content` +
+openpyxl bilan — oldingi kunlardagi tajribaga ko'ra `read_file_content` bu hajmdagi fayl uchun faqat
+range-metadata qaytaradi). Natija: Kunlik_Panel F1 ("Sana:") = **2026-10-11** — haqiqiy bugungi kun
+2026-10-12 (konteyner vaqti 02:48 UTC bilan tasdiqlangan), ya'ni yana BIR KUN ORQADA (08-11.10'dagi
+ertalabki "orqaga siljish" naqshiga mos — endi BESHINCHI kun ketma-ket ertalabki tekshiruvda sana
+orqada). Holat ustunlari: "Fakt kiritilganmi: ✗ Hali yo'q", "Chiqim kiritilganmi: ✗ Hali yo'q", "Plan
+berilganmi (Berilgan_Plan): ✗ Hali yo'q", "IMM_Fact to'ldirilganmi: ✓ To'ldirilgan". Bu xavfli "sana
+orqada + Plan ✓" kombinatsiyasi EMAS (Plan ✗) — oddiy ertalabki "reja hali tuzilmagan" holati, sana
+orqada bo'lsa ham. MUHIM bo'limiga ko'ra Plan_Berish'ga ishonib bo'lmaydi, shuning uchun Oktabr
+ASTATKA yuklab olinmadi va hech narsa (rebuild_dash, apply_dash_update, Kirim/Chiqim arxiv/snapshot,
+APM, Artifact, GitHub Pages) nashr qilinmadi/o'zgartirilmadi — saytda hamon 09.10.2026'da nashr
+qilingan 8 kunlik (1-8 okt) holat qolmoqda. Bu endi UCHINCHI kun ketma-ket (10.10, 11.10 to'liq
+o'tkazib yuborilgan, 12.10 ham hozircha shunday boshlandi) nashr qilinmay qolish xavfi. Oddiy
+ertalabki holat (xavfli kombinatsiya emas, va ikki kunlik umumiy o'tkazib yuborilish allaqachon
+11.10 oxirida xabar qilingan) bo'lgani uchun bu tekshiruvda alohida PushNotification yuborilmadi —
+lekin agar bugun kech tushgacha ham nashr qilinmasa, bu UCH KUN KETMA-KET bo'ladi va albatta xabar
+qilinadi. ~4 soatdan keyin (taxminan 06:49 UTC / ~11:49 mahalliy) shu sessiya o'zi qayta tekshiradi
+(send_later orqali rejalashtirilgan, 08-11.10'dagi naqshga mos).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
