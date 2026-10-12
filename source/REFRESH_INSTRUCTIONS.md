@@ -138,6 +138,18 @@ Eslatma: Kunlik "01".."31" varaqlari jamoa tomonidan har kuni qo'lda to'ldirilad
 kechikishi mumkin (masalan bugun hali to'ldirilmagan bo'lishi mumkin). Shuning uchun N_DAYS
 ba'zan bir necha kun o'zgarmasligi mumkin, bu xato emas.
 
+ENG MUHIM — SANA QOIDASI (12.10.2026, Rustam tasdiqladi, quyidagi barcha eski "sana orqada" izohlaridan USTUN):
+Kunlik_Panel "Sana:" ishlab chiqarish kunini ko'rsatadi, kalendar kunini emas. Ish kuni smenalar bo'yicha 08:00 dan
+ertangi 07:00/08:00 gacha davom etadi, shuning uchun ertalabki tekshiruvda (07:47 da) sana KECHAGI kun bo'lishi —
+NORMAL holat, anomaliya emas. Kutilgan sana = (Toshkent vaqti − 8 soat) ning sanasi. Faqat sana shundan 2+ kun
+orqada yoki oldinda bo'lsagina anomaliya deb hisoblang.
+  - "Sana = kecha" + "Plan berilganmi ✓" → bu kechagi yopilgan kun, ISHONCHLI — odatdagidek nashr qiling
+    (ilgari bu "xavfli kombinatsiya" deb yozilgan edi — endi bu qoida BEKOR).
+  - "Plan berilganmi ✗" → Plan_Berish'ga hamon ishonmang (pastdagi MUHIM bo'limi), ombor/Tahlil nashrini o'tkazing,
+    lekin APM'ni (3c) baribir nashr qiling. Yakshanba/dam olish kunlari reja kiritilmasligi odatiy — buni xato deb
+    xabar qilmang.
+  - "Sana orqada" sababli hech qachon PushNotification yubormang va qayta tekshiruv rejalashtirmang.
+
 MUHIM (30.09.2026'da topilgan muammo): "Plan_Berish" varag'i ILGARI "har doim ishonchli"
 deb yozilgan edi — bu NOTO'G'RI ekan, tuzatildi. Sabab: "Sentabr ASTATKA"dagi Plan_Berish
 o'zi hisoblamaydi — u boshqa jadvaldan IMPORTRANGE orqali ko'chiradi:
