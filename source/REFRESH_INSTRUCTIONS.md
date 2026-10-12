@@ -663,6 +663,16 @@ lekin agar bugun kech tushgacha ham nashr qilinmasa, bu UCH KUN KETMA-KET bo'lad
 qilinadi. ~4 soatdan keyin (taxminan 06:49 UTC / ~11:49 mahalliy) shu sessiya o'zi qayta tekshiradi
 (send_later orqali rejalashtirilgan, 08-11.10'dagi naqshga mos).
 
+**Davomi (12.10.2026, ~04:03 UTC / ~09:03 mahalliy) — foydalanuvchi so'rovi bilan qo'lda qayta
+tekshirildi:** Manba jadval yana yuklab olindi — holat o'zgarmagan: Kunlik_Panel F1 hamon
+**2026-10-11** (haqiqiy bugungi kun 2026-10-12), "Fakt kiritilganmi: ✓", "Chiqim kiritilganmi: ✓",
+"Plan berilganmi (Berilgan_Plan): ✗ Hali yo'q" (birinchi tekshiruvdan farqi — Fakt/Chiqim endi ✓
+bo'lgan, lekin Plan hamon ✗). Plan_Berish!B2=2026-10-11, F2=44626 — sana bugungi kun bilan mos
+emasligi VA "Plan berilganmi" ✗ bo'lgani sababli, MUHIM bo'limiga ko'ra bu raqamlarga ishonib
+bo'lmaydi. Shuning uchun hali ham Oktabr ASTATKA yuklab olinmadi va hech narsa (rebuild, arxiv,
+APM, Artifact, GitHub Pages) nashr qilinmadi/o'zgartirilmadi. Avval rejalashtirilgan ~06:52 UTC
+send_later qayta tekshiruv o'z holicha qoladi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
