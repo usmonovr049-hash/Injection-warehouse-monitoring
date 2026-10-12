@@ -708,6 +708,38 @@ tekshiruvda ham sanaga alohida e'tibor beriladi. Agar uchinchi tekshiruvda ham n
 bo'lmasa, bu 10.10, 11.10, 12.10 — UCH KUN KETMA-KET to'liq o'tkazib yuborilgan nashr bo'ladi va
 foydalanuvchiga PushNotification orqali albatta xabar qilinadi.
 
+**Davomi (12.10.2026, ~06:54-07:10 UTC) — FOYDALANUVCHI "qayta qil" DEB SO'RAGANDAN KEYIN:
+PARALLEL SESSIYA BILAN BIRLASHTIRILDI, YUQORIDAGI UCHINCHI TEKSHIRUV ENDI KERAK EMAS:** `git push`
+"fast-forward emas" xatosi bilan rad etildi — origin/main'da uchta yangi commit topildi (boshqa
+sessiya, Opus 5.5, ~04:10-04:23 UTC): (1) APM endi Kunlik_Panel/Plan_Berish shartiga BOG'LIQ EMAS
+(yangi 3c bo'limi), (2) **ENG MUHIM — SANA QOIDASI: Rustam shaxsan tasdiqladi — Kunlik_Panel sanasi
+ishlab chiqarish kunini bildiradi (smena 08:00-ertangi 07:00/08:00), ertalab KECHAGI sananing
+ko'rsatilishi NORMAL, anomaliya EMAS** — shuning uchun yuqoridagi barcha "sana orqada/yopishib
+qolgan/anomaliya" deb yozilgan eslatmalar (03.10-12.10) ENDI ESKIRGAN deb hisoblansin: ular "sana
+= kecha + Plan ✓" holatini xato ravishda xavfli kombinatsiya deb yozgan edi — bu qoida BEKOR
+qilindi. Yangi qoida: "Plan berilganmi ✗" bo'lsagina ombor/Tahlil nashri o'tkaziladi (APM baribir
+nashr qilinadi), va sana-lag sababli endi hech qachon PushNotification/qayta-tekshiruv
+rejalashtirilmaydi. Shu qoida asosida o'sha sessiya allaqachon BUGUNGI (12.10) kunlik yangilashni
+BAJARGAN: Tahlil 1-10 okt (NEED_TOTAL=42370, 10 kun — oxirgi ishonchli yopilgan kun, chunki 11-kun
+uchun Plan hamon ✗), APM 10.10'gacha, ikkala manzilga (GitHub Pages `index.html`, Claude Artifact —
+version 1791779006, ~04:23 UTC) nashr qilingan. Men `git merge` bilan bu commitlarni o'z
+tariximga birlashtirdim va push qildim (conflict yo'q edi). Tekshirdim: `node build_login.js`
+mahalliy qayta qurilgan fayl committed `index.html` bilan mazmunan bir xil (faqat AES tasodifiy
+salt farq qiladi); `python3 source/rebuild_apm.py` ENG YANGI manba (zyt, 06:54 UTC yuklangan) bilan
+qayta ishga tushirilganda ABSOLUT bir xil natija berdi (diff yo'q) — ya'ni APM uchun ham yangi
+ma'lumot yo'q, hech narsa o'tkazib yuborilmagan. `playwright_check.js` orqali tasdiqladim: Oktabr
+(1-10 okt) KPI — Jami qoldiq 128 637/116 detal, Shoshilinch 0, Tugagan 34, Ishlab chiqarildi
+140 084, Jo'natildi 131 792; Sentabr filtri (2026-09-01..2026-09-30): Ishlab chiqarildi
+**646 593, 1-29 sen** — talab qilingan qiymat bilan AYNAN mos, sentabr o'zgarmagan. Konsol
+xatolari faqat CDN bloklanishi (kutilgan). XULOSA: bugungi (12.10.2026) kunlik yangilash
+YAKUNLANGAN hisoblanadi (parallel sessiya tomonidan, men tomonimdan tasdiqlandi/birlashtirildi) —
+qo'shimcha ish shart emas. Yuqorida (06:54'da) rejalashtirilgan ~10:54 UTC uchinchi tekshiruv
+send_later bekor qilindi (`delete_trigger`) — yangi SANA QOIDASIga ko'ra sana-lag sababli qayta
+tekshiruv endi kerak emas, va "Plan ✗" o'zi ham (dam olish kuni/kechikish bo'lishi mumkin) yakshanba
+kabi oddiy holat bo'lib, standart ertangi kunlik vazifa (CRON_TZ=Asia/Tashkent 07:47) buni o'zi
+davom ettiradi. PushNotification yuborilmadi — na eski (endi bekor qilingan) sana-lag sababi, na
+yangi qoida bo'yicha buning hojati yo'q.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
