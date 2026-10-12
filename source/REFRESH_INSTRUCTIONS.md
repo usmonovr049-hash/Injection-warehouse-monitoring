@@ -79,7 +79,14 @@ QO'LLAMANG.**
    ko'rsatiladi. Ombor monitori/Tahlil jonli qoldig'i
    "31" varag'ida hamma qoldiq 0 bo'lsa uni e'tiborsiz qoldiradi (yangi oy varag'i hali to'ldirilmagan).
 
-3c. APM bo'limi (09.10.2026'dan, har kuni): manba "Zaxira Yetish Tahlili (IMM Grafik)" jadvali,
+3c. APM bo'limi — ALOHIDA SHART (12.10.2026'dan): APM "Oktabr ASTATKA"/Kunlik_Panel/Plan_Berish'ga BOG'LIQ EMAS.
+   Kunlik_Panel sanasi orqada yoki "Plan berilganmi ✗" bo'lib, ombor/Tahlil nashri o'tkazib yuborilsa ham, APM'ni
+   baribir yangilang: zyt.xlsx'ni yuklab, rebuild_apm.py'ni ishga tushiring, build_login.js bilan quring va nashr qiling
+   (ombor/Tahlil ma'lumotiga tegmasdan — faqat apm.js o'zgaradi). Sabab: 10-12.10 da butun nashr o'tkazib yuborilgani
+   uchun APM 8.10 da qolib ketgan edi, holbuki "Fakt"da 9 va 10.10 tayyor edi. rebuild_apm.py o'zi xavfsiz: faqat fakt/reja
+   kiritilgan kunlarni oladi, kunlar kamaysa to'xtaydi, Berilgan_Plan'da reja yo'q kunning IMM nusxasini saqlamaydi.
+
+3c-bis. APM bo'limi (09.10.2026'dan, har kuni): manba "Zaxira Yetish Tahlili (IMM Grafik)" jadvali,
    fileId `1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4` — xlsx qilib yuklab /tmp/zyt.xlsx ga saqlang (javob katta,
    tool-results fayldan base64'ni o'qing), so'ng: `python3 source/rebuild_apm.py source/apm/apm.js /tmp/zyt.xlsx`
    (build_login.js apm/ papkasini o'qiydi — ishchi nusxangizda apm/apm.js ni ishlating). Skript faqat apm.js ichidagi
@@ -130,6 +137,18 @@ QO'LLAMANG.**
 Eslatma: Kunlik "01".."31" varaqlari jamoa tomonidan har kuni qo'lda to'ldiriladi — ba'zan
 kechikishi mumkin (masalan bugun hali to'ldirilmagan bo'lishi mumkin). Shuning uchun N_DAYS
 ba'zan bir necha kun o'zgarmasligi mumkin, bu xato emas.
+
+ENG MUHIM — SANA QOIDASI (12.10.2026, Rustam tasdiqladi, quyidagi barcha eski "sana orqada" izohlaridan USTUN):
+Kunlik_Panel "Sana:" ishlab chiqarish kunini ko'rsatadi, kalendar kunini emas. Ish kuni smenalar bo'yicha 08:00 dan
+ertangi 07:00/08:00 gacha davom etadi, shuning uchun ertalabki tekshiruvda (07:47 da) sana KECHAGI kun bo'lishi —
+NORMAL holat, anomaliya emas. Kutilgan sana = (Toshkent vaqti − 8 soat) ning sanasi. Faqat sana shundan 2+ kun
+orqada yoki oldinda bo'lsagina anomaliya deb hisoblang.
+  - "Sana = kecha" + "Plan berilganmi ✓" → bu kechagi yopilgan kun, ISHONCHLI — odatdagidek nashr qiling
+    (ilgari bu "xavfli kombinatsiya" deb yozilgan edi — endi bu qoida BEKOR).
+  - "Plan berilganmi ✗" → Plan_Berish'ga hamon ishonmang (pastdagi MUHIM bo'limi), ombor/Tahlil nashrini o'tkazing,
+    lekin APM'ni (3c) baribir nashr qiling. Yakshanba/dam olish kunlari reja kiritilmasligi odatiy — buni xato deb
+    xabar qilmang.
+  - "Sana orqada" sababli hech qachon PushNotification yubormang va qayta tekshiruv rejalashtirmang.
 
 MUHIM (30.09.2026'da topilgan muammo): "Plan_Berish" varag'i ILGARI "har doim ishonchli"
 deb yozilgan edi — bu NOTO'G'RI ekan, tuzatildi. Sabab: "Sentabr ASTATKA"dagi Plan_Berish
