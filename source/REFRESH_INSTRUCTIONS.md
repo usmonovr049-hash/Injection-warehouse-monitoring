@@ -79,7 +79,14 @@ QO'LLAMANG.**
    ko'rsatiladi. Ombor monitori/Tahlil jonli qoldig'i
    "31" varag'ida hamma qoldiq 0 bo'lsa uni e'tiborsiz qoldiradi (yangi oy varag'i hali to'ldirilmagan).
 
-3c. APM bo'limi (09.10.2026'dan, har kuni): manba "Zaxira Yetish Tahlili (IMM Grafik)" jadvali,
+3c. APM bo'limi — ALOHIDA SHART (12.10.2026'dan): APM "Oktabr ASTATKA"/Kunlik_Panel/Plan_Berish'ga BOG'LIQ EMAS.
+   Kunlik_Panel sanasi orqada yoki "Plan berilganmi ✗" bo'lib, ombor/Tahlil nashri o'tkazib yuborilsa ham, APM'ni
+   baribir yangilang: zyt.xlsx'ni yuklab, rebuild_apm.py'ni ishga tushiring, build_login.js bilan quring va nashr qiling
+   (ombor/Tahlil ma'lumotiga tegmasdan — faqat apm.js o'zgaradi). Sabab: 10-12.10 da butun nashr o'tkazib yuborilgani
+   uchun APM 8.10 da qolib ketgan edi, holbuki "Fakt"da 9 va 10.10 tayyor edi. rebuild_apm.py o'zi xavfsiz: faqat fakt/reja
+   kiritilgan kunlarni oladi, kunlar kamaysa to'xtaydi, Berilgan_Plan'da reja yo'q kunning IMM nusxasini saqlamaydi.
+
+3c-bis. APM bo'limi (09.10.2026'dan, har kuni): manba "Zaxira Yetish Tahlili (IMM Grafik)" jadvali,
    fileId `1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4` — xlsx qilib yuklab /tmp/zyt.xlsx ga saqlang (javob katta,
    tool-results fayldan base64'ni o'qing), so'ng: `python3 source/rebuild_apm.py source/apm/apm.js /tmp/zyt.xlsx`
    (build_login.js apm/ papkasini o'qiydi — ishchi nusxangizda apm/apm.js ni ishlating). Skript faqat apm.js ichidagi

@@ -111,7 +111,8 @@ def main():
                     else: codes.append('i'); qty.append(0)
                 snap[str(r[1]).strip()]['hours'] = ''.join(codes)
                 snap[str(r[1]).strip()]['hq'] = qty
-        if sum(v['plan'] for v in snap.values()) > 0:
+        # Berilgan_Plan'da shu kunga reja bo'lmasa (masalan dam olish kuni) — nusxani saqlamaymiz
+        if sum(v['plan'] for v in snap.values()) > 0 and (plan.get(ydate.date()) or 0) > 0:
             entry['imm'][str(ydate.day)] = snap
     # apm.js ga yozish
     src = open(js_path, encoding='utf-8').read()
