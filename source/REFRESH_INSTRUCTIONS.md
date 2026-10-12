@@ -673,6 +673,22 @@ bo'lmaydi. Shuning uchun hali ham Oktabr ASTATKA yuklab olinmadi va hech narsa (
 APM, Artifact, GitHub Pages) nashr qilinmadi/o'zgartirilmadi. Avval rejalashtirilgan ~06:52 UTC
 send_later qayta tekshiruv o'z holicha qoladi.
 
+**Davomi (12.10.2026, ~06:54 UTC / ~11:54 mahalliy) — IKKINCHI rejalashtirilgan tekshiruv (send_later
+orqali):** Manba jadval yana tekshirildi — holat birinchi tekshiruvdan (~02:49 UTC) buyon TO'LIQ
+O'ZGARMAGAN: Kunlik_Panel F1 ("Sana:") hamon **2026-10-11** (haqiqiy bugungi kun 2026-10-12, 4
+soatdan ortiq "yopishib qolgan" — 08-11.10'da bir necha marta kuzatilgan naqshga mos), "Fakt
+kiritilganmi: ✓", "Chiqim kiritilganmi: ✓", "Plan berilganmi (Berilgan_Plan): ✗ Hali yo'q" hamon
+(soat 04:03'dagi qo'lda tekshiruv bilan bir xil). Plan_Berish!F2 bu safar 42370 (04:03'da 44626 edi —
+"muzlagan" sanaga qaramay ichki hisob biroz siljigan, avvalgi kunlarda kuzatilgan naqshga mos). MUHIM
+bo'limiga ko'ra "Plan berilganmi" ✓ bo'lmaguncha ishonib bo'lmaydi, shuning uchun Oktabr ASTATKA
+yuklab olinmadi va hech narsa nashr qilinmadi/o'zgartirilmadi. Bu birinchi tekshiruv bilan bir xil
+(yangi anomaliya yo'q) holat bo'lgani uchun qo'shimcha PushNotification yuborilmadi. Bugungi
+UCHINCHI (oxirgi) tekshiruv ~4 soatdan keyin (taxminan 10:54 UTC / ~15:54 mahalliy) rejalashtirildi —
+aynan shu vaqt oynasida ilgari bir necha marta sana-anomaliyasi/tuzalishi kuzatilgani uchun bu
+tekshiruvda ham sanaga alohida e'tibor beriladi. Agar uchinchi tekshiruvda ham nashr qilib
+bo'lmasa, bu 10.10, 11.10, 12.10 — UCH KUN KETMA-KET to'liq o'tkazib yuborilgan nashr bo'ladi va
+foydalanuvchiga PushNotification orqali albatta xabar qilinadi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
