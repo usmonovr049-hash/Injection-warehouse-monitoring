@@ -783,6 +783,25 @@ Xulosa: bugun (13.10.2026) kunlik yangilash MUVAFFAQIYATLI yakunlandi — 10 kun
 tasdiqlangan yangi sana qoidasi tufayli — "sana=kecha+Plan✓" endi ishonchli deb hisoblanadi, qo'shimcha
 tekshiruv/send_later kerak bo'lmadi). PushNotification yuborilmadi (muammo yo'q).
 
+**Davomi (13.10.2026, ~07:03 UTC / ~12:03 mahalliy) — foydalanuvchi so'rovi bilan qo'lda qayta
+tekshirildi, FAQAT APM YANGILANDI:** Manba jadval yana tekshirildi. Kunlik_Panel F1 ("Sana:") endi
+**2026-10-13** — bugungi haqiqiy kun bilan mos (kutilgan sana = Toshkent vaqti − 8 soat = 2026-10-13,
+anomaliya yo'q). "Fakt kiritilganmi: ✓", "Chiqim kiritilganmi: ✓", "Plan berilganmi (Berilgan_Plan):
+✗ Hali yo'q", "IMM_Fact to'ldirilganmi: ✓". MUHIM bo'limiga ko'ra "Plan berilganmi" ✗ bo'lgani uchun
+Plan_Berish'ga (B2=2026-10-13, F2=58444) hamon ishonib bo'lmaydi — shuning uchun Oktabr ASTATKA
+QAYTA YUKLANMADI va ombor/Tahlil (rebuild_dash, apply_dash_update, Kirim/Chiqim arxiv/snapshot)
+o'tkazib yuborildi (saytda hamon bugungi ertalabki 1-10 okt holati qoladi). LEKIN APM (3c) qoidasiga
+ko'ra bu Plan_Berish holatidan mustaqil — shuning uchun APM baribir yangilandi:
+`rebuild_apm.py source/apm/apm.js /tmp/zyt.xlsx` (ertalabkidan yangiroq nusxa) — "Mavjud oy
+yangilandi: 12 kun, fakt 162448 (ertalab 140084 edi — 11/12-kun fakti endi kiritilgan), reja 89057
+(4 kun)" — XAVFLI xato yo'q. `node build_login.js` muvaffaqiyatli. Playwright: dash/Sentabr KPI'lari
+ertalabkidan o'zgarmagan (140 084 / 1-10 okt; 646 593 / 1-29 sen — tasdiqlandi), APM kun ro'yxati
+01-12.10'gacha, 12-kun (dush) uchun Fakt=22 474 (avval 0 edi), Reja=23 635, bajarilish 95% — to'g'ri
+ko'rsatildi. Claude Artifact o'qildi (versiya ertalabkidagi bilan bir xil, 1791860048-d0dd — "newer
+version" muammosi yo'q), so'ng qayta nashr qilindi (Version 51, 1791875150-a267) — faqat apm.js
+o'zgargani uchun dash/Kirim-Chiqim qismlari ertalabki holatida qoldi. GitHub Pages: `index.html` va
+`source/apm/apm.js` shu commitda push qilinadi. Muammo yo'q, PushNotification yuborilmadi.
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
