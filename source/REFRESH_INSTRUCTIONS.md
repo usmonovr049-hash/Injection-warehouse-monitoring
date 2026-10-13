@@ -816,3 +816,46 @@ o'zgarsa (masalan yangi ustun qo'shilsa), `quyish-open.html` fayli oxiridagi (iz
 "Kirim/Chiqim jurnali: Sentabr ASTATKA" bo'lgan) skriptdagi `DEST` massivi va ustun
 indekslarini (0-based, "27 Brigadir,29 IMM,30 Qolip" kabi izohlangan) qo'lda yangilash
 kerak bo'ladi.
+
+**Davomi (13.10.2026, ~07:50-08:00 UTC / ~12:50-13:00 mahalliy) — UCHINCHI TEKSHIRUV (standart
+kunlik vazifa, 12:47 mahalliy slot), MUSTAQIL QAYTA HISOBLASH BOSHQA SESSIYA NATIJASINI TASDIQLADI:**
+Manba jadvallar (zyt.xlsx, Oktabr ASTATKA) yana yuklab olindi. Kunlik_Panel F1 ("Sana:") =
+**2026-10-13** (bugungi kun bilan mos, anomaliya yo'q). Holat: "Fakt: ✓", "Chiqim: ✓", "Plan
+berilganmi (Berilgan_Plan): ✗ Hali yo'q", "IMM_Fact: ✓". 12.10'da tasdiqlangan YANGI SANA
+QOIDASIga ko'ra Plan ✗ bo'lgani uchun NASHR O'TKAZILMAYDI — o'rniga `KEEP_PLAN=quyish-open.html
+python3 rebuild_dash.py` bilan quring (kerak/ustuvorlik/NEED_TOTAL oxirgi ishonchli nashrdan
+saqlanadi, kunlar/ishlab chiqarish/jo'natish/qoldiq yangilanadi). Natija: N_DAYS=12 (1-12 okt),
+NEED_TOTAL=57934 (o'zgarmadi, KEEP_PLAN), crit=1, high=30 — XAVFLI xato yo'q.
+
+Push paytida origin/main'da ALLAQACHON aynan shu natija (1-12 okt, KEEP_PLAN, NEED_TOTAL=57934)
+borligi aniqlandi — boshqa sessiya (ehtimol xuddi shu 12:47 mahalliy jadvali bo'yicha, bir necha
+daqiqa oldin) buni allaqachon bajargan va commit c24da07 bilan push qilgan edi ("Tahlil 1-12 okt;
+KEEP_PLAN rejimi..."). Mustaqil ravishda qaytadan hisoblangan natija (rebuild_dash.py + KEEP_PLAN)
+BAYT-BA-BAYT bir xil chiqdi (MONTHS massividagi 2026-10 blokining bitta harfi ham farq qilmadi) —
+bu ikkita mustaqil hisoblashning bir xil manba ma'lumotidan bir xil natijaga kelishini tasdiqlaydi,
+xato emas. APM (`rebuild_apm.py`) ham bir xil natija berdi (fakt 162448, 12 kun, IMM 8,12-kunlar) —
+apm.js butunlay o'zgarmadi (diff yo'q).
+
+Playwright (`playwright_check.js` + qo'shimcha APM tekshiruvi): barcha hisoblar xatosiz login
+qildi. Oktabr KPI (1-12 okt): Jami qoldiq 116 933/116 detal, Shoshilinch yetishmovchilik 2 dona/1
+detal, Tugagan detallar 34 (1 shoshilinch), Ishlab chiqarildi 162 448, Jo'natildi 164 860. Sentabr
+filtri (2026-09-01..2026-09-30): Ishlab chiqarildi **646 593 dona, 1-29 sen** — talab qilingan
+qiymat bilan AYNAN mos, sentabr o'zgarmagan. APM: "Oy" ro'yxatida "Oktabr 2026 (joriy)" va
+"Sentabr 2026 (yakunlangan)"; kun ro'yxati 01-12.10; 12-kun (dush) Fakt=22 474, Reja=23 635,
+bajarilish 95% — to'g'ri. Konsol xatolari faqat CDN bloklanishi (kutilgan).
+
+Claude Artifact (https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5): o'qildi (viewed, versiya
+1791875372-79d6 — boshqa sessiyaning oxirgi nashri bilan bir xil ma'lumot), so'ng
+`quyish-login.html` bilan `capabilities`siz qayta nashr qilindi (Version 53, 1791878080-5f18) —
+"newer version" xatosi chiqmadi. Mazmunan o'zgarish yo'q (bir xil ma'lumot, faqat yangi shifrlash
+tuzi), lekin Kirim/Chiqim zaxira nusxasi (`bake_kirim_snapshot.py`) vaqt belgisi yangilandi
+(12:52 mahalliy, 0 ta yozuv — AppSheet_Kirim hamon faqat sarlavha, 02.10'dan beri bir xil holat).
+
+GitHub: `index.html` va `source/quyish-open.html` (faqat kirim-snap vaqt belgisi + login shifrlash
+tuzi farqi) commit qilindi va `main`ga push qilindi (git CLI orqali, proxy avtomatik autentifikatsiya
+qildi — bu usul GitHub MCP serverining katta fayllar uchun token-limit xatosiga muqobil sifatida
+ishlatildi). `source/apm/apm.js` push qilinmadi, chunki o'zgarish yo'q edi.
+
+Xulosa: bugun (13.10.2026) uchinchi tekshiruv ham MUVAFFAQIYATLI — avvalgi (parallel) sessiya
+natijasi mustaqil tasdiqlandi, Kirim/Chiqim zaxirasi va Artifact versiyasi yangilandi. Muammo yo'q,
+PushNotification yuborilmadi.
