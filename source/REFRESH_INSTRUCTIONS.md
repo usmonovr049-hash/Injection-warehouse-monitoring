@@ -145,8 +145,11 @@ NORMAL holat, anomaliya emas. Kutilgan sana = (Toshkent vaqti − 8 soat) ning s
 orqada yoki oldinda bo'lsagina anomaliya deb hisoblang.
   - "Sana = kecha" + "Plan berilganmi ✓" → bu kechagi yopilgan kun, ISHONCHLI — odatdagidek nashr qiling
     (ilgari bu "xavfli kombinatsiya" deb yozilgan edi — endi bu qoida BEKOR).
-  - "Plan berilganmi ✗" → Plan_Berish'ga hamon ishonmang (pastdagi MUHIM bo'limi), ombor/Tahlil nashrini o'tkazing,
-    lekin APM'ni (3c) baribir nashr qiling. Yakshanba/dam olish kunlari reja kiritilmasligi odatiy — buni xato deb
+  - "Plan berilganmi ✗" → Plan_Berish'ning kerak/ustuvorlik ustunlariga ishonmang, LEKIN NASHRNI O'TKAZMANG (13.10.2026,
+    Rustam: "kunlarni avtomatik yangila"): `KEEP_PLAN=quyish-open.html python3 rebuild_dash.py` bilan quring — kunlik
+    ishlab chiqarish/jo'natish/qoldiq va kunlar soni yangilanadi, kerak/ustuvorlik/NEED_TOTAL/planDate esa oxirgi
+    nashr qilingan (ishonchli) yozuvdan olinadi. Keyin odatdagidek apply_dash_update, 3a/3b/3c, build, nashr.
+    Plan ✓ bo'lganda KEEP_PLAN'siz quring (yangi reja olinadi). Vazifa kuniga ikki marta ishlaydi (07:47 va 12:47). Yakshanba/dam olish kunlari reja kiritilmasligi odatiy — buni xato deb
     xabar qilmang.
   - "Sana orqada" sababli hech qachon PushNotification yubormang va qayta tekshiruv rejalashtirmang.
 

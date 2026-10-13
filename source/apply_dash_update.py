@@ -98,6 +98,10 @@ def main():
         raise AssertionError('MONTHS massivida hech qanday oy topilmadi')
     last_id = ids_in_order[-1]
 
+    if data.get('KEEP_PLAN'):
+        _pd = re.findall(r"planDate:'([^']*)'", months_block)
+        if _pd: meta['planDate'] = _pd[-1]
+
     def new_entry_js(frozen):
         return ("{id:'%s',label:'%s',monShort:'%s',monNum:'%s',planDate:'%s',frozen:%s,\n"
                 "   NEED_TOTAL:%s,\n"

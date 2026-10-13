@@ -139,6 +139,30 @@ while pb.cell(r,1).value is not None:
                       covers=covers_s, prio=prio))
     r += 1
 
+# ---- KEEP_PLAN rejimi (13.10.2026'dan) ----
+# "Plan berilganmi ✗" bo'lsa Plan_Berish'ning kerak/ustuvorlik ustunlariga ishonib bo'lmaydi, lekin kunlik
+# ishlab chiqarish/jo'natish ma'lumoti baribir yangilanishi kerak. KEEP_PLAN=<quyish-open.html> berilsa,
+# dem/need/covers/prio va NEED_TOTAL oxirgi nashr qilingan (ishonchli) oy yozuvidan olinadi.
+import os, re as _re
+_kp = os.environ.get('KEEP_PLAN')
+if _kp:
+    _src = open(_kp, encoding='utf-8').read()
+    _ms = _src.index('const MONTHS=['); _me = _src.index('\n];', _ms); _blk = _src[_ms:_me]
+    _raw = _blk[_blk.rindex('RAW:`') + 5:]; _raw = _raw[:_raw.index('`')]
+    _nt = _re.findall(r'NEED_TOTAL:(\d+)', _blk)[-1]
+    _old = {}
+    for _ln in _raw.split('\n'):
+        _f = _ln.split('|')
+        if len(_f) >= 10: _old[_f[3]] = _f
+    _miss = 0
+    for rw in rows:
+        o = _old.get(str(rw['code']))
+        if not o: _miss += 1; continue
+        rw['dem'] = int(float(o[6])); rw['need'] = int(float(o[7])); rw['covers'] = o[8]; rw['prio'] = o[9]
+    if _miss > 3: raise SystemExit('KEEP_PLAN: %d ta detal eski yozuvda topilmadi — to\'xtatildi' % _miss)
+    NEED_TOTAL = int(_nt)
+    print('KEEP_PLAN: reja/kerak oxirgi nashrdan olindi (NEED_TOTAL=%s, topilmagan %d)' % (NEED_TOTAL, _miss))
+
 # ---- build RAW lines ----
 lines=[]
 prev_series=None
@@ -159,7 +183,7 @@ for i,rw in enumerate(rows,1):
 MON_RAW = '\n'.join(mon_lines)
 
 import json
-out = dict(N_DAYS=N_DAYS, NEED_TOTAL=NEED_TOTAL, PLAN_DATE=str(PLAN_DATE), MONTH_DATE=(str(MONTH_DATE) if MONTH_DATE is not None else ''), TOT_PROD=TOT_PROD, SHIP=SHIP, END=END,
+out = dict(N_DAYS=N_DAYS, KEEP_PLAN=bool(_kp), NEED_TOTAL=NEED_TOTAL, PLAN_DATE=str(PLAN_DATE), MONTH_DATE=(str(MONTH_DATE) if MONTH_DATE is not None else ''), TOT_PROD=TOT_PROD, SHIP=SHIP, END=END,
            RAW=RAW, MON_RAW=MON_RAW, n_rows=len(rows), crit=sum(1 for r in rows if r['prio']=='U'), high=sum(1 for r in rows if r['prio']=='H'))
 with open('/tmp/dash_rebuild.json','w') as f:
     json.dump(out, f, ensure_ascii=False)
