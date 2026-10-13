@@ -740,6 +740,49 @@ kabi oddiy holat bo'lib, standart ertangi kunlik vazifa (CRON_TZ=Asia/Tashkent 0
 davom ettiradi. PushNotification yuborilmadi — na eski (endi bekor qilingan) sana-lag sababi, na
 yangi qoida bo'yicha buning hojati yo'q.
 
+**13.10.2026, ~02:49 UTC / ~07:49 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent 07:47) —
+MUVAFFAQIYATLI YANGILANDI (YANGI SANA QOIDASI BO'YICHA BIRINCHI TO'LIQ AVTOMATIK KUN):** Manba jadval
+(`1I4GbqRL-r9_0pDiIL0hQatOSv_dAriYT5XbMr5K8Vv4`) xlsx qilib yuklab olindi (`download_file_content` +
+openpyxl). Kunlik_Panel F1 ("Sana:") = **2026-10-12** — kutilgan sana (Toshkent vaqti − 8 soat =
+2026-10-12) bilan AYNAN mos, demak anomaliya emas. Holat: "Fakt kiritilganmi: ✗", "Chiqim
+kiritilganmi: ✗", "Plan berilganmi (Berilgan_Plan): ✓ Berilgan", "IMM_Fact to'ldirilganmi:
+✓ To'ldirilgan". 12.10'da Rustam tasdiqlagan YANGI SANA QOIDASIga ko'ra "Sana = kecha" + "Plan ✓"
+ISHONCHLI — Fakt/Chiqim ✗ bo'lishi bu qoidaga ta'sir qilmaydi (qoida faqat sana mosligi + Plan
+holatiga qarab qaror beradi). Plan_Berish!B2=2026-10-12, F2=57934 — ikkalasi Kunlik_Panel bilan mos.
+Shuning uchun to'liq kunlik yangilash bajarildi:
+- Oktabr ASTATKA yuklandi (`1BJJXwxWtqL6Xtokhk97GkIfY5TQ9_eJBlWK-hFguyIg`).
+- `rebuild_dash.py`: N_DAYS=10 (1-10 okt, kunlik "01".."31" varaqlari 12.10'dagi bilan bir xil —
+  jamoa hali 11-12-kun ma'lumotini kiritmagan, bu xato emas), NEED_TOTAL=57934, 116 qator, crit=1,
+  high=30.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 10 kun, kerak=57934" — XAVFLI xato yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (AppSheet_Kirim hamon faqat sarlavha, 02.10'dan
+  beri bir xil holat — kod xatosi emas). Arxivda hamon 4 ta sentabr yozuvi.
+- `bake_kirim_snapshot.py`: OK, 0 ta yozuv, vaqt belgisi yangilandi.
+- APM (3c): `rebuild_apm.py source/apm/apm.js /tmp/zyt.xlsx` — "Mavjud oy yangilandi: 12 kun, fakt
+  140084, reja 89057 (4 kun), IMM kunlari: 8,12" — XAVFLI xato yo'q. 11-12-kun fakti hali 0 (hali
+  kiritilmagan), lekin 12-kun uchun reja (23635 dona) va IMM nusxasi mavjud bo'lgani uchun skript
+  ularni qo'shdi — bu normal (fakt keyinroq to'ldirilganda o'zi yangilanadi).
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi.
+- Playwright tekshiruvi (`source/playwright_check.js` + vaqtinchalik APM tekshiruvi, keyin
+  o'chirildi — repo'da saqlanmadi): barcha uch hisob xatosiz login qildi; Oktabr KPI (1-10 okt):
+  Jami qoldiq 128 637/116 detal, Shoshilinch yetishmovchilik 2 dona/1 detal, Tugagan detallar 34
+  (1 tasi shoshilinch), Ishlab chiqarildi 140 084, Jo'natildi 131 792. Sentabr filtri
+  (2026-09-01..2026-09-30): Ishlab chiqarildi **646 593 dona, 1-29 sen** — talab qilingan qiymat
+  bilan AYNAN mos, sentabr o'zgarmagan. APM "Oy" ro'yxatida "Oktabr 2026 (joriy)" va "Sentabr 2026
+  (yakunlangan)" ikkalasi bor; kun ro'yxati 01.10-12.10'gacha boradi; 12-kun (so'nggi) uchun Fakt=0
+  (kutilgan, hali kiritilmagan), Reja=23635 to'g'ri ko'rsatildi. Konsol xatolari faqat CDN
+  bloklanishi (ERR_TUNNEL_CONNECTION_FAILED, kutilgan).
+- Claude Artifact (https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5): o'qildi (viewed, versiya
+  1791779006-8f2b — 12.10'dagi bilan bir xil, "newer version" muammosi yo'q), so'ng
+  `quyish-login.html` bilan `capabilities`siz nashr qilindi (Version 50, 1791860048-d0dd).
+- GitHub Pages: `index.html`, `source/quyish-open.html` va `source/apm/apm.js` shu commitda push
+  qilinadi.
+
+Xulosa: bugun (13.10.2026) kunlik yangilash MUVAFFAQIYATLI yakunlandi — 10 kunlik oktabr ma'lumoti
+(1-10 okt) va APM 12 kun (1-12 okt, 11-12 fakt hali kutilmoqda) bilan, BIRINCHI tekshiruvda (12.10'da
+tasdiqlangan yangi sana qoidasi tufayli — "sana=kecha+Plan✓" endi ishonchli deb hisoblanadi, qo'shimcha
+tekshiruv/send_later kerak bo'lmadi). PushNotification yuborilmadi (muammo yo'q).
+
 ## Kirim/Chiqim jurnali (30.09.2026'da qo'shildi)
 
 Yangi "Kirim/Chiqim" tab (admin va apm akkauntlarida, ombor'da yo'q) — "AppSheet_Kirim"
