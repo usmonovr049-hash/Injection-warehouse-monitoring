@@ -918,3 +918,44 @@ commitda push qilinadi.
 Xulosa: qayta tekshiruv FOYDALI bo'ldi — birinchi (07:49) nashrdan keyin jamoa 13-kun fakti/chiqimini
 kiritgan edi, shuning uchun ikkinchi nashr aniqroq (yangiroq) raqamlar bilan chiqdi. Muammo yo'q,
 PushNotification yuborilmadi.
+
+**Davomi (14.10.2026, ~07:49-08:00 UTC / ~12:49-13:00 mahalliy, kunlik vazifaning ikkinchi
+(12:47 mahalliy) slotidagi tekshiruvi):** Manba jadvallar (zyt.xlsx, Oktabr ASTATKA) qayta
+yuklab olindi. Kunlik_Panel F1 ("Sana:") = **2026-10-14** — kutilgan sana (Toshkent vaqti bilan
+mos, anomaliya yo'q) bilan AYNAN mos. Holat: "Fakt kiritilganmi: ✓", "Chiqim kiritilganmi: ✓",
+"Plan berilganmi (Berilgan_Plan): ✓ Berilgan", "IMM_Fact to'ldirilganmi: ✓ To'ldirilgan" —
+to'rttasi ham ✓ (birinchi tekshiruv — 04:35 UTC — bilan bir xil toza holat). SANA QOIDASIga ko'ra
+to'liq kunlik yangilash (KEEP_PLAN'siz) bajarildi:
+- `rebuild_dash.py`: N_DAYS=13 (1-13 okt, "14" varag'i allaqachon mavjud, lekin G-vektor hali
+  kunlik yopilishni tasdiqlamagan — bu normal), NEED_TOTAL=43835 (birinchi tekshiruvdagi 56935'dan
+  pastroq — kunlik reja/zaxira tabiiy siljishi, IMPORTRANGE beqarorligi emas), 116 qator, crit=0,
+  high=34 — XAVFLI xato yo'q.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 13 kun, kerak=43835" — XAVFLI xato yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (birinchi tekshiruvdagi 1 ta yozuv allaqachon
+  arxivda, takror qo'shilmadi — dedup ishladi; arxivda jami 5 ta: 4 sentabr + 1 oktabr).
+- `bake_kirim_snapshot.py`: OK, 1 ta yozuv, vaqt belgisi yangilandi (14.10.2026 12:52).
+- APM (3c): `rebuild_apm.py source/apm/apm.js /tmp/zyt.xlsx` — "Mavjud oy yangilandi: 14 kun, fakt
+  191019, reja 147980 (6 kun), IMM kunlari: 8,12,13,14" — XAVFLI xato yo'q. "14" kuni endi IMM
+  nusxasi/reja bilan qo'shildi (manba jadvalda kun ilgarilab ketgani uchun bosh dash hali 13 kunda
+  qolsa ham, APM mustaqil ravishda 14 kunga o'tdi — bu normal, APM Plan_Berish/Kunlik_Panel'ga
+  bog'liq emas).
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi.
+- Playwright tekshiruvi (`playwright_check.js` + vaqtinchalik APM tekshiruvi, repo'da saqlanmadi):
+  barcha uch hisob (ombor/admin/apm) xatosiz login qildi. Oktabr KPI (1-13 okt): Jami qoldiq
+  119 767/116 detal, Shoshilinch yetishmovchilik 0, Tugagan detallar 32, Ishlab chiqarildi
+  191 019, Jo'natildi 190 597. Sentabr filtri (2026-09-01..2026-09-30): Ishlab chiqarildi
+  **646 593 dona, 1-29 sen** — talab qilingan qiymat bilan AYNAN mos, sentabr o'zgarmagan. APM:
+  "Oy" ro'yxatida "Oktabr 2026 (joriy)" va "Sentabr 2026 (yakunlangan)" ikkalasi bor; kun ro'yxati
+  01.10-14.10'gacha boradi; standart "bir kunlik ma'lumot" so'nggi IMM-nusxali kun (13.10, sesh)ni
+  ko'rsatadi: Fakt 28 571 (1-sm 11 266, 2-sm 17 305), Reja 28 430, bajarilish 100% — to'g'ri. IMM
+  yuklamasi jadvali (10 IMM) to'g'ri ko'rsatildi. Konsol xatolari yo'q (sahifa xatosi yo'q), faqat
+  CDN bloklanishi (kutilgan, pageerror emas).
+- Claude Artifact: o'qildi (viewed, versiya 1791952518-1a4d — birinchi tekshiruvdagi oxirgi nashr
+  bilan bir xil, "newer version" muammosi yo'q), so'ng `quyish-login.html` bilan `capabilities`siz
+  qayta nashr qilindi (Version 56, 1791964427-2905).
+- GitHub: `index.html`, `source/quyish-open.html` va `source/apm/apm.js` shu commitda push
+  qilinadi.
+
+Xulosa: bugungi ikkinchi tekshiruv (12:47 mahalliy slot) MUVAFFAQIYATLI — Tahlil 13 kunlik
+(1-13 okt, kerak=43835, tabiiy siljigan) va APM 14 kunlik (1-14 okt, fakt 191019) ma'lumot bilan.
+Muammo yo'q, PushNotification yuborilmadi.
