@@ -895,3 +895,26 @@ SANA QOIDASIga ko'ra "Sana = kecha" + "Plan ✓" ISHONCHLI, shuning uchun to'liq
 Xulosa: bugun (14.10.2026) kunlik yangilash MUVAFFAQIYATLI yakunlandi — BIRINCHI tekshiruvda, 13
 kunlik oktabr ma'lumoti (1-13 okt) bilan. Kirim/Chiqim jurnali 02.10'dan beri birinchi marta haqiqiy
 yozuv oldi (1 ta). Muammo yo'q, PushNotification yuborilmadi.
+
+**Davomi (14.10.2026, ~09:31-09:35 UTC+5 / ~04:31-04:35 UTC) — foydalanuvchi so'rovi bilan qayta
+tekshirildi:** Manba jadvallar ikkinchi marta (va NEED_TOTAL uchun uchinchi marta, ketma-ket) qayta
+yuklab olindi. Kunlik_Panel sanasi/holati o'zgarmagan (2026-10-13, to'rttasi ham ✓). Plan_Berish!F2
+birinchi tekshiruvdagi 58507'dan 56935'ga siljigan edi — ikki marta ketma-ket (bir necha daqiqa farq
+bilan) qayta yuklab solishtirilganda ikkalasida ham bir xil 56935 chiqdi (barqarorlashgan, IMPORTRANGE
+beqarorligi emas — kunlik hisob tabiiy siljishi, ilgari ko'p marta kuzatilgan). Shuning uchun
+`rebuild_dash.py`/`apply_dash_update.py` yangilangan qiymat (kerak=56935, 13 kun, XAVFLI xato yo'q)
+bilan qayta ishga tushirildi. Muhimroq topilma — APM uchun manba (zyt.xlsx) qayta yuklanganda 13-kun
+FAKTI endi kiritilgan edi (soat 07:49'dagi birinchi tekshiruvda hali yo'q edi): `rebuild_apm.py` fakt
+162448 → 191509'ga oshdi (13 kun, IMM kunlari 8,12,13, XAVFLI xato yo'q), APM "bir kunlik ma'lumot"
+default endi 13.10.2026 (fakt 29 061, reja 28 430, bajarilish 102%) ko'rsatadi. `archive_kirim_month.py`:
+0 ta yangi yozuv (birinchi tekshiruvdagi 1 ta yozuv allaqachon arxivda, takror qo'shilmadi — dedup
+ishladi). `node build_login.js` muvaffaqiyatli. Playwright: Oktabr KPI (1-13 okt) Ishlab chiqarildi
+162 448 → 191 509, Jo'natildi 164 923 → 190 597 ga yangilandi; Sentabr filtri hamon aniq **646 593
+dona, 1-29 sen** — o'zgarmagan. Claude Artifact o'qildi (versiya 1791946377-7d9d — birinchi
+tekshiruvdagi nashr bilan bir xil, "newer version" muammosi yo'q), so'ng qayta nashr qilindi (Version
+55, 1791952518-1a4d). GitHub: `index.html`, `source/quyish-open.html`, `source/apm/apm.js` shu
+commitda push qilinadi.
+
+Xulosa: qayta tekshiruv FOYDALI bo'ldi — birinchi (07:49) nashrdan keyin jamoa 13-kun fakti/chiqimini
+kiritgan edi, shuning uchun ikkinchi nashr aniqroq (yangiroq) raqamlar bilan chiqdi. Muammo yo'q,
+PushNotification yuborilmadi.
