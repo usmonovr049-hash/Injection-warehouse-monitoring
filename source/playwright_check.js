@@ -25,7 +25,7 @@ const path = require('path');
   // ---- Admin login: check Tahlil paneli (dash) + Kirim/Chiqim ----
   {
     const page = await freshPage();
-    await login(page, 'admin', 'uz123456');
+    await login(page, 'admin', 'uk123456');
     await page.waitForTimeout(500);
     const errAfterLogin = await page.$eval('#err', el => el.textContent).catch(() => '');
     results.loginErr = errAfterLogin;
@@ -62,7 +62,7 @@ const path = require('path');
   // ---- ombor login: check monitor view loads ----
   {
     const page = await freshPage();
-    await login(page, 'ombor', 'uz123456');
+    await login(page, 'ombor', 'uk123456');
     await page.waitForTimeout(800);
     const monVisible = await page.$eval('#v-mon', el => !el.hidden).catch(e => 'ERROR:' + e.message);
     results.omborMonVisible = monVisible;
@@ -74,7 +74,7 @@ const path = require('path');
   // ---- apm login: check reja/fakt tab ----
   {
     const page = await freshPage();
-    await login(page, 'apm', 'uz123456');
+    await login(page, 'apm', 'uk123456');
     await page.waitForTimeout(800);
     const apmVisible = await page.$('#tab-apm');
     results.apmHasApmTab = !!apmVisible;

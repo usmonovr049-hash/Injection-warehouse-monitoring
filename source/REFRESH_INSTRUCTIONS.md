@@ -1,5 +1,7 @@
 # Kunlik yangilash yo'riqnomasi (Tahlil paneli)
 
+**PAROL (15.10.2026'dan): barcha hisoblar (ombor/admin/apm) uchun `uk123456` (Uk123456; kirishda kichik harfga o'giriladi). Eski uz123456 endi ishlamaydi.**
+
 Bu papka "Quyish paneli" tizimining manba kodi. Kunlik avtomatik yangilanish shu bosqichlar
 orqali amalga oshiriladi. **30.09.2026'da tizim ko'p oylik arxivni qo'llab-quvvatlaydigan
 qilib qayta qurildi (`MONTHS[]` massivi) va yangi "Kirim/Chiqim" jurnali qo'shildi — pastdagi
@@ -106,7 +108,7 @@ QO'LLAMANG.**
    avtomatik saqlanadi; `downloads` — Excel'ga yuklash tugmasi uchun kerak).
 
 4. `node build_login.js` — quyish-login.html'ni qayta quradi (parollar o'zgarmaydi: barchasi
-   "uz123456", pastki registrda). Agar kelajakda `quyish-open.html`ga YANGI (to'rtinchi,
+   "uk123456", pastki registrda). Agar kelajakda `quyish-open.html`ga YANGI (to'rtinchi,
    beshinchi...) `<script>` blok qo'shsangiz, `build_login.js` ichidagi `scripts[N]`
    indekslarini ham yangilashni unutmang (apm/admin akkauntlari uchun) — bu haqda
    build_login.js boshidagi izohlarni o'qing. Hozirgi holat: scripts[0]=mon, [1]=dash,
@@ -450,7 +452,7 @@ yangilash bajarildi:
   to'ldirmagan (yoki boshqa sababga ko'ra bo'sh) — bu kod xatosi emas, operatsion holat; agar/qachon
   jurnal to'ldirilsa, endi tuzatilgan skript uni to'g'ri arxivlaydi.
 - `bake_kirim_snapshot.py`: OK, 0 ta yozuv (yuqoridagi sabab bilan bir xil), vaqt belgisi yangilandi.
-- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi (barchasi "uz123456").
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi (barchasi "uk123456").
 - Playwright tekshiruvi (`source/playwright_check.js`, kelajakda qayta ishlatish uchun repo'da
   qoldirildi): barcha uch hisob (ombor/admin/apm) login xatosiz ishladi; ombor hisobida Tahlil
   paneli tabi YO'Q (to'g'ri, kutilgandek); Oktabr KPI: Jami qoldiq 134 513/116 detal, Shoshilinch

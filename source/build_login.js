@@ -3,7 +3,7 @@ const src=fs.readFileSync('quyish-open.html','utf8');
 const words=['olma','daryo','tosh','bahor','chinor','qalam','yulduz','oltin','shamol','anor','karvon','sohil','paxta','bulut','kitob','ko\'prik'].map(w=>w.replace("'",''));
 const pool=()=>{const a=[...words];for(let i=a.length-1;i>0;i--){const j=crypto.randomInt(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
 const mk=()=>{const a=pool();return `${a[0]}-${a[1]}-${a[2]}-${crypto.randomInt(1000,9999)}`};
-const pw={ombor:'uz123456',admin:'uz123456',apm:'uz123456'};
+const pw={ombor:'uk123456',admin:'uk123456',apm:'uk123456'};
 // split source
 const headEnd=src.indexOf('<style>');
 const head=src.slice(0,headEnd);
