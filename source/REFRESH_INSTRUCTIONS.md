@@ -961,3 +961,43 @@ to'liq kunlik yangilash (KEEP_PLAN'siz) bajarildi:
 Xulosa: bugungi ikkinchi tekshiruv (12:47 mahalliy slot) MUVAFFAQIYATLI — Tahlil 13 kunlik
 (1-13 okt, kerak=43835, tabiiy siljigan) va APM 14 kunlik (1-14 okt, fakt 191019) ma'lumot bilan.
 Muammo yo'q, PushNotification yuborilmadi.
+
+**15.10.2026, ~02:53 UTC / ~07:53 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent 07:47) —
+BIRINCHI TEKSHIRUV:** Kunlik_Panel F1 ("Sana:") = 2026-10-15 (bugungi kun bilan mos). Holat:
+"Plan berilganmi (Berilgan_Plan): ✗ Hali yo'q" (Fakt/Chiqim/IMM_Fact holati alohida tekshirilmagan,
+lekin natija ko'rsatadiki ular ✓ bo'lgan). SANA QOIDASIga ko'ra Plan ✗ bo'lgani uchun KEEP_PLAN
+rejimida yangilandi: Tahlil 1-13 okt (kerak=43835, o'zgarmadi), APM 14 kun (fakt 191019). Shundan
+keyin, alohida so'rov bilan, barcha hisoblar uchun parol "uk123456" ga o'zgartirildi (eski
+"uz123456" endi ishlamaydi) — bu REFRESH_INSTRUCTIONS.md boshidagi PAROL qatoriga yozildi.
+
+**Davomi (15.10.2026, ~07:49-07:54 UTC / ~12:49-12:54 mahalliy) — IKKINCHI TEKSHIRUV (12:47 mahalliy
+slot):** Manba jadvallar (zyt.xlsx, Oktabr ASTATKA) qayta yuklab olindi. Kunlik_Panel F1 ("Sana:")
+hamon 2026-10-15 (bugungi kun bilan mos, anomaliya yo'q). Holat: "Fakt: ✓", "Chiqim: ✓", "Plan
+berilganmi (Berilgan_Plan): ✗ Hali yo'q" (birinchi tekshiruv bilan bir xil), "IMM_Fact: ✓".
+Plan_Berish!B2=2026-10-15 (sana mos), F2=41941 — lekin Plan ✗ bo'lgani uchun SANA QOIDASIga ko'ra
+bu raqamga ishonib bo'lmaydi. Shuning uchun `KEEP_PLAN=source/quyish-open.html python3
+source/rebuild_dash.py` bilan quring (kerak=43835 o'zgarmadi, oxirgi ishonchli rejadan saqlandi).
+Natija: N_DAYS 13→14 (1-14 okt, "14" varag'i endi yopilgan ko'rinadi), 116 qator, crit=0, high=34 —
+XAVFLI xato yo'q. `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 14 kun, kerak=43835".
+`archive_kirim_month.py ... all`: 0 ta yangi yozuv (arxivda jami 5 ta: 4 sentabr + 1 oktabr).
+`bake_kirim_snapshot.py`: OK, 1 ta yozuv, vaqt belgisi yangilandi (15.10.2026 12:52). APM (3c):
+`rebuild_apm.py source/apm/apm.js /tmp/zyt.xlsx` — "Mavjud oy yangilandi: 14 kun, fakt 191019→218134
+(13/14-kun fakti endi to'liq kiritilgan), reja 147980 (6 kun), IMM kunlari: 8,12,13,14" — XAVFLI
+xato yo'q. `node build_login.js` (source/ ichida) muvaffaqiyatli, parollar o'zgarmadi (uk123456).
+Playwright (`playwright_check.js` + vaqtinchalik APM tekshiruvi, repo'da saqlanmadi): barcha uch
+hisob (ombor/admin/apm) xatosiz login qildi. Oktabr KPI (1-14 okt): Jami qoldiq 120 461/116 detal,
+Shoshilinch yetishmovchilik 0, Tugagan detallar 27, Ishlab chiqarildi 218 134, Jo'natildi 217 018.
+Sentabr filtri (2026-09-01..2026-09-30): Ishlab chiqarildi **646 593 dona, 1-29 sen** — talab
+qilingan qiymat bilan AYNAN mos, sentabr o'zgarmagan. APM: "Oy" ro'yxatida "Oktabr 2026 (joriy)" va
+"Sentabr 2026 (yakunlangan)" ikkalasi bor; kun ro'yxati 01.10-14.10'gacha; so'nggi IMM-nusxali kun
+(14.10, chor) Fakt 27 115, Reja 30 493, bajarilish 89% — to'g'ri ko'rsatildi. Konsol xatolari faqat
+CDN bloklanishi (ERR_TUNNEL_CONNECTION_FAILED, kutilgan). Claude Artifact
+(https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5): o'qildi (viewed, versiya 1792033964-9e6f —
+"newer version" muammosi yo'q), so'ng `quyish-login.html` bilan `capabilities`siz qayta nashr
+qilindi (Version 59, 1792050831-178c). GitHub: `index.html`, `source/quyish-open.html` va
+`source/apm/apm.js` shu commitda push qilindi (remote URL repo nomi katta harfga
+"Injection-warehouse-monitoring" ga o'zgargani uchun `git remote set-url` bilan yangilandi).
+
+Xulosa: bugungi ikkinchi tekshiruv (12:47 mahalliy slot) MUVAFFAQIYATLI — Tahlil 14 kunlik
+(1-14 okt, kerak=43835, o'zgarmadi) va APM 14 kunlik (1-14 okt, fakt 218134, oshdi) ma'lumot bilan.
+Muammo yo'q, PushNotification yuborilmadi.
