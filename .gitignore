@@ -3,3 +3,8 @@
 # The published output is source/quyish-open.html (source) -> index.html (deployed)
 # and the Claude Artifact; quyish-login.html itself is a local build artifact.
 source/quyish-login.html
+
+# CI (GitHub Actions) ephemeral install, never commit:
+source/ci/node_modules/
+source/ci/package-lock.json
+source/ci/__pycache__/

@@ -1,0 +1,65 @@
+name: Kunlik avtomatik yangilash
+
+# Claude/token ishtirokisiz: Google Sheets -> rebuild/apply/archive/snapshot/APM ->
+# build_login -> Playwright tekshiruvi -> GitHub Pages nashri. Tafsilot: source/ci/.
+# Bir martalik sozlash kerak: source/ci/SETUP.md.
+
+on:
+  schedule:
+    # 05:30 UTC = 10:30 Asia/Tashkent (doimiy UTC+5, yoz vaqti yo'q)
+    - cron: '30 5 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: daily-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Python dependencies
+        run: pip install -r source/ci/requirements.txt
+
+      - name: Install Playwright (Chromium)
+        run: |
+          npm install playwright@1.56.0 --no-save --prefix source/ci
+          npx --prefix source/ci playwright install --with-deps chromium
+
+      - name: Run daily refresh pipeline
+        id: refresh
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 source/ci/daily_refresh.py
+
+      - name: Commit and push (only if the pipeline approved publishing)
+        if: steps.refresh.outputs.should_push == 'true'
+        run: |
+          git config user.name "daily-refresh-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A -- index.html source/quyish-open.html source/apm/apm.js source/REFRESH_INSTRUCTIONS.md
+          if git diff --cached --quiet; then
+            echo "O'zgarish yo'q, commit qilinmadi."
+          else
+            git commit -m "Kunlik avtomatik yangilash ($(date -u +%Y-%m-%d), GitHub Actions)"
+            git push
+          fi

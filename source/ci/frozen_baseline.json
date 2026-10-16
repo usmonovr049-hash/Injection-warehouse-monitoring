@@ -1,0 +1,7 @@
+{
+  "_comment": "Muzlatilgan (frozen) oyning Tahlil panelidagi 'Ishlab chiqarildi' jami soni — Playwright tekshiruvi buni har safar nashr qilishdan OLDIN qayta tasdiqlaydi. Yangi oy muzlatilganda (masalan noyabr boshlanib, oktabr frozen bo'lganda) bu faylni YANGI oy va YANGI jami songa qo'lda yangilang (source/quyish-open.html'dagi MONTHS[] frozen yozuvidan).",
+  "month_id": "2026-09",
+  "from": "2026-09-01",
+  "to": "2026-09-30",
+  "expected_total": 646593
+}
