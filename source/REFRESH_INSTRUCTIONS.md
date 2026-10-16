@@ -1051,3 +1051,29 @@ yo'q, Plan ✗ bo'lgani uchun kutilgan). Claude Artifact qayta nashr qilindi (Ve
 
 Xulosa: APM yana yangilandi (fakt 218134→245645), Tahlil/Kirim-Chiqim Plan ✗ sababli hamon o'tkazib
 yuborilgan. Muammo yo'q, PushNotification yuborilmadi.
+
+**Davomi (16.10.2026, ~06:52-07:02 UTC / ~11:52-12:02 mahalliy, kunlik vazifaning ikkinchi (12:47
+mahalliy) slotidagi tekshiruvi):** Manba jadval ikki marta ketma-ket qayta yuklab solishtirildi —
+NEED_TOTAL=40593 va PLAN_DATE=2026-10-16 ikkalasida ham bir xil chiqdi (IMPORTRANGE beqarorligi
+emas). Kunlik_Panel F1 ("Sana:") = 2026-10-16 (bugungi kun bilan AYNAN mos). Holat: "Fakt: ✓",
+"Chiqim: ✓", "Plan berilganmi (Berilgan_Plan): ✓ Berilgan" (ertalabki ✗'dan o'zgargan!), "IMM_Fact:
+✓". SANA QOIDASIga ko'ra bu ishonchli — to'liq kunlik yangilash (KEEP_PLAN'siz) bajarildi:
+- Oktabr ASTATKA yuklandi. `rebuild_dash.py`: N_DAYS 14→15 (1-15 okt), NEED_TOTAL=40593 (Plan_Berish
+  bilan mos), 116 qator, crit=1, high=15 — XAVFLI xato yo'q.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 15 kun, kerak=40593" — XAVFLI xato yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (arxivda jami 5 ta, o'zgarmadi).
+- `bake_kirim_snapshot.py`: OK, 1 ta yozuv, vaqt belgisi yangilandi (16.10.2026 11:54).
+- APM (3c): `rebuild_apm.py` — "Mavjud oy yangilandi: 16 kun, fakt 245645 (o'zgarmadi — 16-kun fakti
+  hali 0), reja 188581 (8 kun), IMM kunlari: 8,12,13,14,16" — XAVFLI xato yo'q.
+- `node build_login.js` muvaffaqiyatli, parollar o'zgarmadi.
+- Playwright: barcha uch hisob xatosiz login qildi. Oktabr KPI (1-15 okt): Jami qoldiq 122 147/116
+  detal, Shoshilinch yetishmovchilik 92 dona/1 detal, Tugagan detallar 27, Ishlab chiqarildi 245 645
+  (APM fakt bilan mos), Jo'natildi 242 843. Sentabr filtri (2026-09-01..2026-09-30): Ishlab chiqarildi
+  **646 593 dona, 1-29 sen** — AYNAN mos, o'zgarmagan. APM kun ro'yxati 01.10-16.10'gacha.
+- Claude Artifact: o'qildi (viewed, "newer version" muammosi yo'q), qayta nashr qilindi (Version 62,
+  1792133725-2180). GitHub: `index.html`, `source/quyish-open.html` va `source/apm/apm.js` shu
+  commitda push qilinadi.
+
+Xulosa: Plan ertalabki ✗'dan ✓'ga o'tgach, to'liq kunlik yangilash MUVAFFAQIYATLI bajarildi — Tahlil
+15 kunlik (1-15 okt, kerak=40593), APM 16 kunlik (1-16 okt, fakt 245645). Muammo yo'q, PushNotification
+yuborilmadi.
