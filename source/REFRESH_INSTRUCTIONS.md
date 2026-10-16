@@ -1077,3 +1077,44 @@ emas). Kunlik_Panel F1 ("Sana:") = 2026-10-16 (bugungi kun bilan AYNAN mos). Hol
 Xulosa: Plan ertalabki ✗'dan ✓'ga o'tgach, to'liq kunlik yangilash MUVAFFAQIYATLI bajarildi — Tahlil
 15 kunlik (1-15 okt, kerak=40593), APM 16 kunlik (1-16 okt, fakt 245645). Muammo yo'q, PushNotification
 yuborilmadi.
+
+**Davomi (16.10.2026, ~07:50-08:02 UTC / ~12:50-13:02 mahalliy) — standart kunlik vazifaning
+ikkinchi (12:47 mahalliy) slotidagi mustaqil tekshiruvi, boshqa (11:52-12:02 mahalliy) sessiya
+natijasini TASDIQLADI:** Manba jadvallar (zyt.xlsx, Oktabr ASTATKA) qayta yuklab olindi. Kunlik_Panel
+F1 ("Sana:") = 2026-10-16 (bugungi kun bilan AYNAN mos). Holat: "Fakt: ✓", "Chiqim: ✓", "Plan
+berilganmi (Berilgan_Plan): ✓ Berilgan", "IMM_Fact: ✓". Plan_Berish!B2=2026-10-16, F2=40593 — bu
+~1 soat oldin (11:52-12:02 slotida) push qilingan commit 5637a01'dagi bilan AYNAN bir xil (manba
+ma'lumot shu oraliqda o'zgarmagan). SANA QOIDASIga ko'ra ishonchli — to'liq kunlik yangilash
+(KEEP_PLAN'siz) bajarildi:
+- `rebuild_dash.py`: N_DAYS=15 (1-15 okt, o'zgarmadi), NEED_TOTAL=40593 (o'zgarmadi), 116 qator,
+  crit=1, high=15 — XAVFLI xato yo'q.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 15 kun, kerak=40593" — XAVFLI xato yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (arxivda jami 5 ta, o'zgarmadi).
+- `bake_kirim_snapshot.py`: OK, 1 ta yozuv, vaqt belgisi yangilandi (16.10.2026 12:53).
+- APM (3c): `rebuild_apm.py source/apm/apm.js /tmp/zyt.xlsx` — "Mavjud oy yangilandi: 16 kun, fakt
+  245645 (o'zgarmadi), reja 188495 (8 kun, 11:52 slotidagi 188581'dan arzimas siljish — tabiiy,
+  IMPORTRANGE beqarorligi emas), IMM kunlari: 8,12,13,14,16" — XAVFLI xato yo'q.
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi (uk123456).
+- Playwright (kengaytirilgan vaqtinchalik tekshiruv script, repo'da saqlanmadi — npm orqali
+  playwright@1.56.0 o'rnatildi, chunki sandbox'dagi chromium-1194 build eski playwright@1.48 bilan
+  mos kelmadi/"Old Headless mode" xatosi berdi): barcha uch hisob (ombor/admin/apm) xatosiz login
+  qildi. Oktabr KPI (1-15 okt): Jami qoldiq 122 147/116 detal, Shoshilinch yetishmovchilik 92
+  dona/1 detal, Tugagan detallar 27, Ishlab chiqarildi 245 645, Jo'natildi 242 843 — 11:52
+  slotidagi bilan bir xil. Sentabr filtri (2026-09-01..2026-09-30): Ishlab chiqarildi **646 593
+  dona, 1-29 sen** — AYNAN mos, sentabr o'zgarmagan. APM: "Oy" ro'yxatida "Oktabr 2026 (joriy)" va
+  "Sentabr 2026 (yakunlangan)" ikkalasi bor; kun ro'yxati 01.10-16.10'gacha; standart "bir kunlik
+  ma'lumot" 15.10.2026 (pay)ni ko'rsatadi: Fakt 27 511 (1-sm 15 636, 2-sm 11 875), Reja 23 770,
+  bajarilish 116% — to'g'ri. Konsol xatolari faqat CDN bloklanishi (ERR_TUNNEL_CONNECTION_FAILED,
+  kutilgan), pageerror yo'q.
+- Claude Artifact (https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5): o'qildi (viewed, versiya
+  1792133725-2180 — 11:52 slotidagi oxirgi nashr bilan bir xil, "newer version" muammosi yo'q),
+  so'ng `quyish-login.html` bilan `capabilities`siz qayta nashr qilindi (Version 63,
+  1792137320-a395).
+- GitHub: `index.html`, `source/quyish-open.html` va `source/apm/apm.js` commit a0ae587 bilan
+  `main`ga push qilindi (git CLI orqali, proxy avtomatik autentifikatsiya qildi; fast-forward
+  5637a01..a0ae587, konflikt yo'q).
+
+Xulosa: bu safar ikkinchi mustaqil tekshiruv ham MUVAFFAQIYATLI — avvalgi (parallel) sessiya
+natijasini (Tahlil 1-15 okt kerak=40593, APM fakt 245645) tasdiqladi, APM rejasi arzimas siljidi
+(188581→188495) va Kirim/Chiqim zaxirasi/Artifact versiyasi yangilandi. Muammo yo'q, PushNotification
+yuborilmadi.
