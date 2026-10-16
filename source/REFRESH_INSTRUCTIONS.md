@@ -1034,3 +1034,20 @@ Xulosa: bugungi birinchi tekshiruv MUVAFFAQIYATLI — faqat APM yangilandi (15 k
 218134, o'zgarmadi), Tahlil/Kirim-Chiqim Plan ✗ sababli o'tkazib yuborildi (odatiy ertalabki holat).
 Muammo yo'q, PushNotification yuborilmadi. ~4 soatdan keyin (taxminan 06:49 UTC / ~11:49 mahalliy)
 shu sessiya o'zi qayta tekshiradi (send_later orqali rejalashtirilgan).
+
+**Davomi (16.10.2026, ~04:11-04:19 UTC / ~09:11-09:19 mahalliy) — foydalanuvchi so'rovi bilan qayta
+tekshirildi ("qayta bajaring"):** Manba jadval qayta yuklab olindi. Kunlik_Panel sanasi hamon to'g'ri
+(2026-10-16). Holat: "Fakt kiritilganmi" va "Chiqim kiritilganmi" endi ikkalasi ham "✓ Kiritilgan"
+bo'lgan (07:49'dagi tekshiruvda ikkalasi ham ✗ edi), lekin "Plan berilganmi (Berilgan_Plan)" hamon
+"✗ Hali yo'q". MUHIM bo'limiga ko'ra Plan_Berish'ga hali ishonib bo'lmaydi, shuning uchun Tahlil
+paneli/Ombor monitori/Kirim-Chiqim yana o'tkazib yuborildi (o'zgarmadi). APM esa ALOHIDA SHART
+bo'yicha yana yangilandi: `rebuild_apm.py` — "Mavjud oy yangilandi: 15 kun, fakt 218134→245645
+(15-kun fakti endi to'liq kiritilgan), reja 171750 (7 kun), IMM kunlari: 8,12,13,14" — XAVFLI xato
+yo'q. `node build_login.js` muvaffaqiyatli. Playwright: dash KPI hamon 1-14 okt (o'zgarmagan, kutilgan
+— Tahlil bu safar ham tegilmadi), Sentabr filtri hamon 646 593 dona (o'zgarmagan). APM kun ro'yxati
+hamon 01.10-15.10 (standart "bir kunlik ma'lumot" hamon 14.10, chor — 15-kun uchun hali IMM nusxasi
+yo'q, Plan ✗ bo'lgani uchun kutilgan). Claude Artifact qayta nashr qilindi (Version 61, 1792123964-f980,
+"newer version" muammosi yo'q). GitHub: `index.html` va `source/apm/apm.js` shu commitda push qilinadi.
+
+Xulosa: APM yana yangilandi (fakt 218134→245645), Tahlil/Kirim-Chiqim Plan ✗ sababli hamon o'tkazib
+yuborilgan. Muammo yo'q, PushNotification yuborilmadi.
