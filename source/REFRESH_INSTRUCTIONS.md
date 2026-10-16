@@ -1118,3 +1118,37 @@ Xulosa: bu safar ikkinchi mustaqil tekshiruv ham MUVAFFAQIYATLI — avvalgi (par
 natijasini (Tahlil 1-15 okt kerak=40593, APM fakt 245645) tasdiqladi, APM rejasi arzimas siljidi
 (188581→188495) va Kirim/Chiqim zaxirasi/Artifact versiyasi yangilandi. Muammo yo'q, PushNotification
 yuborilmadi.
+
+**Davomi (16.10.2026, ~09:35-09:37 UTC / ~14:35-14:37 mahalliy) — foydalanuvchi (Rustam)
+to'g'ridan-to'g'ri so'rovi bilan ("do it again") uchinchi mustaqil tekshiruv, kunlik standart
+jadvaldan tashqari, + shu bilan birga foydalanuvchi so'rovi bo'yicha kunlik vazifa vaqti
+o'zgartirildi:** Repo allaqachon yangilangan edi (`git pull --ff-only` → "Already up to date",
+HEAD commit 40f4d8a). Manba jadvallar (zyt.xlsx, Oktabr ASTATKA) yana qayta yuklab olindi.
+Kunlik_Panel holati o'zgarmagan: barcha 4 bayroq ✓ ("Fakt", "Chiqim", "Plan berilganmi",
+"IMM_Fact"), Plan_Berish!B2=2026-10-16, F2=40593 — 12:50 slotidagi bilan AYNAN bir xil. To'liq
+pipeline yana bajarildi:
+- `rebuild_dash.py`: N_DAYS=15, NEED_TOTAL=40593, 116 qator — o'zgarmadi, XAVFLI yo'q.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 15 kun, kerak=40593" — XAVFLI yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (jami 5 ta, o'zgarmadi).
+- `bake_kirim_snapshot.py`: vaqt belgisi yangilandi (16.10.2026 14:37).
+- `rebuild_apm.py`: "Mavjud oy yangilandi: 16 kun, fakt 245645 (o'zgarmadi), reja 209257 (8 kun,
+  188495'dan tabiiy siljidi — IMPORTRANGE jonli yangilanishi, haqiqiy anomaliya emas), IMM
+  kunlari: 8,12,13,14,16" — XAVFLI yo'q.
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi (uk123456).
+- Playwright (`/home/claude/pw-test/check.js`, playwright@1.56.0): barcha uch hisob xatosiz login
+  qildi, Oktabr KPI 12:50 slotidagi bilan bir xil, **Sentabr (frozen): 646 593 dona, 1-29 sen —
+  yana bir bor AYNAN mos, o'zgarmagan**. Pageerror yo'q, faqat kutilgan CDN bloklanish xatolari.
+- Claude Artifact: o'qildi (versiya 1792137320-a395 — 12:50 slotidagi oxirgi nashr bilan bir xil,
+  konflikt yo'q), so'ng qayta nashr qilindi (Version 64, 1792143481-c212).
+- GitHub: `index.html`, `source/quyish-open.html`, `source/apm/apm.js` commit f49c319 bilan
+  `main`ga push qilindi (git CLI, fast-forward 40f4d8a..f49c319, konflikt yo'q). Diff juda kichik
+  (3 qator) — bu real ma'lumot o'zgarmaganini tasdiqlaydi.
+
+**Rejalashtirilgan vazifa vaqti o'zgartirildi:** Foydalanuvchi so'rovi bo'yicha kunlik avtomatik
+yangilash vazifasi (`trig_015Bzr4R8BbxmKVe3rW7YTtX`, "Tahlil paneli - kunlik yangilash") avvalgi
+kuniga ikki marta (07:47 va 12:47, Asia/Tashkent) ishlashdan — har kuni ertalab soat 10:30da
+(Asia/Tashkent) bir marta ishlashga o'tkazildi. Yangi cron: `CRON_TZ=Asia/Tashkent 30 10 * * *`.
+
+Xulosa: uchinchi mustaqil tekshiruv ham MUVAFFAQIYATLI, hech qanday real o'zgarish yo'q (faqat APM
+rejasi tabiiy siljidi va Kirim/Chiqim vaqt belgisi yangilandi). Muammo yo'q, PushNotification
+yuborilmadi (kunlik vazifa muvaffaqiyatli, flag qilinadigan hech nima topilmadi).
