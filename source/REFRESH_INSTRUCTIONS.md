@@ -1152,3 +1152,46 @@ kuniga ikki marta (07:47 va 12:47, Asia/Tashkent) ishlashdan — har kuni ertala
 Xulosa: uchinchi mustaqil tekshiruv ham MUVAFFAQIYATLI, hech qanday real o'zgarish yo'q (faqat APM
 rejasi tabiiy siljidi va Kirim/Chiqim vaqt belgisi yangilandi). Muammo yo'q, PushNotification
 yuborilmadi (kunlik vazifa muvaffaqiyatli, flag qilinadigan hech nima topilmadi).
+
+**17.10.2026, ~05:37-05:45 UTC / ~10:37-10:45 mahalliy (yangi bir martalik jadval, CRON_TZ=Asia/Tashkent
+30 10 * * *, bugundan kuchga kirdi):** Repo allaqachon clone qilingan edi (HEAD=0879b16, oldingi
+kundagi GitHub Actions avtomatlashtirish commiti — bu commit kunlik vazifani GitHub Actions'ga
+o'tkazadi, LEKIN Claude'ning eski kunlik vazifasi (trig_015Bzr4R8BbxmKVe3rW7YTtX) commit izohiga ko'ra
+"hozircha zahira sifatida" ishlab turishi kerak — shuning uchun bu sessiya odatdagidek to'liq pipelineni
+bajardi). GitHub Actions ("Kunlik avtomatik yangilash", .github/workflows/daily-refresh.yml, cron 05:30
+UTC) tekshirildi: workflow repo'da mavjud va "active", lekin bugungi ishga tushirish tekshirilgan vaqtda
+(05:37 UTC, jadvaldan ~7 daqiqa keyin) ro'yxatda YO'Q EDI (list_workflow_runs → total_count=0) — ya'ni
+Action hali hech qachon ishga tushmagan (birinchi marta kecha 12:05 UTC'da qo'shilgan, GitHub'da yangi
+scheduled workflow'lar ba'zan birinchi marotaba kechikishi/o'tkazib yuborilishi odatiy). Shuning uchun
+bu kunlik zahira ishga tushirish AYNI MUHIM bo'lib qoldi.
+
+Manba jadval (Kunlik_Panel) tekshirildi: Sana=2026-10-17 (bugungi kun bilan mos), Fakt ✓, Chiqim ✓,
+Plan berilganmi ✗ Hali yo'q (odatiy ertalabki holat), IMM_Fact ✓. SANA QOIDASIga ko'ra KEEP_PLAN rejimida
+yangilandi:
+- `rebuild_dash.py` (KEEP_PLAN=quyish-open.html): N_DAYS 15→16 (1-16 okt), NEED_TOTAL=40593 (oxirgi
+  ishonchli rejadan saqlandi, o'zgarmadi), 116 qator, crit=1, high=15 — XAVFLI xato yo'q.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 16 kun, kerak=40593" — XAVFLI xato yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (arxivda jami 5 ta, o'zgarmadi).
+- `bake_kirim_snapshot.py`: OK, 1 ta yozuv, vaqt belgisi yangilandi (17.10.2026 10:40).
+- APM (3c): `rebuild_apm.py source/apm/apm.js /tmp/zyt.xlsx` — "Mavjud oy yangilandi: 16 kun, fakt
+  245645→280377 (16-kun fakti endi to'liq kiritilgan), reja 209257 (8 kun, o'zgarmadi), IMM kunlari:
+  8,12,13,14,16" — XAVFLI xato yo'q.
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi (uk123456).
+- Playwright (`playwright_check.js` + vaqtinchalik APM tekshiruvi, repo'da saqlanmadi, playwright@1.56.0
+  global /opt/npm-tools orqali, chromium-1194): barcha uch hisob (ombor/admin/apm) xatosiz login qildi,
+  pageerror yo'q (faqat kutilgan CDN/tunnel bloklanish xatolari). Oktabr KPI (1-16 okt): Jami qoldiq
+  137 386/116 detal, Shoshilinch yetishmovchilik 92 dona/1 detal, Tugagan detallar 28, Ishlab chiqarildi
+  280 377, Jo'natildi 262 336 (APM fakt bilan mos). Sentabr filtri (2026-09-01..2026-09-30): Ishlab
+  chiqarildi **646 593 dona, 1-29 sen** — AYNAN mos, sentabr o'zgarmagan. APM: "Oy" ro'yxatida "Oktabr
+  2026 (joriy)" va "Sentabr 2026 (yakunlangan)" ikkalasi bor; kun ro'yxati 01.10-16.10'gacha; standart
+  "bir kunlik ma'lumot" so'nggi IMM-nusxali kun (16.10, jum)ni ko'rsatadi: Fakt 34 732 (1-sm 15 481,
+  2-sm 19 251), Reja 37 507, bajarilish 93% — dash TOT_PROD[16]=34732 bilan mos, to'g'ri.
+- Claude Artifact (https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5): o'qildi (viewed, versiya
+  1792143481-c212 — 16.10'dagi oxirgi nashr bilan bir xil, "newer version" muammosi yo'q), so'ng
+  `quyish-login.html` bilan `capabilities`siz qayta nashr qilindi (Version 65, 1792215803-e720).
+- GitHub: `index.html`, `source/quyish-open.html` va `source/apm/apm.js` push qilinadi.
+
+Xulosa: bugungi (yangi kunlik 10:30 jadval bo'yicha) yangilash MUVAFFAQIYATLI — Tahlil 16 kunlik
+(1-16 okt, kerak=40593, KEEP_PLAN — plan hali berilmagan) va APM 16 kunlik (1-16 okt, fakt 280377)
+ma'lumot bilan. GitHub Actions avtomatlashtirish hali birinchi marta ishga tushmagan (kuzatilmoqda,
+zahira vazifasi davom etmoqda). Muammo yo'q, PushNotification yuborilmadi.
