@@ -1195,3 +1195,49 @@ Xulosa: bugungi (yangi kunlik 10:30 jadval bo'yicha) yangilash MUVAFFAQIYATLI �
 (1-16 okt, kerak=40593, KEEP_PLAN — plan hali berilmagan) va APM 16 kunlik (1-16 okt, fakt 280377)
 ma'lumot bilan. GitHub Actions avtomatlashtirish hali birinchi marta ishga tushmagan (kuzatilmoqda,
 zahira vazifasi davom etmoqda). Muammo yo'q, PushNotification yuborilmadi.
+
+**18.10.2026, ~05:40-05:49 UTC / ~10:40-10:49 mahalliy (standart kunlik vazifa):** Kunlik_Panel
+tekshirildi: Sana=2026-10-18 (bugungi kun bilan mos), "Fakt kiritilganmi: ✗ Hali yo'q", "Chiqim
+kiritilganmi: ✗ Hali yo'q", "Plan berilganmi (Berilgan_Plan): ✗ Hali yo'q", "IMM_Fact
+to'ldirilganmi: ✓ To'ldirilgan" — odatiy ertalabki holat. SANA QOIDASIga ko'ra (13.10.2026,
+Rustam tasdiqlagan) "Plan berilganmi ✗" bo'lsa ham nashr o'TKAZILMAYDI — KEEP_PLAN rejimida
+davom etildi:
+- `KEEP_PLAN=quyish-open.html python3 rebuild_dash.py`: N_DAYS=16 (1-16 okt, o'zgarmadi — "01"..
+  "31" varaqlari hali 17/18-oktabrni to'ldirmagan), NEED_TOTAL=40593 (oxirgi ishonchli nashrdan
+  saqlandi) — XAVFLI xato yo'q.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 16 kun, kerak=40593" — XAVFLI yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (arxivda jami 5 ta, o'zgarmadi).
+- `bake_kirim_snapshot.py`: OK, 1 ta yozuv, vaqt belgisi yangilandi (18.10.2026 10:42).
+- APM (3c, Kunlik_Panel holatidan mustaqil): `rebuild_apm.py apm/apm.js /tmp/zyt.xlsx` — "Mavjud
+  oy yangilandi: 16 kun, fakt 280377 (o'zgarmadi), reja 209257 (8 kun, o'zgarmadi), IMM kunlari:
+  8,12,13,14,16" — XAVFLI yo'q (17/18-okt uchun ham hali yangi fakt/IMM kiritilmagan).
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi (uk123456).
+- Playwright (`source/ci/verify.js` + vaqtinchalik APM tekshiruvi, playwright@1.56.0, global
+  /opt/npm-tools + /opt/pw-browsers orqali): barcha uch hisob (ombor/admin/apm) xatosiz login
+  qildi, pageerror yo'q (faqat kutilgan CDN/tunnel bloklanish xatolari). Oktabr KPI (1-16 okt):
+  Jami qoldiq 137 386/116 detal, Shoshilinch yetishmovchilik 92/1 detal, Tugagan detallar 28,
+  Ishlab chiqarildi 280 377, Jo'natildi 262 336 — 17.10 bilan bir xil (haqiqiy o'zgarish yo'q).
+  Sentabr filtri (2026-09-01..2026-09-30): Ishlab chiqarildi **646 593 dona, 1-29 sen** — AYNAN
+  mos, frozen oy o'zgarmagan. APM: "Oy" ro'yxatida "Oktabr 2026 (joriy)" va "Sentabr 2026
+  (yakunlangan)" ikkalasi bor; standart kun 16.10 (jum): Fakt 34 732 (1-sm 15 481, 2-sm 19 251),
+  Reja 37 507, bajarilish 93% — dash bilan mos.
+- Claude Artifact (https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5): o'qildi (versiya
+  1792215803-e720 — 17.10'dagi oxirgi nashr bilan bir xil, "newer version" muammosi yo'q), so'ng
+  `quyish-login.html` bilan `capabilities`siz qayta nashr qilindi (Version 66, 1792302277-1587).
+- GitHub Actions avtomatlashtirish (.github/workflows/daily-refresh.yml, 0879b16 bilan qo'shilgan):
+  birinchi (va yagona) ishga tushirishi 17.10.2026 09:33 UTC'da bo'lgan (jadvaldan ~4 soat kech —
+  yangi scheduled workflow uchun odatiy kechikish) va **MUVAFFAQIYATSIZ tugagan**: sabab —
+  `GOOGLE_SERVICE_ACCOUNT_JSON` sir (secret) repo Settings → Secrets and variables → Actions'da
+  hali sozlanmagan (source/ci/SETUP.md'da tasvirlangan bir martalik sozlash bajarilmagan). Bugungi
+  (18.10) 05:30 UTC jadvali bo'yicha hali yangi ishga tushirish yo'q (tekshirilgan vaqtda, 05:4x
+  UTC). Demak GitHub Actions hali ishlamayapti — bu kunlik Claude vazifasi hamon ASOSIY (zahira
+  emas, haqiqiy) ishlash usuli. Foydalanuvchiga buni sozlash kerakligi aytildi.
+- GitHub: `index.html`, `source/quyish-open.html`, `source/apm/apm.js` va shu yozuv main branch'ga
+  push qilinadi.
+
+Xulosa: bugungi yangilash MUVAFFAQIYATLI — Tahlil 16 kunlik (KEEP_PLAN, kerak=40593) va APM 16
+kunlik (fakt 280377) ma'lumot bilan, real o'zgarish yo'q (jamoa hali 17/18-oktabr ma'lumotini
+kiritmagan). Muammo: GitHub Actions avtomatlashtirish GOOGLE_SERVICE_ACCOUNT_JSON siri yo'qligi
+sababli hali bir marta muvaffaqiyatsiz ishlagan — foydalanuvchi buni sozlashi kerak (source/ci/SETUP.md),
+aks holda bu kunlik Claude vazifasi davom etishi kerak bo'ladi. PushNotification yuborilmadi (kunlik
+nashr muvaffaqiyatli, lekin GitHub Actions muammosi session xulosasida aytiladi).
