@@ -1301,3 +1301,35 @@ tekshiruv bilan AYNAN bir xil. To'liq pipeline yana bajarildi:
 
 Xulosa: ikkinchi mustaqil tekshiruv ham MUVAFFAQIYATLI, real o'zgarish yo'q (manba ma'lumot bir xil
 qoldi). Muammo yo'q, PushNotification yuborilmadi.
+
+**19.10.2026 (~11:55 mahalliy) — GitHub Actions avtomatlashtirish: haqiqiy sinov natijasi (Claude/token ishtirokisiz):**
+Rustamning ruxsati bilan ("tokendan tashqari ishlashni ham boshlash kerak") `source/ci/gdrive.py`
+qayta yozildi — endi GOOGLE_SERVICE_ACCOUNT_JSON sir o'rnatilmagan bo'lsa, ikkala manba jadvalni
+hech qanday kalit/tokensiz, ochiq eksport havolasi (`.../export?format=xlsx`) orqali yuklab oladi
+(sabab: ikkala jadval `get_file_permissions` orqali tekshirilganda allaqachon "Anyone with the
+link — Viewer" ekani aniqlandi). Kod push qilindi (commit c20cd0a) va workflow qo'lda 2 marta
+ishga tushirildi (`workflow_dispatch`, run #39247688553, 2 urinish) — haqiqiy natija:
+
+- "Oktabr ASTATKA" (fileId 1BJJXwxWtqL6...) — ochiq havola orqali MUVAFFAQIYATLI yuklandi,
+  hech qanday sozlash kerak emas edi.
+- "Zaxira Yetish Tahlili (IMM Grafik)" (fileId 1I4GbqRL...) — ikkala urinishda ham 401 xatosi
+  bilan muvaffaqiyatsiz tugadi, garchi `get_file_permissions` bu faylda ham xuddi shunday
+  "anyone"/"reader" ruxsati borligini ko'rsatsa ham. Eng ehtimolli sabab: Google Sheets'ning
+  alohida sozlamasi — "Disable download, print, and copy for commenters and viewers"
+  (ko'ruvchilar uchun yuklab olish/chop etish/nusxalashni taqiqlash) — bu sozlama shu bitta
+  faylda yoqilgan bo'lishi mumkin (umumiy "havola orqali ko'rish" ruxsatidan ALOHIDA sozlama,
+  Drive API orqali o'qib/o'zgartirib bo'lmaydi — faqat Sheets/Drive veb-interfeysida, fayl
+  egasi tomonidan).
+
+Xulosa: avtomatlashtirish YARIM ishlayapti — bitta jadval uchun to'liq tayyor, ikkinchisi uchun
+Rustamning bitta qo'lda qadami kerak (pastga qarang). Shuning uchun GitHub Actions workflow
+hozircha hali ham muvaffaqiyatsiz tugaydi va Claude'ning kunlik zahira vazifasi (10:30, Asia/Tashkent)
+albatta davom etishi kerak — hali o'chirilmasin.
+
+**Keyingi qadam (Rustam uchun, ~10 soniya):** "Zaxira Yetish Tahlili (IMM Grafik) last rev1"
+jadvalini oching -> **Share** tugmasi -> yuqori o'ngdagi tishli g'ildirak (Advanced/Settings)
+-> agar "Disable the option for commenters and viewers to download, print and copy this file"
+belgilangan bo'lsa, belgisini OLIB TASHLANG -> saqlang. Shundan keyin Claude workflow'ni qayta
+ishga tushirib tasdiqlaydi. Agar bu sozlamani xavfsizlik nuqtai nazaridan o'zgartirmoqchi
+bo'lmasangiz, muqobil yo'l: `source/ci/SETUP.md` bo'yicha to'liq service-account sozlashni
+bajarish (bu usul bu cheklovdan mustaqil ishlaydi).
