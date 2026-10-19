@@ -132,7 +132,7 @@ def main():
     apm_ok = False
     summary = []
 
-    log('--- Manba jadvallarni yuklab olish (service account) ---')
+    log('--- Manba jadvallarni yuklab olish (ochiq havola / service account) ---')
     gdrive.export_xlsx(ASTATKA_FILE_ID, ASTATKA_PATH)
     gdrive.export_xlsx(ZYT_FILE_ID, ZYT_PATH)
 
