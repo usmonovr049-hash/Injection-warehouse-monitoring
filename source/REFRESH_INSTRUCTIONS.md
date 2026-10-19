@@ -1241,3 +1241,39 @@ kiritmagan). Muammo: GitHub Actions avtomatlashtirish GOOGLE_SERVICE_ACCOUNT_JSO
 sababli hali bir marta muvaffaqiyatsiz ishlagan — foydalanuvchi buni sozlashi kerak (source/ci/SETUP.md),
 aks holda bu kunlik Claude vazifasi davom etishi kerak bo'ladi. PushNotification yuborilmadi (kunlik
 nashr muvaffaqiyatli, lekin GitHub Actions muammosi session xulosasida aytiladi).
+
+**19.10.2026, ~05:40-05:46 UTC / ~10:40-10:46 mahalliy (standart kunlik vazifa, CRON_TZ=Asia/Tashkent
+30 10 * * *):** Manba jadval (Kunlik_Panel) tekshirildi: Sana=2026-10-19 (bugungi kun bilan AYNAN mos,
+anomaliya yo'q), "Fakt kiritilganmi: ✗ Hali yo'q", "Chiqim kiritilganmi: ✗ Hali yo'q", "Plan berilganmi
+(Berilgan_Plan): ✓ Berilgan", "IMM_Fact to'ldirilganmi: ✓ To'ldirilgan". SANA QOIDASIga ko'ra "Plan
+berilganmi ✓" ishonchli — to'liq kunlik yangilash (KEEP_PLAN'siz) bajarildi:
+- `rebuild_dash.py`: N_DAYS 16→17 (1-17 okt), NEED_TOTAL 40593→54656 (yangi ishonchli Plan_Berish'dan),
+  116 qator, crit=2, high=25 — XAVFLI xato yo'q.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 17 kun, kerak=54656" — XAVFLI xato yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (arxivda jami 5 ta, o'zgarmadi).
+- `bake_kirim_snapshot.py`: OK, 1 ta yozuv, vaqt belgisi yangilandi (19.10.2026 10:43).
+- APM (3c): `rebuild_apm.py apm/apm.js /tmp/zyt.xlsx` — "Mavjud oy yangilandi: 19 kun, fakt
+  280377→309269 (17/18-kun fakti endi to'liq kiritilgan), reja 212771 (9 kun), IMM kunlari:
+  8,12,13,14,16,19" — XAVFLI xato yo'q. APM standart "bir kunlik ma'lumot" so'nggi haqiqiy fakt kuni
+  (17.10, shan)ni ko'rsatadi (18/19-kun fakti hali 0) — apm.js'dagi fillDays() mantiqiga mos, kutilgan.
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi (uk123456).
+- Playwright (`source/ci/verify.js` + vaqtinchalik APM tekshiruvi, playwright@1.56.0 global
+  /opt/npm-tools + /opt/pw-browsers orqali): barcha uch hisob (ombor/admin/apm) xatosiz login qildi,
+  pageerror yo'q (faqat kutilgan CDN/tunnel bloklanish xatolari). Oktabr KPI (1-17 okt): Jami qoldiq
+  154 726/116 detal, Shoshilinch yetishmovchilik 184 dona/2 detal, Tugagan detallar 25, Ishlab
+  chiqarildi 309 269 (APM fakt bilan mos, TOT_PROD yig'indisi bilan tasdiqlangan), Jo'natildi 273 888.
+  Sentabr filtri (2026-09-01..2026-09-30): Ishlab chiqarildi **646 593 dona, 1-29 sen** — AYNAN mos,
+  sentabr o'zgarmagan. APM: "Oy" ro'yxatida "Oktabr 2026 (joriy)" va "Sentabr 2026 (yakunlangan)"
+  ikkalasi bor; kun ro'yxati 01.10-19.10'gacha.
+- Claude Artifact (https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5): o'qildi (viewed, versiya
+  1792302277-1587 — 18.10'dagi oxirgi nashr bilan bir xil, "newer version" muammosi yo'q), so'ng
+  `quyish-login.html` bilan `capabilities`siz qayta nashr qilindi (Version 67, 1792388725-83d0).
+- GitHub Actions avtomatlashtirish (.github/workflows/daily-refresh.yml): hamon
+  `GOOGLE_SERVICE_ACCOUNT_JSON` siri sozlanmagani sababli ishlamayapti (18.10'dagi holat bilan bir
+  xil) — bu kunlik Claude vazifasi hamon ASOSIY ishlash usuli.
+- GitHub: `index.html`, `source/quyish-open.html` va `source/apm/apm.js` shu yozuv bilan birga main
+  branch'ga push qilinadi.
+
+Xulosa: bugungi yangilash MUVAFFAQIYATLI — Tahlil 17 kunlik (1-17 okt, kerak=54656, yangi ishonchli
+Plan) va APM 19 kunlik (fakt 309269) ma'lumot bilan. Muammo yo'q (GitHub Actions sir muammosi
+oldingi kunlardan beri ma'lum, o'zgarmagan). PushNotification yuborilmadi.
