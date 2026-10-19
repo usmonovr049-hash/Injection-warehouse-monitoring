@@ -1277,3 +1277,27 @@ berilganmi ✓" ishonchli — to'liq kunlik yangilash (KEEP_PLAN'siz) bajarildi:
 Xulosa: bugungi yangilash MUVAFFAQIYATLI — Tahlil 17 kunlik (1-17 okt, kerak=54656, yangi ishonchli
 Plan) va APM 19 kunlik (fakt 309269) ma'lumot bilan. Muammo yo'q (GitHub Actions sir muammosi
 oldingi kunlardan beri ma'lum, o'zgarmagan). PushNotification yuborilmadi.
+
+**Davomi (19.10.2026, ~10:20-10:22 UTC / ~15:20-15:22 mahalliy) — foydalanuvchi (Rustam)
+to'g'ridan-to'g'ri so'rovi bilan ("do it again") ikkinchi mustaqil tekshiruv:** Manba jadvallar
+(zyt.xlsx, Oktabr ASTATKA) qayta yuklab olindi. Kunlik_Panel holati o'zgarmagan: Sana=2026-10-19,
+"Fakt: ✗", "Chiqim: ✗", "Plan berilganmi: ✓ Berilgan", "IMM_Fact: ✓" — ~05:40 UTC'dagi birinchi
+tekshiruv bilan AYNAN bir xil. To'liq pipeline yana bajarildi:
+- `rebuild_dash.py`: N_DAYS=17, NEED_TOTAL=54656 — o'zgarmadi, XAVFLI yo'q.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 17 kun, kerak=54656" — XAVFLI yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (jami 5 ta, o'zgarmadi).
+- `bake_kirim_snapshot.py`: vaqt belgisi yangilandi (19.10.2026 15:21).
+- `rebuild_apm.py`: "Mavjud oy yangilandi: 19 kun, fakt 309269 (o'zgarmadi), reja 212771 (9 kun,
+  o'zgarmadi), IMM kunlari: 8,12,13,14,16,19" — apm.js fayli bayt-bayt bir xil chiqdi (git diff'da
+  ko'rinmadi) — manba ma'lumot bu ~5 soat ichida o'zgarmagan.
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi.
+- Playwright (`source/ci/verify.js`): barcha uch hisob xatosiz login qildi, pageerror yo'q, Oktabr
+  KPI va Sentabr (646 593, 1-29 sen) 05:40'dagi bilan bir xil.
+- Claude Artifact: o'qildi (versiya 1792388725-83d0 — oldingi oxirgi nashr bilan bir xil, konflikt
+  yo'q), qayta nashr qilindi (Version 68, 1792405348-4620).
+- GitHub: `index.html` va `source/quyish-open.html` push qilindi (faqat Kirim/Chiqim snapshot vaqt
+  belgisi va planDate 18.10→19.10 o'zgardi — real ma'lumot bir xil, `source/apm/apm.js` o'zgarmagani
+  uchun bu safar commitga kiritilmadi).
+
+Xulosa: ikkinchi mustaqil tekshiruv ham MUVAFFAQIYATLI, real o'zgarish yo'q (manba ma'lumot bir xil
+qoldi). Muammo yo'q, PushNotification yuborilmadi.
