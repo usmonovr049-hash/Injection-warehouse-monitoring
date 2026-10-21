@@ -1368,3 +1368,39 @@ to'liq kunlik yangilash (KEEP_PLAN'siz) bajarildi:
 Xulosa: bugungi yangilash MUVAFFAQIYATLI — Tahlil 19 kunlik (1-19 okt, kerak=47144, yangi ishonchli
 Plan) va APM 20 kunlik (fakt 333364) ma'lumot bilan. Muammo yo'q (GitHub Actions sir/ruxsat muammosi
 oldingi kunlardan beri ma'lum, o'zgarmagan). PushNotification yuborilmadi.
+
+**21.10.2026, ~05:40-05:46 UTC / ~10:40-10:46 mahalliy (standart kunlik vazifa):** Manba jadval
+(Kunlik_Panel) tekshirildi: Sana=2026-10-21 (bugungi kun bilan AYNAN mos, anomaliya yo'q). Holat:
+"Fakt kiritilganmi: ✓", "Chiqim kiritilganmi: ✓", "Plan berilganmi (Berilgan_Plan): ✗ Hali yo'q",
+"IMM_Fact to'ldirilganmi: ✓ To'ldirilgan". SANA QOIDASIga ko'ra "Plan berilganmi ✗" bo'lgani uchun
+Plan_Berish'ning kerak/ustuvorlik ustunlariga ishonilmadi, LEKIN nashr o'tkazib yuborilmadi — KEEP_PLAN
+rejimida to'liq kunlik yangilash bajarildi:
+- `KEEP_PLAN=quyish-open.html python3 rebuild_dash.py`: N_DAYS 19→20 (1-20 okt), NEED_TOTAL oxirgi
+  nashrdan saqlanib qoldi (47144, 0 ta detal topilmadi), 116 qator, crit=1, high=23 — XAVFLI xato yo'q.
+- `apply_dash_update.py`: "Mavjud oy (2026-10) yangilandi: 20 kun, kerak=47144" — XAVFLI xato yo'q.
+- `archive_kirim_month.py ... all`: 0 ta yangi yozuv (arxivda jami 5 ta, o'zgarmadi).
+- `bake_kirim_snapshot.py`: OK, 1 ta yozuv, vaqt belgisi yangilandi (21.10.2026 10:43).
+- APM (3c): `rebuild_apm.py apm/apm.js /tmp/zyt.xlsx` — "Mavjud oy yangilandi: 20 kun, fakt
+  333364→358904 (20-kun fakti endi to'liq kiritilgan), reja 261913 (10 kun), IMM kunlari:
+  8,12,13,14,16,19,20" — XAVFLI xato yo'q.
+- `node build_login.js`: muvaffaqiyatli, parollar o'zgarmadi (uk123456).
+- Playwright (`source/ci/verify.js` + vaqtinchalik APM tekshiruvi): barcha uch hisob (ombor/admin/apm)
+  xatosiz login qildi, pageerror yo'q (faqat kutilgan CDN/tunnel bloklanish xatolari). Oktabr KPI
+  (1-20 okt): Jami qoldiq 156 961/116 detal, Shoshilinch yetishmovchilik 224 dona/1 detal, Tugagan
+  detallar 20, Ishlab chiqarildi 358 904 (APM fakt bilan mos), Jo'natildi 321 288. Sentabr filtri
+  (2026-09-01..2026-09-30): Ishlab chiqarildi **646 593 dona, 1-29 sen** — AYNAN mos, sentabr
+  o'zgarmagan. APM: "Oy" ro'yxatida "Oktabr 2026 (joriy)" va "Sentabr 2026 (yakunlangan)" ikkalasi
+  bor; kun ro'yxati 01.10-20.10'gacha; standart "bir kunlik ma'lumot" so'nggi IMM-nusxali kun
+  (20.10, sesh)ni ko'rsatadi: Fakt 25 540, Reja 24 920, bajarilish 102% — dash bilan mos.
+- Claude Artifact (https://claude.ai/artifact/BZmDuP4C1RRMriXbNkEvJ5): o'qildi (viewed, versiya
+  1792475041-076c — 20.10'dagi oxirgi nashr bilan bir xil, "newer version" muammosi yo'q), so'ng
+  `quyish-login.html` bilan `capabilities`siz qayta nashr qilindi (Version 70, 1792561517-8f9f).
+- GitHub Actions avtomatlashtirish: hamon faqat "Oktabr ASTATKA" uchun ochiq havola orqali
+  ishlaydi; "Zaxira Yetish Tahlili" jadvali uchun Rustamning bitta qadami (yoki SETUP.md) hali
+  bajarilmagan (20.10'dagi holat bilan bir xil) — bu kunlik Claude vazifasi hamon ASOSIY usul.
+- GitHub: `index.html`, `source/quyish-open.html` va `source/apm/apm.js` shu yozuv bilan birga
+  main branch'ga push qilinadi.
+
+Xulosa: bugungi yangilash MUVAFFAQIYATLI — Tahlil 20 kunlik (1-20 okt, kerak=47144 KEEP_PLAN'dan, Plan
+hali kiritilmagan) va APM 20 kunlik (fakt 358904) ma'lumot bilan. Muammo yo'q (GitHub Actions
+sir/ruxsat muammosi oldingi kunlardan beri ma'lum, o'zgarmagan). PushNotification yuborilmadi.
